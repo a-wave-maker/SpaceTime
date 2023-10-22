@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    [SerializeField]
+    private PlayerData playerData;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -14,5 +17,15 @@ public class Player : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public void Fire()
+    {
+
+    }
+
+    public void Reload()
+    {
+        // TODO
     }
 }
