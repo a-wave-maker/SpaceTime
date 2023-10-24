@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
 guid: a6e5c8b83e893c748b40c5a63213444c
+=======
+guid: d545980b69727b14da74be97d643d1c7
+>>>>>>> 4acb0d6 (added demo weapon and bullet scripts)
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}
