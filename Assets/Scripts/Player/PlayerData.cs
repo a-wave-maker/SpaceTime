@@ -17,6 +17,7 @@ public class PlayerData : MonoBehaviour
     public Rigidbody2D PlayerRB { get => playerRB; set => playerRB = value; }
     public float PlayerMoveSpeed { get => playerMoveSpeed; set => playerMoveSpeed = value; }
     public Vector2 PlayerMoveDirection { get => playerMoveDirection; set => playerMoveDirection = value; }
+    public Weapon PlayerActiveWeapon { get => playerActiveWeapon; set => playerActiveWeapon = value; }
 
     // Start is called before the first frame update
     void Start()
