@@ -13,6 +13,7 @@ public class PlayerData : MonoBehaviour
     private int playerActiveWeaponIndex;
     private Weapon playerActiveWeapon;
 
+
     public Rigidbody2D PlayerRB { get => playerRB; set => playerRB = value; }
     public float PlayerMoveSpeed { get => playerMoveSpeed; set => playerMoveSpeed = value; }
     public Vector2 PlayerMoveDirection { get => playerMoveDirection; set => playerMoveDirection = value; }
