@@ -21,7 +21,9 @@ public class Player : MonoBehaviour
 
     public void Fire()
     {
-
+        Vector2 direction = playerData.PlayerMoveDirection;
+        Weapon currentWeapon = playerData.PlayerActiveWeapon;
+        currentWeapon.Fire(direction);
     }
 
     public void Reload()
