@@ -11,6 +11,7 @@ public class PlayerData : MonoBehaviour
 
     private Weapon[] playerWeapons;
     private int playerActiveWeaponIndex;
+    [SerializeField]
     private Weapon playerActiveWeapon;
 
 
