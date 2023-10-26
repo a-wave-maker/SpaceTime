@@ -10,13 +10,12 @@ public class Bullet : MonoBehaviour
 
     void Start()
     {
-        speed = 10;
-        // damage?
+        speed = 10f;
         rb = GetComponent<Rigidbody2D>();
     }
 
     void Update()
     {
-        rb.velocity = transform.right * speed;
+        rb.velocity = transform.up * speed;
     }
 }
