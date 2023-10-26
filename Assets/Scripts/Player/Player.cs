@@ -30,15 +30,52 @@ public class Player : MonoBehaviour
         playerRB.AddForce(direction.normalized * force, ForceMode2D.Impulse);
     }
 
+    public void switchWeapons(char type, int number = 1)
+    {
+        // type == +, number == 1 -> switches to the next weapon
+        // type == -, number == 2 -> switches to the prev prev weapon
+        // type == =, number == 5 -> switches to the 5th weapon
+
+        int boundary = playerData.PlayerWeapons.Count;
+        
+        if (boundary <= 0) { 
+            return;             // No weapons to switch to -> return
+        }
+
+        // playerData.PlayerActiveWeapon.Switch(); // TODO
+        int nextIndex = playerData.PlayerActiveWeaponIdx;
+
+        switch (type)
+        {
+            case '+':
+                nextIndex = (playerData.PlayerActiveWeaponIdx + number) % playerData.PlayerWeapons.Count;
+                break;
+            case '-':
+                nextIndex = (playerData.PlayerActiveWeaponIdx - number) % playerData.PlayerWeapons.Count;
+                break;
+            case '=':
+                nextIndex = number % playerData.PlayerWeapons.Count;
+                break;
+            default:
+                break;
+        }
+
+        playerData.PlayerActiveWeaponIdx = nextIndex;
+    }
+
     public void Fire()
     {
+        if (playerData.PlayerActiveWeaponIdx == 0)
+        {
+            return;
+        }
         // Fire weapon
         Weapon currentWeapon = playerData.PlayerActiveWeapon;
         currentWeapon.Fire();
 
         // Apply recoil
         /*float force = currentWeapon.Recoil;*/ // TODO
-        float force = 5f;
+        float force = 5f; // TMP
 
         Vector3 targetPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         targetPosition.z = 0f;
@@ -50,7 +87,7 @@ public class Player : MonoBehaviour
 
     public void Reload()
     {
-        print("Reloading");
+        print("Reloading"); // TMP
         // TODO
     }
 }
