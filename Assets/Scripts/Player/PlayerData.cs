@@ -25,7 +25,7 @@ public class PlayerData : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Weapon defaultWeapon = new Weapon();    // TMP
+        Weapon defaultWeapon = new Weapon();    // TMP THROWS A WARNING
         defaultWeapon.FireRate = 0;             // TMP
         defaultWeapon.Recoil = 0;               // TMP
         playerWeapons.Add(defaultWeapon);

@@ -33,26 +33,21 @@ public class PlayerController : MonoBehaviour
         float scroll = Input.GetAxis("Mouse ScrollWheel");
         if (scroll > 0f) // Scroll Up
         {
-            player.switchWeapons('+');
+            player.nextWeapon();
         }
         else if (scroll < 0f) // Scroll Down
         {
-            player.switchWeapons('-');
+            player.previousWeapon();
         }
 
-        // Switch weapon using number keys (1 to 9) and 0 for default empty weapon
-        for (int i = 1; i <= 9; i++)
+        // Switch weapon using number keys (1 to 9 and 0), 0 for default empty weapon
+        for (int i = 0; i <= 9; i++)
         {
             if (Input.GetKeyDown(i.ToString()))
             {
-                player.switchWeapons('=', i - 1);
+                player.nthWeapon(i);
             }
         }
-        if (Input.GetKeyDown(KeyCode.Alpha0))
-        {
-            player.switchWeapons('=', 0);
-        }
-
     }
 
     private void faceCursor()

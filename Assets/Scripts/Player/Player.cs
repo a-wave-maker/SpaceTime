@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -30,37 +31,49 @@ public class Player : MonoBehaviour
         playerRB.AddForce(direction.normalized * force, ForceMode2D.Impulse);
     }
 
-    public void switchWeapons(char type, int number = 1)
+    public void nextWeapon()
     {
-        // type == +, number == 1 -> switches to the next weapon
-        // type == -, number == 2 -> switches to the prev prev weapon
-        // type == =, number == 5 -> switches to the 5th weapon
-
-        int boundary = playerData.PlayerWeapons.Count;
-        
-        if (boundary <= 0) { 
-            return;             // No weapons to switch to -> return
-        }
-
-        // playerData.PlayerActiveWeapon.Switch(); // TODO
-        int nextIndex = playerData.PlayerActiveWeaponIdx;
-
-        switch (type)
+        int nextIdx = playerData.PlayerActiveWeaponIdx;
+        if (nextIdx == playerData.PlayerWeapons.Count - 1)
         {
-            case '+':
-                nextIndex = (playerData.PlayerActiveWeaponIdx + number) % playerData.PlayerWeapons.Count;
-                break;
-            case '-':
-                nextIndex = (playerData.PlayerActiveWeaponIdx - number) % playerData.PlayerWeapons.Count;
-                break;
-            case '=':
-                nextIndex = number % playerData.PlayerWeapons.Count;
-                break;
-            default:
-                break;
+            nextIdx = 0;
+        }
+        else
+        {
+            nextIdx = playerData.PlayerActiveWeaponIdx + 1;
         }
 
-        playerData.PlayerActiveWeaponIdx = nextIndex;
+        // playerData.PlayerWeapons[PlayerActiveWeaponIdx].Switch(); // TODO
+        playerData.PlayerActiveWeaponIdx = nextIdx;
+        // playerData.PlayerWeapons[PlayerActiveWeaponIdx].Switch(); // TODO
+    }
+
+    public void previousWeapon()
+    {
+        int nextIdx = playerData.PlayerActiveWeaponIdx;
+        if(nextIdx == 0)
+        {
+            nextIdx = playerData.PlayerWeapons.Count - 1;
+        } else
+        {
+            nextIdx = playerData.PlayerActiveWeaponIdx - 1;
+        }
+        
+        // playerData.PlayerWeapons[PlayerActiveWeaponIdx].Switch(); // TODO
+        playerData.PlayerActiveWeaponIdx = nextIdx;
+        // playerData.PlayerWeapons[PlayerActiveWeaponIdx].Switch(); // TODO
+    }
+
+    public void nthWeapon(int number)
+    {
+        if (number >= 0 && number < playerData.PlayerWeapons.Count)
+        {
+            int nextIdx = playerData.PlayerActiveWeaponIdx;
+            nextIdx = number % playerData.PlayerWeapons.Count;
+            // playerData.PlayerWeapons[PlayerActiveWeaponIdx].Switch(); // TODO
+            playerData.PlayerActiveWeaponIdx = nextIdx;
+            // playerData.PlayerWeapons[PlayerActiveWeaponIdx].Switch(); // TODO
+        }
     }
 
     public void Fire()
@@ -90,4 +103,45 @@ public class Player : MonoBehaviour
         print("Reloading"); // TMP
         // TODO
     }
+
+
+
+
+    // OLD SWITCH WEAPON FUNCTION
+    /*public void switchWeapons(char type, int number = 1)
+    {
+        // type == +, number == 1 -> switches to the next weapon
+        // type == -, number == 2 -> switches to the prev prev weapon
+        // type == =, number == 5 -> switches to the 5th weapon
+
+        int boundary = playerData.PlayerWeapons.Count;
+        
+        if (boundary <= 0) { 
+            return;             // No weapons to switch to -> return
+        }
+
+        int nextIdx = playerData.PlayerActiveWeaponIdx;
+
+        switch (type)
+        {
+            case '+':
+                nextIdx = (playerData.PlayerActiveWeaponIdx + number) % playerData.PlayerWeapons.Count;
+                break;
+            case '-':
+                nextIdx = (playerData.PlayerActiveWeaponIdx - number) % playerData.PlayerWeapons.Count;
+                break;
+            case '=':
+                if (number >= 0 && number < playerData.PlayerWeapons.Count)
+                {
+                    nextIdx = number % playerData.PlayerWeapons.Count;
+                }
+                break;
+            default:
+                break;
+        }
+
+        // playerData.PlayerWeapons[PlayerActiveWeaponIdx].Switch(); // TODO
+        playerData.PlayerActiveWeaponIdx = nextIdx;
+        // playerData.PlayerWeapons[PlayerActiveWeaponIdx].Switch(); // TODO
+    }*/
 }
