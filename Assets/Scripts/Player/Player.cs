@@ -9,6 +9,9 @@ public class Player : MonoBehaviour
     [SerializeField]
     private PlayerData playerData;
 
+    public delegate void PlayerDeathAction();
+    public static event PlayerDeathAction PlayerDeath;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -18,7 +21,7 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetButtonDown("Fire1"))
+        if (Input.GetButtonDown("Fire1")) // TMP
         {
             print("AAAAAAAAAAAAAAAA");
         }
@@ -101,11 +104,27 @@ public class Player : MonoBehaviour
     public void Reload()
     {
         print("Reloading"); // TMP
-        // TODO
+        // playerData.PlayerActiveWeapon.Reload(); // TODO
     }
 
+    public void takeDamage(int damage)
+    {
+        playerData.Health -= damage;
+        if(playerData.Health <= 0)
+        {
+            Die();
+        }
+    }
 
+    public void Die()
+    {
+        PlayerDeath?.Invoke();
+    }
 
+    public void setHealth(int health)
+    {
+        playerData.Health = health;
+    }
 
     // OLD SWITCH WEAPON FUNCTION
     /*public void switchWeapons(char type, int number = 1)

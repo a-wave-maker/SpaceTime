@@ -19,6 +19,10 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetKeyUp(KeyCode.K)) { // TMP
+            player.Die();
+        }
+
         faceCursor();
 
         if (Input.GetButtonDown("Fire1"))
