@@ -20,6 +20,7 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         faceCursor();
+
         if (Input.GetButtonDown("Fire1"))
         {
             player.Fire();
@@ -27,6 +28,25 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.R))
         {
             player.Reload(); // TODO
+        }
+
+        float scroll = Input.GetAxis("Mouse ScrollWheel");
+        if (scroll > 0f) // Scroll Up
+        {
+            player.nextWeapon();
+        }
+        else if (scroll < 0f) // Scroll Down
+        {
+            player.previousWeapon();
+        }
+
+        // Switch weapon using number keys (1 to 9 and 0), 0 for default empty weapon
+        for (int i = 0; i <= 9; i++)
+        {
+            if (Input.GetKeyDown(i.ToString()))
+            {
+                player.nthWeapon(i);
+            }
         }
     }
 
