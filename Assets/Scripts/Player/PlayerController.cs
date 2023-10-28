@@ -13,17 +13,13 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        // Face cursor
-        Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        Vector3 direction = mousePosition - transform.position;
-        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-        transform.rotation = Quaternion.Euler(new Vector3(0f, 0f, angle - 90f));
+        faceCursor();
 
         if (Input.GetButtonDown("Fire1"))
         {
@@ -33,5 +29,32 @@ public class PlayerController : MonoBehaviour
         {
             player.Reload(); // TODO
         }
+
+        float scroll = Input.GetAxis("Mouse ScrollWheel");
+        if (scroll > 0f) // Scroll Up
+        {
+            player.nextWeapon();
+        }
+        else if (scroll < 0f) // Scroll Down
+        {
+            player.previousWeapon();
+        }
+
+        // Switch weapon using number keys (1 to 9 and 0), 0 for default empty weapon
+        for (int i = 0; i <= 9; i++)
+        {
+            if (Input.GetKeyDown(i.ToString()))
+            {
+                player.nthWeapon(i);
+            }
+        }
+    }
+
+    private void faceCursor()
+    {
+        Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        Vector3 direction = mousePosition - transform.position;
+        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+        transform.rotation = Quaternion.Euler(new Vector3(0f, 0f, angle - 90f));
     }
 }

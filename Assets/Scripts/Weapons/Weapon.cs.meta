@@ -1,9 +1,5 @@
 fileFormatVersion: 2
-<<<<<<< HEAD
-guid: bfbf3d86414e49645be460d68a30324e
-=======
 guid: 9e5b2b4b47e72524b923b144901a7635
->>>>>>> 4acb0d6 (added demo weapon and bullet scripts)
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2

@@ -4,18 +4,6 @@ using UnityEngine;
 
 public class Weapon : MonoBehaviour
 {
-<<<<<<< HEAD
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-=======
     private float fireRate;
     private float recoil;
     [SerializeField] private Bullet bullet;
@@ -40,6 +28,5 @@ public class Weapon : MonoBehaviour
     public void Fire()
     {
         Instantiate(bullet, transform.position, transform.rotation);
->>>>>>> 4acb0d6 (added demo weapon and bullet scripts)
     }
 }
