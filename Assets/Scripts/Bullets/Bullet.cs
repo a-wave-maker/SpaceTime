@@ -8,14 +8,21 @@ public class Bullet : MonoBehaviour
     private float damage;
     private Rigidbody2D rb;
 
+    private float lifeTime = 5f;
+
     void Start()
     {
-        speed = 10f;
+        speed = 5f;
+        damage = 1f;
+
         rb = GetComponent<Rigidbody2D>();
+        rb.AddForce(transform.up * speed, ForceMode2D.Impulse);
+        // print(rb.velocity);
     }
 
     void Update()
     {
-        rb.velocity = transform.up * speed;
+        // despawn bullet after x time
+        Destroy(gameObject, lifeTime);
     }
 }
