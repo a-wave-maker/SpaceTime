@@ -4,9 +4,13 @@ using UnityEngine;
 
 public class Weapon : MonoBehaviour
 {
-    private float fireRate;
-    private float recoil;
+    private float fireRate = 5f; // bullets per second
+    private float recoil = 5f;
+
+    private float lastFireTime;
     [SerializeField] private Bullet bullet;
+
+    private bool isActive = false;
 
     public float FireRate
     {
@@ -22,11 +26,40 @@ public class Weapon : MonoBehaviour
 
     void Start()
     {
-        // set firerate and recoil?
+        // prepare lastFireTime to allow for instant firing
+        lastFireTime = - (1 / fireRate);
     }
 
-    public void Fire()
+    public bool Fire()
     {
-        Instantiate(bullet, transform.position, transform.rotation);
+        if (CanFire())
+        {
+            Instantiate(bullet, transform.position, transform.rotation);
+            lastFireTime = Time.time;
+            return true;
+        }
+        else return false;
+    }
+
+    public bool CanFire()
+    {
+        return Time.time - lastFireTime >= 1 / fireRate;
+    }
+
+
+    public void Switch() // ??
+    {
+        // reset weapon
+        if (isActive)
+        {
+            isActive = false;
+            lastFireTime = - (1 / fireRate);
+            print("weapon off");
+        }
+        else
+        {
+            isActive = true;
+            print("weapon on");
+        }
     }
 }
