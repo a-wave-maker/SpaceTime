@@ -7,7 +7,9 @@ public class Bullet : MonoBehaviour
     private float speed;
     private Vector3 weaponVelocity = Vector3.zero;
     private float damage;
+
     private Rigidbody2D rb;
+    private GameObject owner;
 
     private float lifeTime = 5f;
 
@@ -26,6 +28,11 @@ public class Bullet : MonoBehaviour
     {
         get { return damage; }
         set { damage = value; }
+    }
+    public GameObject Owner
+    {
+        get { return owner; }
+        set { owner = value; }
     }
 
     void Start()

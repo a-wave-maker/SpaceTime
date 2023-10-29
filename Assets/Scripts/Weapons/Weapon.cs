@@ -9,10 +9,10 @@ public class Weapon : MonoBehaviour
     private float recoil = 5f;
 
     private float lastFireTime;
-    [SerializeField] private Bullet bullet;
-    [SerializeField] private Rigidbody2D playerRB;
-
     private bool isActive = false;
+
+    [SerializeField] private Bullet bullet;
+    private GameObject owner;
 
     public float FireRate
     {
@@ -26,6 +26,13 @@ public class Weapon : MonoBehaviour
         set { recoil = value; }
     }
 
+    public GameObject Owner
+    {
+        get { return owner; }
+        set { owner = value; }
+    }
+
+
     void Start()
     {
         // prepare lastFireTime to allow for instant firing
@@ -34,7 +41,6 @@ public class Weapon : MonoBehaviour
 
     public bool Fire(Quaternion? direction = null)
     {
-        print(playerRB.velocity);
         if (!direction.HasValue)
         {
             direction = transform.rotation;
@@ -43,9 +49,13 @@ public class Weapon : MonoBehaviour
         if (CanFire())
         {
             Bullet newBullet = Instantiate(bullet, transform.position, (Quaternion)direction);
-            newBullet.WeaponVelocity = playerRB.velocity;
+
+            if (owner != null) {
+                newBullet.WeaponVelocity = owner.GetComponent<Rigidbody2D>().velocity; // this is probably temporary
+                newBullet.Owner = owner;
+            }
+
             lastFireTime = Time.time;
-            print(transform.rotation);
             return true;
         }
         else return false;
