@@ -5,10 +5,28 @@ using UnityEngine;
 public class Bullet : MonoBehaviour
 {
     private float speed;
+    private Vector3 weaponVelocity = Vector3.zero;
     private float damage;
     private Rigidbody2D rb;
 
     private float lifeTime = 5f;
+
+    public float Speed
+    {
+        get { return speed; }
+        set { speed = value; }
+    }
+    public Vector3 WeaponVelocity
+    {
+        get { return weaponVelocity; }
+        set { weaponVelocity = value; }
+    }
+
+    public float Damage
+    {
+        get { return damage; }
+        set { damage = value; }
+    }
 
     void Start()
     {
@@ -16,7 +34,8 @@ public class Bullet : MonoBehaviour
         damage = 1f;
 
         rb = GetComponent<Rigidbody2D>();
-        rb.AddForce(transform.up * speed, ForceMode2D.Impulse);
+        // print("weapon velocity:" + weaponVelocity);
+        rb.AddForce((transform.up + weaponVelocity) * speed, ForceMode2D.Impulse); // change bullet speed relative to weapon speed (TODO)
         // print(rb.velocity);
     }
 

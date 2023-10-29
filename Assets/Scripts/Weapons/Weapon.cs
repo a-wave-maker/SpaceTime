@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Mathematics;
 using UnityEngine;
 
 public class Weapon : MonoBehaviour
@@ -30,11 +31,17 @@ public class Weapon : MonoBehaviour
         lastFireTime = - (1 / fireRate);
     }
 
-    public bool Fire()
+    public bool Fire(Quaternion? direction = null)
     {
+        if (!direction.HasValue)
+        {
+            direction = transform.rotation;
+        }
+
         if (CanFire())
         {
-            Instantiate(bullet, transform.position, transform.rotation);
+            Bullet newBullet = Instantiate(bullet, transform.position, (Quaternion)direction);
+            // newBullet.WeaponVelocity = new Vector3(1,1,1); //TODO
             lastFireTime = Time.time;
             return true;
         }
