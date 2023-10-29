@@ -98,6 +98,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37fb57193bdfc9d43bb0cf643cd81fe5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  startSpeed: {x: 0, y: 0, z: 0}
+  rb: {fileID: 8805322190631463498}
+  targetObject: {fileID: 4793927052812630834, guid: 33fd69dcc60fb4e44b7f8d633bfe46f9, type: 3}
 --- !u!50 &8805322190631463498
 Rigidbody2D:
   serializedVersion: 4
@@ -113,7 +116,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 0
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
