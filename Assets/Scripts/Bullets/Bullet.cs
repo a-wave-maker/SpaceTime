@@ -34,9 +34,7 @@ public class Bullet : MonoBehaviour
         damage = 1f;
 
         rb = GetComponent<Rigidbody2D>();
-        // print("weapon velocity:" + weaponVelocity);
-        rb.AddForce((transform.up + weaponVelocity) * speed, ForceMode2D.Impulse); // change bullet speed relative to weapon speed (TODO)
-        // print(rb.velocity);
+        rb.AddForce(transform.up * speed + weaponVelocity, ForceMode2D.Impulse);
     }
 
     void Update()

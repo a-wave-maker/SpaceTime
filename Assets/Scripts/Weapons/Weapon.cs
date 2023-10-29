@@ -10,6 +10,7 @@ public class Weapon : MonoBehaviour
 
     private float lastFireTime;
     [SerializeField] private Bullet bullet;
+    [SerializeField] private Rigidbody2D playerRB;
 
     private bool isActive = false;
 
@@ -33,6 +34,7 @@ public class Weapon : MonoBehaviour
 
     public bool Fire(Quaternion? direction = null)
     {
+        print(playerRB.velocity);
         if (!direction.HasValue)
         {
             direction = transform.rotation;
@@ -41,8 +43,9 @@ public class Weapon : MonoBehaviour
         if (CanFire())
         {
             Bullet newBullet = Instantiate(bullet, transform.position, (Quaternion)direction);
-            // newBullet.WeaponVelocity = new Vector3(1,1,1); //TODO
+            newBullet.WeaponVelocity = playerRB.velocity;
             lastFireTime = Time.time;
+            print(transform.rotation);
             return true;
         }
         else return false;
