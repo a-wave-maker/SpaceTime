@@ -87,18 +87,20 @@ public class Player : MonoBehaviour
         }
         // Fire weapon
         Weapon currentWeapon = playerData.PlayerActiveWeapon;
-        currentWeapon.Fire();
+        
+        if(currentWeapon.Fire())
+        {
+            // Apply recoil
+            /*float force = currentWeapon.Recoil;*/ // TODO
+            float force = 5f; // TMP
 
-        // Apply recoil
-        /*float force = currentWeapon.Recoil;*/ // TODO
-        float force = 5f; // TMP
+            Vector3 targetPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            targetPosition.z = 0f;
 
-        Vector3 targetPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        targetPosition.z = 0f;
+            Vector2 direction = transform.position - targetPosition;
 
-        Vector2 direction = transform.position - targetPosition;
-
-        applyForce(force, direction);
+            applyForce(force, direction);
+        }
     }
 
     public void Reload()
