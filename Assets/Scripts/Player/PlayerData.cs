@@ -14,6 +14,7 @@ public class PlayerData : MonoBehaviour
     [SerializeField] // TMP
     private Weapon playerActiveWeapon; // TMP
 
+    private int health = 100;
 
     public Rigidbody2D PlayerRB { get => playerRB; set => playerRB = value; }
     public float PlayerMoveSpeed { get => playerMoveSpeed; set => playerMoveSpeed = value; }
@@ -21,6 +22,7 @@ public class PlayerData : MonoBehaviour
     public List<Weapon> PlayerWeapons { get => playerWeapons; set => playerWeapons = value; }
     public int PlayerActiveWeaponIdx { get => playerActiveWeaponIdx; set => playerActiveWeaponIdx = value; }
     public Weapon PlayerActiveWeapon { get => playerWeapons[playerActiveWeaponIdx]; }
+    public int Health { get => health; set => health = value; }
 
     // Start is called before the first frame update
     void Start()
