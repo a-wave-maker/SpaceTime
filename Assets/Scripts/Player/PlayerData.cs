@@ -12,7 +12,7 @@ public class PlayerData : MonoBehaviour
     [SerializeField]
     private float massMultiplier = 1;
     [SerializeField]
-    private float rotationSpeed = 1;
+    private float rotationSpeed = 1000;
 
     private List<Weapon> playerWeapons = new List<Weapon>();
     private int playerActiveWeaponIdx = 0;
