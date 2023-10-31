@@ -15,6 +15,7 @@ public class PlayerData : MonoBehaviour
     private Weapon playerActiveWeapon; // TMP
 
     private int health = 100;
+    public float massMultiplier = 1;
 
     public Rigidbody2D PlayerRB { get => playerRB; set => playerRB = value; }
     public float PlayerMoveSpeed { get => playerMoveSpeed; set => playerMoveSpeed = value; }
@@ -23,6 +24,7 @@ public class PlayerData : MonoBehaviour
     public int PlayerActiveWeaponIdx { get => playerActiveWeaponIdx; set => playerActiveWeaponIdx = value; }
     public Weapon PlayerActiveWeapon { get => playerWeapons[playerActiveWeaponIdx]; }
     public int Health { get => health; set => health = value; }
+    public float MassMultiplier { get => massMultiplier; set => massMultiplier = value; }
 
     // Start is called before the first frame update
     void Start()
