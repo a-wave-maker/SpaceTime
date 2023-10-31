@@ -9,6 +9,11 @@ public class PlayerData : MonoBehaviour
     private float playerMoveSpeed;
     private Vector2 playerMoveDirection;
 
+    [SerializeField]
+    private float massMultiplier = 1;
+    [SerializeField]
+    private float rotationSpeed = 1000;
+
     private List<Weapon> playerWeapons = new List<Weapon>();
     private int playerActiveWeaponIdx = 0;
     [SerializeField] // TMP
@@ -23,6 +28,8 @@ public class PlayerData : MonoBehaviour
     public int PlayerActiveWeaponIdx { get => playerActiveWeaponIdx; set => playerActiveWeaponIdx = value; }
     public Weapon PlayerActiveWeapon { get => playerWeapons[playerActiveWeaponIdx]; }
     public int Health { get => health; set => health = value; }
+    public float MassMultiplier { get => massMultiplier; set => massMultiplier = value; }
+    public float RotationSpeed { get => rotationSpeed; set => rotationSpeed = value; }
 
     // Start is called before the first frame update
     void Start()

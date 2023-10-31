@@ -31,7 +31,8 @@ public class Player : MonoBehaviour
     {
         Rigidbody2D playerRB = playerData.PlayerRB;
 
-        playerRB.AddForce(direction.normalized * force, ForceMode2D.Impulse);
+
+        playerRB.AddForce((direction.normalized * force) / playerData.MassMultiplier, ForceMode2D.Impulse);
     }
 
     public void nextWeapon()
