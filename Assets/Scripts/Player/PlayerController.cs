@@ -59,6 +59,12 @@ public class PlayerController : MonoBehaviour
         Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         Vector3 direction = mousePosition - transform.position;
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-        transform.rotation = Quaternion.Euler(new Vector3(0f, 0f, angle - 90f));
+        Quaternion targetRotation = Quaternion.Euler(new Vector3(0f, 0f, angle - 90f));
+
+        // Determine the maximum degrees the rotation can change in one frame
+        float maxDegreesPerFrame = playerData.RotationSpeed * Time.deltaTime;
+
+        // Smoothly rotate towards the target rotation
+        transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, maxDegreesPerFrame);
     }
 }
