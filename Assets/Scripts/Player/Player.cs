@@ -12,28 +12,45 @@ public class Player : MonoBehaviour
     public delegate void PlayerDeathAction();
     public static event PlayerDeathAction PlayerDeath;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
-    // Update is called once per frame
-    void Update()
+    // ----------------------------------------------------------------------------------------------------------------
+    // PLAYER ACTIONS
+    // ----------------------------------------------------------------------------------------------------------------
+
+    public void Fire()
     {
-        if (Input.GetButtonDown("Fire1")) // TMP
+        if (playerData.PlayerActiveWeaponIdx == 0)
         {
-            print("AAAAAAAAAAAAAAAA");
+            return;
+        }
+        // Fire weapon
+        Weapon currentWeapon = playerData.PlayerActiveWeapon;
+
+        if (currentWeapon.Fire())
+        {
+            // Apply recoil
+            /*float force = currentWeapon.Recoil;*/ // TODO
+            float force = 5f; // TMP
+
+            Vector3 targetPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            targetPosition.z = 0f;
+
+            Vector2 direction = transform.position - targetPosition;
+
+            applyForce(force, direction);
         }
     }
 
-    private void applyForce(float force, Vector2 direction)
+    public void Reload()
     {
-        Rigidbody2D playerRB = playerData.PlayerRB;
-
-
-        playerRB.AddForce((direction.normalized * force) / playerData.MassMultiplier, ForceMode2D.Impulse);
+        print("Reloading"); // TMP
+        // playerData.PlayerActiveWeapon.Reload(); // TODO
     }
+
+    
+    // ----------------------------------------------------------------------------------------------------------------
+    // WEAPON SWITCHING
+    // ----------------------------------------------------------------------------------------------------------------
 
     public void nextWeapon()
     {
@@ -55,15 +72,16 @@ public class Player : MonoBehaviour
     public Weapon previousWeapon()
     {
         int nextIdx = playerData.PlayerActiveWeaponIdx;
-        
-        if(nextIdx == 0)
+
+        if (nextIdx == 0)
         {
             nextIdx = playerData.PlayerWeapons.Count - 1;
-        } else
+        }
+        else
         {
             nextIdx = playerData.PlayerActiveWeaponIdx - 1;
         }
-        
+
         // playerData.PlayerWeapons[PlayerActiveWeaponIdx].Switch(); // TODO
         playerData.PlayerActiveWeaponIdx = nextIdx;
         // playerData.PlayerWeapons[PlayerActiveWeaponIdx].Switch(); // TODO
@@ -86,43 +104,29 @@ public class Player : MonoBehaviour
         return playerData.PlayerWeapons[nextIdx];
     }
 
-    public void Fire()
+    
+    // ----------------------------------------------------------------------------------------------------------------
+    // INTERACTIONS
+    // ----------------------------------------------------------------------------------------------------------------
+    
+    private void applyForce(float force, Vector2 direction)
     {
-        if (playerData.PlayerActiveWeaponIdx == 0)
-        {
-            return;
-        }
-        // Fire weapon
-        Weapon currentWeapon = playerData.PlayerActiveWeapon;
-        
-        if(currentWeapon.Fire())
-        {
-            // Apply recoil
-            /*float force = currentWeapon.Recoil;*/ // TODO
-            float force = 5f; // TMP
+        Rigidbody2D playerRB = playerData.PlayerRB;
 
-            Vector3 targetPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            targetPosition.z = 0f;
-
-            Vector2 direction = transform.position - targetPosition;
-
-            applyForce(force, direction);
-        }
-    }
-
-    public void Reload()
-    {
-        print("Reloading"); // TMP
-        // playerData.PlayerActiveWeapon.Reload(); // TODO
+        playerRB.AddForce((direction.normalized * force) / playerData.MassMultiplier, ForceMode2D.Impulse);
     }
 
     public void takeDamage(int damage)
     {
         playerData.Health -= damage;
-        if(playerData.Health <= 0)
+        if (playerData.Health <= 0)
         {
             Die();
         }
+    }
+    public void setHealth(int health)
+    {
+        playerData.Health = health;
     }
 
     public void Die()
@@ -130,10 +134,11 @@ public class Player : MonoBehaviour
         PlayerDeath?.Invoke();
     }
 
-    public void setHealth(int health)
+    private void getHitByBullet(Bullet bullet)
     {
-        playerData.Health = health;
+
     }
+
 
     // OLD SWITCH WEAPON FUNCTION
     /*public void switchWeapons(char type, int number = 1)
