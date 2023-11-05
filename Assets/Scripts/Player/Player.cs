@@ -52,9 +52,10 @@ public class Player : MonoBehaviour
         // playerData.PlayerWeapons[PlayerActiveWeaponIdx].Switch(); // TODO
     }
 
-    public void previousWeapon()
+    public Weapon previousWeapon()
     {
         int nextIdx = playerData.PlayerActiveWeaponIdx;
+        
         if(nextIdx == 0)
         {
             nextIdx = playerData.PlayerWeapons.Count - 1;
@@ -66,18 +67,23 @@ public class Player : MonoBehaviour
         // playerData.PlayerWeapons[PlayerActiveWeaponIdx].Switch(); // TODO
         playerData.PlayerActiveWeaponIdx = nextIdx;
         // playerData.PlayerWeapons[PlayerActiveWeaponIdx].Switch(); // TODO
+
+        return playerData.PlayerWeapons[nextIdx];
     }
 
-    public void nthWeapon(int number)
+    public Weapon nthWeapon(int number)
     {
+        int nextIdx = playerData.PlayerActiveWeaponIdx;
+
         if (number >= 0 && number < playerData.PlayerWeapons.Count)
         {
-            int nextIdx = playerData.PlayerActiveWeaponIdx;
             nextIdx = number % playerData.PlayerWeapons.Count;
             // playerData.PlayerWeapons[PlayerActiveWeaponIdx].Switch(); // TODO
             playerData.PlayerActiveWeaponIdx = nextIdx;
             // playerData.PlayerWeapons[PlayerActiveWeaponIdx].Switch(); // TODO
         }
+
+        return playerData.PlayerWeapons[nextIdx];
     }
 
     public void Fire()
