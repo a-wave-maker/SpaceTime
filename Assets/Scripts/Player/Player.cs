@@ -12,6 +12,13 @@ public class Player : MonoBehaviour
     public delegate void PlayerDeathAction();
     public static event PlayerDeathAction PlayerDeath;
 
+    public void Update()
+    {
+        if(playerData.PlayerHealth <= 0)
+        {
+            Die();
+        }
+    }
 
     // ----------------------------------------------------------------------------------------------------------------
     // PLAYER ACTIONS
@@ -113,20 +120,20 @@ public class Player : MonoBehaviour
     {
         Rigidbody2D playerRB = playerData.PlayerRB;
 
-        playerRB.AddForce((direction.normalized * force) / playerData.MassMultiplier, ForceMode2D.Impulse);
+        playerRB.AddForce((direction.normalized * force) / playerData.PlayerMassMultiplier, ForceMode2D.Impulse);
     }
 
     public void takeDamage(int damage)
     {
-        playerData.Health -= damage;
-        if (playerData.Health <= 0)
+        playerData.PlayerHealth -= damage;
+        if (playerData.PlayerHealth <= 0)
         {
             Die();
         }
     }
     public void setHealth(int health)
     {
-        playerData.Health = health;
+        playerData.PlayerHealth = health;
     }
 
     public void Die()
@@ -134,10 +141,24 @@ public class Player : MonoBehaviour
         PlayerDeath?.Invoke();
     }
 
-    private void getHitByBullet(Bullet bullet)
+/*    private Object getHit(Object @object)
     {
+        // TODO Make it return the type it gets?
 
-    }
+        if (@object.GetType == Bullet)
+        {
+            getHitByBullet(@object);
+        }
+
+        return null;
+    }*/
+
+/*    private void getHitByBullet(Bullet bullet)
+    {
+        takeDamage(bullet.Damage); // TODO to int
+        // TODO calculate the angle
+        applyForce(bullet.)
+    }*/
 
 
     // OLD SWITCH WEAPON FUNCTION
