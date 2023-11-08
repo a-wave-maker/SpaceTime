@@ -10,6 +10,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private Player player;
 
+    public delegate void SuperHotMode();
+    public static event SuperHotMode ChangeSuperHot;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -26,6 +29,10 @@ public class PlayerController : MonoBehaviour
     {
         if (Input.GetKeyUp(KeyCode.K)) { // TMP
             player.Die();
+        }
+        if (Input.GetKeyUp(KeyCode.Z))
+        {
+            ChangeSuperHot?.Invoke();
         }
 
         if (Input.GetButtonDown("Fire1"))

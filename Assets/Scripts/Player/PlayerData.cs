@@ -6,7 +6,6 @@ public class PlayerData : MonoBehaviour
 {
     [SerializeField]
     private Rigidbody2D playerRB;
-    private float playerMoveSpeed;
     private Vector2 playerMoveDirection;
 
     [SerializeField]
@@ -22,7 +21,6 @@ public class PlayerData : MonoBehaviour
     private int playerHealth = 100;
 
     public Rigidbody2D PlayerRB { get => playerRB; set => playerRB = value; }
-    public float PlayerMoveSpeed { get => playerMoveSpeed; set => playerMoveSpeed = value; }
     public Vector2 PlayerMoveDirection { get => playerMoveDirection; set => playerMoveDirection = value; }
     public List<Weapon> PlayerWeapons { get => playerWeapons; set => playerWeapons = value; }
     public int PlayerActiveWeaponIdx { get => playerActiveWeaponIdx; set => playerActiveWeaponIdx = value; }
