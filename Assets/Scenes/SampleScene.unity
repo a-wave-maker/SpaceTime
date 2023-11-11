@@ -319,6 +319,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1637614109308633135, guid: 33fd69dcc60fb4e44b7f8d633bfe46f9, type: 3}
   m_PrefabInstance: {fileID: 718659566756761221}
   m_PrefabAsset: {fileID: 0}
+--- !u!50 &1675549823 stripped
+Rigidbody2D:
+  m_CorrespondingSourceObject: {fileID: 1660148338214547944, guid: 33fd69dcc60fb4e44b7f8d633bfe46f9, type: 3}
+  m_PrefabInstance: {fileID: 718659566756761221}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &718659566756761221
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -371,6 +376,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 8596564098639175867, guid: 33fd69dcc60fb4e44b7f8d633bfe46f9, type: 3}
+      propertyPath: playerRB
+      value: 
+      objectReference: {fileID: 1675549823}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

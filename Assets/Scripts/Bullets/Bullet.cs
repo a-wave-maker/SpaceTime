@@ -7,7 +7,9 @@ public class Bullet : MonoBehaviour
     private float speed;
     private Vector3 weaponVelocity = Vector3.zero;
     private float damage;
+
     private Rigidbody2D rb;
+    private GameObject owner;
 
     private float lifeTime = 5f;
 
@@ -27,6 +29,11 @@ public class Bullet : MonoBehaviour
         get { return damage; }
         set { damage = value; }
     }
+    public GameObject Owner
+    {
+        get { return owner; }
+        set { owner = value; }
+    }
 
     void Start()
     {
@@ -34,9 +41,7 @@ public class Bullet : MonoBehaviour
         damage = 1f;
 
         rb = GetComponent<Rigidbody2D>();
-        // print("weapon velocity:" + weaponVelocity);
-        rb.AddForce((transform.up + weaponVelocity) * speed, ForceMode2D.Impulse); // change bullet speed relative to weapon speed (TODO)
-        // print(rb.velocity);
+        rb.AddForce(transform.up * speed + weaponVelocity, ForceMode2D.Impulse);
     }
 
     void Update()

@@ -9,9 +9,10 @@ public class Weapon : MonoBehaviour
     private float recoil = 5f;
 
     private float lastFireTime;
-    [SerializeField] private Bullet bullet;
-
     private bool isActive = false;
+
+    [SerializeField] private Bullet bullet;
+    private GameObject owner;
 
     public float FireRate
     {
@@ -24,6 +25,13 @@ public class Weapon : MonoBehaviour
         get { return recoil; }
         set { recoil = value; }
     }
+
+    public GameObject Owner
+    {
+        get { return owner; }
+        set { owner = value; }
+    }
+
 
     void Start()
     {
@@ -41,7 +49,12 @@ public class Weapon : MonoBehaviour
         if (CanFire())
         {
             Bullet newBullet = Instantiate(bullet, transform.position, (Quaternion)direction);
-            // newBullet.WeaponVelocity = new Vector3(1,1,1); //TODO
+
+            if (owner != null) {
+                newBullet.WeaponVelocity = owner.GetComponent<Rigidbody2D>().velocity; // this is probably temporary
+                newBullet.Owner = owner;
+            }
+
             lastFireTime = Time.time;
             return true;
         }
