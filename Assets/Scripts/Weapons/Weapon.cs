@@ -6,7 +6,7 @@ using UnityEngine;
 public class Weapon : MonoBehaviour
 {
     private float fireRate = 5f; // bullets per second
-    private float recoil = 5f;
+    private float recoil = 2f;
 
     private float lastFireTime;
     private bool isActive = false;
@@ -39,7 +39,7 @@ public class Weapon : MonoBehaviour
         lastFireTime = - (1 / fireRate);
     }
 
-    public bool Fire(Quaternion? direction = null)
+    public virtual bool Fire(Quaternion? direction = null)
     {
         if (!direction.HasValue)
         {
@@ -69,17 +69,18 @@ public class Weapon : MonoBehaviour
 
     public void Switch() // ??
     {
+        print("switching weapon");
         // reset weapon
         if (isActive)
         {
             isActive = false;
+            gameObject.SetActive(false);
             lastFireTime = - (1 / fireRate);
-            print("weapon off");
         }
         else
         {
             isActive = true;
-            print("weapon on");
+            gameObject.SetActive(true); // renders object
         }
     }
 }
