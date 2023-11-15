@@ -314,6 +314,17 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1044553891 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8596564098639175867, guid: 33fd69dcc60fb4e44b7f8d633bfe46f9, type: 3}
+  m_PrefabInstance: {fileID: 718659566756761221}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9e5b2b4b47e72524b923b144901a7635, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &1188502080 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1637614109308633135, guid: 33fd69dcc60fb4e44b7f8d633bfe46f9, type: 3}
@@ -372,9 +383,33 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3312548576668503146, guid: 33fd69dcc60fb4e44b7f8d633bfe46f9, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4793927052812630834, guid: 33fd69dcc60fb4e44b7f8d633bfe46f9, type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 6421394482383374832, guid: 33fd69dcc60fb4e44b7f8d633bfe46f9, type: 3}
+      propertyPath: playerActiveWeapon
+      value: 
+      objectReference: {fileID: 1044553891}
+    - target: {fileID: 6421394482383374832, guid: 33fd69dcc60fb4e44b7f8d633bfe46f9, type: 3}
+      propertyPath: playerWeapons.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6421394482383374832, guid: 33fd69dcc60fb4e44b7f8d633bfe46f9, type: 3}
+      propertyPath: playerWeapons.Array.data[0]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 6421394482383374832, guid: 33fd69dcc60fb4e44b7f8d633bfe46f9, type: 3}
+      propertyPath: playerWeapons.Array.data[1]
+      value: 
+      objectReference: {fileID: 1044553891}
+    - target: {fileID: 6421394482383374832, guid: 33fd69dcc60fb4e44b7f8d633bfe46f9, type: 3}
+      propertyPath: playerWeapons.Array.data[2]
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 8596564098639175867, guid: 33fd69dcc60fb4e44b7f8d633bfe46f9, type: 3}
       propertyPath: playerRB
