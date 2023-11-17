@@ -361,17 +361,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1307832183 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8266918603032250535, guid: e5bdf45b2b6b0cb4083370b9ea592faf, type: 3}
-  m_PrefabInstance: {fileID: 4751594178711823515}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 62c3e65ba90a7d142b1b9fa1dae1b47c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1668305005
 GameObject:
   m_ObjectHideFlags: 0
@@ -778,6 +767,7 @@ GameObject:
   - component: {fileID: 1953812090}
   - component: {fileID: 1953812089}
   - component: {fileID: 1953812088}
+  - component: {fileID: 1953812091}
   m_Layer: 5
   m_Name: Start
   m_TagString: Untagged
@@ -848,9 +838,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1307832183}
-        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
-        m_MethodName: StartGame
+      - m_Target: {fileID: 1953812091}
+        m_TargetAssemblyTypeName: StartGameButton, Assembly-CSharp
+        m_MethodName: OnButtonClick
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -898,6 +888,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1953812086}
   m_CullTransparentMesh: 1
+--- !u!114 &1953812091
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1953812086}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e0b5a6d92b45e0d43a098861c034e34e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &4751594178711823515
 PrefabInstance:
   m_ObjectHideFlags: 0
