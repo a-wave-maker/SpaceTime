@@ -50,8 +50,7 @@ public class Player : MonoBehaviour
 
     public void Reload()
     {
-        print("Reloading"); // TMP
-        // playerData.PlayerActiveWeapon.Reload(); // TODO
+        playerData.PlayerActiveWeapon.Reload();
     }
 
     
@@ -61,6 +60,9 @@ public class Player : MonoBehaviour
 
     public void nextWeapon()
     {
+        print(playerData.PlayerActiveWeaponIdx);
+        print(playerData.PlayerWeapons.Count);
+
         int nextIdx = playerData.PlayerActiveWeaponIdx;
         if (nextIdx == playerData.PlayerWeapons.Count - 1)
         {
@@ -71,9 +73,9 @@ public class Player : MonoBehaviour
             nextIdx = playerData.PlayerActiveWeaponIdx + 1;
         }
 
-        // playerData.PlayerWeapons[PlayerActiveWeaponIdx].Switch(); // TODO
+        playerData.PlayerWeapons[playerData.PlayerActiveWeaponIdx].Switch();
         playerData.PlayerActiveWeaponIdx = nextIdx;
-        // playerData.PlayerWeapons[PlayerActiveWeaponIdx].Switch(); // TODO
+        playerData.PlayerWeapons[playerData.PlayerActiveWeaponIdx].Switch();
     }
 
     public Weapon previousWeapon()
@@ -89,9 +91,9 @@ public class Player : MonoBehaviour
             nextIdx = playerData.PlayerActiveWeaponIdx - 1;
         }
 
-        // playerData.PlayerWeapons[PlayerActiveWeaponIdx].Switch(); // TODO
+        playerData.PlayerWeapons[playerData.PlayerActiveWeaponIdx].Switch();
         playerData.PlayerActiveWeaponIdx = nextIdx;
-        // playerData.PlayerWeapons[PlayerActiveWeaponIdx].Switch(); // TODO
+        playerData.PlayerWeapons[playerData.PlayerActiveWeaponIdx].Switch();
 
         return playerData.PlayerWeapons[nextIdx];
     }
@@ -103,9 +105,9 @@ public class Player : MonoBehaviour
         if (number >= 0 && number < playerData.PlayerWeapons.Count)
         {
             nextIdx = number % playerData.PlayerWeapons.Count;
-            // playerData.PlayerWeapons[PlayerActiveWeaponIdx].Switch(); // TODO
+            playerData.PlayerWeapons[playerData.PlayerActiveWeaponIdx].Switch();
             playerData.PlayerActiveWeaponIdx = nextIdx;
-            // playerData.PlayerWeapons[PlayerActiveWeaponIdx].Switch(); // TODO
+            playerData.PlayerWeapons[playerData.PlayerActiveWeaponIdx].Switch();
         }
 
         return playerData.PlayerWeapons[nextIdx];

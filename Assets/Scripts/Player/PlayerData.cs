@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.SceneManagement;
 using UnityEngine;
 
 public class PlayerData : MonoBehaviour
@@ -12,11 +13,12 @@ public class PlayerData : MonoBehaviour
     private float playerMassMultiplier = 1;
     [SerializeField]
     private float playerRotationSpeed = 1000;
-
+    [SerializeField]
+    private PlayerWeaponManager playerWeaponManager;
+    [SerializeField]
+    private Weapon playerDefaultWeapon;
     private List<Weapon> playerWeapons = new List<Weapon>();
     private int playerActiveWeaponIdx = 0;
-    [SerializeField] // TMP
-    private Weapon playerActiveWeapon; // TMP
 
     private int playerHealth = 100;
 
@@ -32,11 +34,22 @@ public class PlayerData : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Weapon defaultWeapon = new Weapon();    // TMP THROWS A WARNING
+        /*Weapon defaultWeapon = new Weapon();    // TMP THROWS A WARNING
         defaultWeapon.FireRate = 0;             // TMP
         defaultWeapon.Recoil = 0;               // TMP
         playerWeapons.Add(defaultWeapon);
-        playerWeapons.Add(playerActiveWeapon);  // TMP
+        playerWeapons.Add(playerActiveWeapon);  // TMP*/
+
+        Transform parent = transform;
+
+        Weapon defaultWeapon = Instantiate(playerDefaultWeapon, parent);
+        playerWeapons.Add(defaultWeapon);
+        
+        playerWeaponManager.InstantiateAllWeapons(parent);
+        playerWeapons.AddRange(playerWeaponManager.InstantiatedWeapons);
+        playerWeaponManager.DisableWeaponRendering();
+
+        PlayerWeapons[PlayerActiveWeaponIdx].Switch(); // turn on the first weapon
     }
 
     // Update is called once per frame
@@ -49,4 +62,5 @@ public class PlayerData : MonoBehaviour
     {
         playerWeapons.Add(weapon);
     }
+
 }
