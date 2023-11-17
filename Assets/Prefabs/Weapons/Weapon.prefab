@@ -97,4 +97,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e5b2b4b47e72524b923b144901a7635, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bullet: {fileID: 0}
+  bullet: {fileID: 7686144728540405261, guid: 93233abc480ccf04ca7a5f725d74ee47, type: 3}
