@@ -45,6 +45,7 @@ public class Weapon : MonoBehaviour
     {
         lastFireTime = - (1 / fireRate);
         remainingAmmo = maxAmmo;
+        reloadCooldown = Time.time;
     }
 
     void Update()
@@ -54,6 +55,7 @@ public class Weapon : MonoBehaviour
         {
             remainingAmmo = maxAmmo;
             isReloading = false;
+            print("finished reloading");//tmp
         }
     }
 
@@ -92,6 +94,8 @@ public class Weapon : MonoBehaviour
     // reload
     public void Reload()
     {
+        print("I am reloading"); //tmp
+        remainingAmmo = 0;
         reloadCooldown = Time.time;
         isReloading = true;
     }
@@ -99,7 +103,7 @@ public class Weapon : MonoBehaviour
     // switch weapon active status
     public void Switch()
     {
-        print("switching weapon");
+        print("switching weapon");//tmp
         if (isActive)
         {
             isActive = false;
