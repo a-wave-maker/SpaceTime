@@ -10,6 +10,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private Player player;
 
+    public delegate void SuperHotMode();
+    public static event SuperHotMode ChangeSuperHot;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -26,6 +29,10 @@ public class PlayerController : MonoBehaviour
     {
         if (Input.GetKeyUp(KeyCode.K)) { // TMP
             player.Die();
+        }
+        if (Input.GetKeyUp(KeyCode.Z))
+        {
+            ChangeSuperHot?.Invoke();
         }
 
         if (Input.GetButtonDown("Fire1"))
@@ -65,7 +72,7 @@ public class PlayerController : MonoBehaviour
         Quaternion targetRotation = Quaternion.Euler(new Vector3(0f, 0f, angle - 90f));
 
         // Determine the maximum degrees the rotation can change in one frame
-        float maxDegreesPerFrame = playerData.RotationSpeed * Time.deltaTime;
+        float maxDegreesPerFrame = playerData.PlayerRotationSpeed * Time.deltaTime;
 
         // Smoothly rotate towards the target rotation
         transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, maxDegreesPerFrame);
