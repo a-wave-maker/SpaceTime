@@ -2,32 +2,29 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Shotgun : Weapon
+public class Shotgun : PlayerWeapon
 {
-
-    void Start()
+    protected override void Start()
     {
-        FireRate = 3f;
-        Recoil = 8f;
+        FireRate = 8f;
+        Recoil = 16f;
+        ReloadTime = 1f;
+        MaxAmmo = 10;
+        // test values ^
+        base.Start();
     }
 
-    void Update()
-    {
+    // void Update()
+    // {
 
-    }
+    // }
 
     public override bool Fire(Quaternion? direction = null)
     {
-        // if (direction.HasValue)
-        // {
-        //     base.Fire(direction);
-        // } else
-        // {
-        //     base.Fire();
-        // }
-
-        print("firing a shotgun");
-        return true;
+        if (base.Fire(direction))
+        {
+            return true;
+        } else return false;
     }
 
 

@@ -5,34 +5,8 @@ using UnityEngine;
 
 public class Weapon : MonoBehaviour
 {
-    private float fireRate = 5f; // bullets per second
-    private float recoil = 2f;
-    private float reloadTime = 2f; // how long it takes to reload
-    private int maxAmmo = 6;
-
-
-    private int remainingAmmo;
-    private float lastFireTime;
-    private float reloadCooldown;
-
-
     [SerializeField] private Bullet bullet;
     private GameObject owner; // who has the weapon
-
-    private bool isActive = false;
-    private bool isReloading = false;
-
-    public float FireRate
-    {
-        get { return fireRate; }
-        set { fireRate = value; }
-    }
-
-    public float Recoil
-    {
-        get { return recoil; }
-        set { recoil = value; }
-    }
 
     public GameObject Owner
     {
@@ -40,80 +14,31 @@ public class Weapon : MonoBehaviour
         set { owner = value; }
     }
 
-
-    void Start()
+    protected virtual void Start()
     {
-        lastFireTime = - (1 / fireRate);
-        remainingAmmo = maxAmmo;
-        reloadCooldown = Time.time;
-    }
-
-    void Update()
-    {
-        // if reloading -> check if finished
-        if (isReloading && Time.time - reloadCooldown >= reloadTime)
-        {
-            remainingAmmo = maxAmmo;
-            isReloading = false;
-            print("finished reloading");//tmp
-        }
+        owner = gameObject.transform.parent.gameObject;
     }
 
     // fire bullet(s)
     public virtual bool Fire(Quaternion? direction = null)
     {
-        if (!direction.HasValue)
-        {
-            direction = transform.rotation;
+        Bullet newBullet = Instantiate(bullet, transform.position, (Quaternion)direction);
+
+        if (owner != null) {
+            newBullet.WeaponVelocity = owner.GetComponent<Rigidbody2D>().velocity;
+            newBullet.Owner = owner;
         }
-
-        if (CanFire())
-        {
-            Bullet newBullet = Instantiate(bullet, transform.position, (Quaternion)direction);
-
-            if (owner != null) {
-                newBullet.WeaponVelocity = owner.GetComponent<Rigidbody2D>().velocity; // this is probably temporary
-                newBullet.Owner = owner;
-            }
-
-            lastFireTime = Time.time;
-            remainingAmmo--;
-            return true;
-        }
-        else return false;
+        return true;
     }
 
-    // check if possible to fire a bullet
-    private bool CanFire()
+
+    public virtual void Reload()
     {
-        bool hasAmmo = remainingAmmo > 0;
-        float shotCooldown = 1 / fireRate;
-        return hasAmmo && Time.time - lastFireTime >= shotCooldown;
+
     }
 
-    // reload
-    public void Reload()
+    public virtual void Switch()
     {
-        print("I am reloading"); //tmp
-        remainingAmmo = 0;
-        reloadCooldown = Time.time;
-        isReloading = true;
-    }
 
-    // switch weapon active status
-    public void Switch()
-    {
-        print("switching weapon");//tmp
-        if (isActive)
-        {
-            isActive = false;
-            gameObject.SetActive(false); // unrenders object
-            // lastFireTime = - (1 / fireRate);
-        }
-        else
-        {
-            isActive = true;
-            gameObject.SetActive(true); // renders object
-        }
     }
 }
