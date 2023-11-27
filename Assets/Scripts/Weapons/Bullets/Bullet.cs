@@ -9,6 +9,7 @@ public class Bullet : MonoBehaviour
     private Vector3 weaponVelocity = Vector3.zero;
     private int damage = 5;
 
+    private Animator anim;
     private Rigidbody2D rb;
     private GameObject owner;
     private TrailRenderer trail;
@@ -26,12 +27,14 @@ public class Bullet : MonoBehaviour
 
     void Start()
     {
+        anim = GetComponent<Animator>();
+
         rb = GetComponent<Rigidbody2D>();
         rb.AddForce(transform.up * speed + WeaponVelocity, ForceMode2D.Impulse);
 
         trail = GetComponentInChildren<TrailRenderer>();
 
-        Invoke("DestroyBullet", lifeTime);
+        Invoke("Despawn", lifeTime);
     }
 
     void Update()
@@ -53,6 +56,10 @@ public class Bullet : MonoBehaviour
         }
     }
 
+    void Despawn()
+    {
+        anim.SetTrigger("Despawn");
+    }
 
     void DestroyBullet()
     {
