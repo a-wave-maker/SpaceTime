@@ -14,6 +14,7 @@ public class Weapon : MonoBehaviour
 
     [SerializeField] private Bullet bullet;
     private GameObject owner; // who has the weapon
+    private String weaponName;
 
 
     public float FireRate
@@ -46,6 +47,11 @@ public class Weapon : MonoBehaviour
         set { owner = value; }
     }
 
+    public String WeaponName
+    {
+        get { return weaponName; }
+        set { weaponName = value; }
+    }
 
     protected virtual void Start()
     {

@@ -10,6 +10,7 @@ public class Shotgun : PlayerWeapon
         Recoil = 16f;
         ReloadTime = 1f;
         MaxAmmo = 10;
+        WeaponName = "Shotgun";
         // test values ^
         base.Start();
     }
