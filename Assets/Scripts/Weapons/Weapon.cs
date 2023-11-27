@@ -14,62 +14,34 @@ public class Weapon : MonoBehaviour
 
     [SerializeField] private Bullet bullet;
     private GameObject owner; // who has the weapon
-    private String weaponName;
+    private string weaponName;
 
 
-    public float FireRate
-    {
-        get { return fireRate; }
-        set { fireRate = value; }
-    }
+    public float FireRate { get => fireRate; set => fireRate = value; }
+    public float Recoil { get => recoil; set => recoil = value; }
+    public float ReloadTime { get => reloadTime; set => reloadTime = value; }
+    public int MaxAmmo { get => maxAmmo; set => maxAmmo = value; }
+    public Bullet Bullet { get => bullet; set => bullet = value; }
+    public GameObject Owner { get => owner; set => owner = value; }
+    public string WeaponName { get => weaponName; set => weaponName = value; }
 
-    public float Recoil
-    {
-        get { return recoil; }
-        set { recoil = value; }
-    }
-
-    public float ReloadTime
-    {
-        get { return reloadTime; }
-        set { reloadTime = value; }
-    }
-
-    public int MaxAmmo
-    {
-        get { return maxAmmo; }
-        set { maxAmmo = value; }
-    }
-
-    public GameObject Owner
-    {
-        get { return owner; }
-        set { owner = value; }
-    }
-
-    public String WeaponName
-    {
-        get { return weaponName; }
-        set { weaponName = value; }
-    }
 
     protected virtual void Start()
     {
-        owner = gameObject.transform.parent.gameObject;
+        Owner = gameObject.transform.parent.gameObject;
     }
 
-    // fire bullet(s)
+    // fire bullet
     public virtual bool Fire(Quaternion? direction = null)
     {
-        Bullet newBullet = Instantiate(bullet, transform.position, (Quaternion)direction);
+        Bullet newBullet = Instantiate(Bullet, transform.position, (Quaternion)direction);
 
-        if (owner != null) {
-            newBullet.WeaponVelocity = owner.GetComponent<Rigidbody2D>().velocity;
-            newBullet.Owner = owner;
+        if (Owner != null) {
+            newBullet.WeaponVelocity = Owner.GetComponent<Rigidbody2D>().velocity;
+            newBullet.Owner = Owner;
         }
         return true;
     }
-
 
     public virtual void Reload(){}
 

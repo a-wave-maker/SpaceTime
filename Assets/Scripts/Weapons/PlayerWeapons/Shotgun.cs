@@ -22,10 +22,23 @@ public class Shotgun : PlayerWeapon
 
     public override bool Fire(Quaternion? direction = null)
     {
-        if (base.Fire(direction))
+        if (!direction.HasValue)
         {
+            direction = transform.rotation;
+        }
+        if (CanFire())
+        {
+            Bullet newBullet = Instantiate(Bullet, transform.position, (Quaternion)direction);
+
+            if (Owner != null) {
+                newBullet.WeaponVelocity = Owner.GetComponent<Rigidbody2D>().velocity;
+                newBullet.Owner = Owner;
+            }
+            LastFireTime = Time.time;
+            RemainingAmmo--;
             return true;
-        } else return false;
+        }
+        else return false;
     }
 
 

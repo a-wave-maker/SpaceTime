@@ -13,20 +13,25 @@ public class PlayerWeapon : Weapon
     private bool isReloading = false;
 
 
+    public int RemainingAmmo { get => remainingAmmo; set => remainingAmmo = value; }
+    public float LastFireTime { get => lastFireTime; set => lastFireTime = value; }
+    public float ReloadCooldown { get => reloadCooldown; set => reloadCooldown = value; }
+
+
     protected override void Start()
     {
         base.Start();
-        lastFireTime = - (1 / FireRate);
-        remainingAmmo = MaxAmmo;
-        reloadCooldown = Time.time;
+        LastFireTime = - (1 / FireRate);
+        RemainingAmmo = MaxAmmo;
+        ReloadCooldown = Time.time;
     }
 
     void Update()
     {
         // if reloading -> check if finished
-        if (isReloading && Time.time - reloadCooldown >= ReloadTime)
+        if (isReloading && Time.time - ReloadCooldown >= ReloadTime)
         {
-            remainingAmmo = MaxAmmo;
+            RemainingAmmo = MaxAmmo;
             isReloading = false;
         }
     }
@@ -41,26 +46,26 @@ public class PlayerWeapon : Weapon
         if (CanFire())
         {
             base.Fire(direction);
-            lastFireTime = Time.time;
-            remainingAmmo--;
+            LastFireTime = Time.time;
+            RemainingAmmo--;
             return true;
         }
         else return false;
     }
 
     // check if possible to fire a bullet
-    private bool CanFire()
+    public bool CanFire()
     {
-        bool hasAmmo = remainingAmmo > 0;
+        bool hasAmmo = RemainingAmmo > 0;
         float shotCooldown = 1 / FireRate;
-        return hasAmmo && Time.time - lastFireTime >= shotCooldown;
+        return hasAmmo && Time.time - LastFireTime >= shotCooldown;
     }
 
      // reload
     public override void Reload()
     {
-        remainingAmmo = 0;
-        reloadCooldown = Time.time;
+        RemainingAmmo = 0;
+        ReloadCooldown = Time.time;
         isReloading = true;
     }
 
