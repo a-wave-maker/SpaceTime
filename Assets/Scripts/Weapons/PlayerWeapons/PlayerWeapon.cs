@@ -5,11 +5,6 @@ using UnityEngine;
 public class PlayerWeapon : Weapon
 {
 
-    private float fireRate; // bullets per second
-    private float recoil;
-    private float reloadTime; // how long it takes to reload
-    private int maxAmmo;
-
     private int remainingAmmo;
     private float lastFireTime;
     private float reloadCooldown;
@@ -18,45 +13,20 @@ public class PlayerWeapon : Weapon
     private bool isReloading = false;
 
 
-    public float FireRate
-    {
-        get { return fireRate; }
-        set { fireRate = value; }
-    }
-
-    public float Recoil
-    {
-        get { return recoil; }
-        set { recoil = value; }
-    }
-
-    public float ReloadTime
-    {
-        get { return reloadTime; }
-        set { reloadTime = value; }
-    }
-
-    public int MaxAmmo
-    {
-        get { return maxAmmo; }
-        set { maxAmmo = value; }
-    }
-
-
     protected override void Start()
     {
         base.Start();
-        lastFireTime = - (1 / fireRate);
-        remainingAmmo = maxAmmo;
+        lastFireTime = - (1 / FireRate);
+        remainingAmmo = MaxAmmo;
         reloadCooldown = Time.time;
     }
 
     void Update()
     {
         // if reloading -> check if finished
-        if (isReloading && Time.time - reloadCooldown >= reloadTime)
+        if (isReloading && Time.time - reloadCooldown >= ReloadTime)
         {
-            remainingAmmo = maxAmmo;
+            remainingAmmo = MaxAmmo;
             isReloading = false;
         }
     }
@@ -82,8 +52,7 @@ public class PlayerWeapon : Weapon
     private bool CanFire()
     {
         bool hasAmmo = remainingAmmo > 0;
-        print(hasAmmo);
-        float shotCooldown = 1 / fireRate;
+        float shotCooldown = 1 / FireRate;
         return hasAmmo && Time.time - lastFireTime >= shotCooldown;
     }
 
