@@ -419,8 +419,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   availableWeapons:
-  - weaponName: Weapon
-    weaponPrefab: {fileID: 7845999401196538813, guid: 38e2f81f136f9994b92f01a48e87a860, type: 3}
+  - weaponName: Pistol
+    weaponPrefab: {fileID: 1436284945211433894, guid: 767cb757f6f209a4eb4acea158e85b90, type: 3}
   - weaponName: Shotgun
     weaponPrefab: {fileID: 7108852527960073768, guid: ffaea2643e1c54548987bc6a5c353610, type: 3}
 --- !u!1001 &718659566756761221
