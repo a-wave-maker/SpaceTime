@@ -66,4 +66,15 @@ public class Bullet : MonoBehaviour
         Destroy(gameObject);
     }
 
+    void OnCollisionEnter(Collision collision)
+    {
+        // Check if the bullet collides with the object
+        if (collision.gameObject.TryGetComponent<BulletInteractible>(out var hittable))
+        {
+            // Handle the collision logic here
+            Debug.Log("Bullet hit the target!");
+            if (hittable.onBulletHit(this))
+                Destroy(gameObject);
+        }
+    }
 }
