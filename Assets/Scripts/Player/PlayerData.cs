@@ -16,17 +16,17 @@ public class PlayerData : MonoBehaviour
     [SerializeField]
     private PlayerWeaponManager playerWeaponManager;
     [SerializeField]
-    private Weapon playerDefaultWeapon;
-    private List<Weapon> playerWeapons = new List<Weapon>();
+    private PlayerWeapon playerDefaultWeapon;
+    private List<PlayerWeapon> playerWeapons = new List<PlayerWeapon>();
     private int playerActiveWeaponIdx = 0;
 
     private int playerHealth = 100;
 
     public Rigidbody2D PlayerRB { get => playerRB; set => playerRB = value; }
     public Vector2 PlayerMoveDirection { get => playerMoveDirection; set => playerMoveDirection = value; }
-    public List<Weapon> PlayerWeapons { get => playerWeapons; set => playerWeapons = value; }
+    public List<PlayerWeapon> PlayerWeapons { get => playerWeapons; set => playerWeapons = value; }
     public int PlayerActiveWeaponIdx { get => playerActiveWeaponIdx; set => playerActiveWeaponIdx = value; }
-    public Weapon PlayerActiveWeapon { get => playerWeapons[playerActiveWeaponIdx]; }
+    public PlayerWeapon PlayerActiveWeapon { get => playerWeapons[playerActiveWeaponIdx]; }
     public int PlayerHealth { get => playerHealth; set => playerHealth = value; }
     public float PlayerMassMultiplier { get => playerMassMultiplier; set => playerMassMultiplier = value; }
     public float PlayerRotationSpeed { get => playerRotationSpeed; set => playerRotationSpeed = value; }
@@ -34,7 +34,7 @@ public class PlayerData : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        /*Weapon defaultWeapon = new Weapon();    // TMP THROWS A WARNING
+        /*PlayerWeapon defaultWeapon = new PlayerWeapon();    // TMP THROWS A WARNING
         defaultWeapon.FireRate = 0;             // TMP
         defaultWeapon.Recoil = 0;               // TMP
         playerWeapons.Add(defaultWeapon);
@@ -42,7 +42,7 @@ public class PlayerData : MonoBehaviour
 
         Transform parent = transform;
 
-        Weapon defaultWeapon = Instantiate(playerDefaultWeapon, parent);
+        PlayerWeapon defaultWeapon = Instantiate(playerDefaultWeapon, parent);
         playerWeapons.Add(defaultWeapon);
         
         playerWeaponManager.InstantiateAllWeapons(parent);
@@ -58,7 +58,7 @@ public class PlayerData : MonoBehaviour
         
     }
 
-    public void addWeapon(Weapon weapon)
+    public void addWeapon(PlayerWeapon weapon)
     {
         playerWeapons.Add(weapon);
     }

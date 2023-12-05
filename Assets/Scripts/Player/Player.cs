@@ -31,7 +31,7 @@ public class Player : MonoBehaviour
             return;
         }
         // Fire weapon
-        Weapon currentWeapon = playerData.PlayerActiveWeapon;
+        PlayerWeapon currentWeapon = playerData.PlayerActiveWeapon;
 
         if (currentWeapon.Fire())
         {
@@ -59,9 +59,6 @@ public class Player : MonoBehaviour
 
     public void nextWeapon()
     {
-        print(playerData.PlayerActiveWeaponIdx);
-        print(playerData.PlayerWeapons.Count);
-
         int nextIdx = playerData.PlayerActiveWeaponIdx;
         if (nextIdx == playerData.PlayerWeapons.Count - 1)
         {
@@ -77,7 +74,7 @@ public class Player : MonoBehaviour
         playerData.PlayerWeapons[playerData.PlayerActiveWeaponIdx].Switch();
     }
 
-    public Weapon previousWeapon()
+    public PlayerWeapon previousWeapon()
     {
         int nextIdx = playerData.PlayerActiveWeaponIdx;
 
@@ -97,7 +94,7 @@ public class Player : MonoBehaviour
         return playerData.PlayerWeapons[nextIdx];
     }
 
-    public Weapon nthWeapon(int number)
+    public PlayerWeapon nthWeapon(int number)
     {
         int nextIdx = playerData.PlayerActiveWeaponIdx;
 
