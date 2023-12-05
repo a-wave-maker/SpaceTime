@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Crosshair : MonoBehaviour
 {
+    [SerializeField]
+    private Vector3 offset = new Vector3(0f, 0f, 0f);
 
     // Start is called before the first frame update
     void Start()
@@ -18,6 +20,6 @@ public class Crosshair : MonoBehaviour
     {
         Vector3 cursorScreenPos = Input.mousePosition;
 
-        transform.position = cursorScreenPos;
+        transform.position = cursorScreenPos + offset;
     }
 }
