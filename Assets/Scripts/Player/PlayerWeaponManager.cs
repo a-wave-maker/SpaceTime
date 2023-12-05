@@ -7,21 +7,21 @@ using UnityEngine;
 public class WeaponPair
 {
     public string weaponName;
-    public Weapon weaponPrefab;
+    public PlayerWeapon weaponPrefab;
 }
 
 public class PlayerWeaponManager : MonoBehaviour
 {
     public List<WeaponPair> availableWeapons;
-    private List<Weapon> instantiatedWeapons = new List<Weapon>();
+    private List<PlayerWeapon> instantiatedWeapons = new List<PlayerWeapon>();
 
-    public List<Weapon> InstantiatedWeapons { get => instantiatedWeapons; set => instantiatedWeapons = value; }
+    public List<PlayerWeapon> InstantiatedWeapons { get => instantiatedWeapons; set => instantiatedWeapons = value; }
 
     public void InstantiateAllWeapons(Transform parent)
     {
         foreach (var pair in availableWeapons)
         {
-            Weapon newWeaponInstance = InstantiateWeapon(pair.weaponPrefab, parent);
+            PlayerWeapon newWeaponInstance = InstantiateWeapon(pair.weaponPrefab, parent);
             InstantiatedWeapons.Add(newWeaponInstance);
         }
     }
@@ -33,12 +33,12 @@ public class PlayerWeaponManager : MonoBehaviour
             WeaponPair pair = availableWeapons.Find(wp => wp.weaponName == name);
             if (pair != null)
             {
-                Weapon newWeaponInstance = InstantiateWeapon(pair.weaponPrefab, parent);
+                PlayerWeapon newWeaponInstance = InstantiateWeapon(pair.weaponPrefab, parent);
                 InstantiatedWeapons.Add(newWeaponInstance);
             }
             else
             {
-                Debug.LogWarning("Weapon not found: " + name);
+                Debug.LogWarning("PlayerWeapon not found: " + name);
             }
         }
     }
@@ -51,9 +51,9 @@ public class PlayerWeaponManager : MonoBehaviour
         }
     }
 
-    private Weapon InstantiateWeapon(Weapon weaponPrefab, Transform parent)
+    private PlayerWeapon InstantiateWeapon(PlayerWeapon weaponPrefab, Transform parent)
     {
-        Weapon newWeaponInstance = Instantiate(weaponPrefab, parent);
+        PlayerWeapon newWeaponInstance = Instantiate(weaponPrefab, parent);
 
         newWeaponInstance.transform.parent = parent;
 
