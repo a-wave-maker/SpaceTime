@@ -36,8 +36,7 @@ public class Player : MonoBehaviour
         if (currentWeapon.Fire())
         {
             // Apply recoil
-            /*float force = currentWeapon.Recoil;*/ // TODO
-            float force = 5f; // TMP
+            float force = playerData.PlayerActiveWeapon.Recoil;
 
             Vector3 targetPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             targetPosition.z = 0f;
