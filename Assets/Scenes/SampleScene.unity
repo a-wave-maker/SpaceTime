@@ -123,9 +123,9 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!4 &217572860 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 7077994102241732955, guid: 33fd69dcc60fb4e44b7f8d633bfe46f9, type: 3}
+--- !u!1 &480390480 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4793927052812630834, guid: 33fd69dcc60fb4e44b7f8d633bfe46f9, type: 3}
   m_PrefabInstance: {fileID: 718659566756761221}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &519420028
@@ -234,7 +234,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b9c4c14f37212f438a839bc9474dd91, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 217572860}
+  target: {fileID: 1188502080}
   offset: {x: 0, y: 0, z: -10}
 --- !u!114 &519420034
 MonoBehaviour:
@@ -441,6 +441,33 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &1188502080 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1637614109308633135, guid: 33fd69dcc60fb4e44b7f8d633bfe46f9, type: 3}
+  m_PrefabInstance: {fileID: 718659566756761221}
+  m_PrefabAsset: {fileID: 0}
+--- !u!50 &1675549823 stripped
+Rigidbody2D:
+  m_CorrespondingSourceObject: {fileID: 1660148338214547944, guid: 33fd69dcc60fb4e44b7f8d633bfe46f9, type: 3}
+  m_PrefabInstance: {fileID: 718659566756761221}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1675549828
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 480390480}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2193af2d88347da4abdc1ba2afe08d40, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  availableWeapons:
+  - weaponName: Pistol
+    weaponPrefab: {fileID: 1436284945211433894, guid: 767cb757f6f209a4eb4acea158e85b90, type: 3}
+  - weaponName: Shotgun
+    weaponPrefab: {fileID: 7108852527960073768, guid: ffaea2643e1c54548987bc6a5c353610, type: 3}
 --- !u!1001 &718659566756761221
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -497,18 +524,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    - target: {fileID: 4854538407025935113, guid: 33fd69dcc60fb4e44b7f8d633bfe46f9, type: 3}
-      propertyPath: playerDefaultWeapon
-      value: 
-      objectReference: {fileID: 791832752048716868, guid: 4ede44e078ebf4143a632e7446fe6da1, type: 3}
-    - target: {fileID: 6007415561655953457, guid: 33fd69dcc60fb4e44b7f8d633bfe46f9, type: 3}
-      propertyPath: availableWeapons.Array.data[0].weaponName
-      value: Pistol
-      objectReference: {fileID: 0}
-    - target: {fileID: 6007415561655953457, guid: 33fd69dcc60fb4e44b7f8d633bfe46f9, type: 3}
-      propertyPath: availableWeapons.Array.data[0].weaponPrefab
-      value: 
-      objectReference: {fileID: 1436284945211433894, guid: 767cb757f6f209a4eb4acea158e85b90, type: 3}
     - target: {fileID: 6421394482383374832, guid: 33fd69dcc60fb4e44b7f8d633bfe46f9, type: 3}
       propertyPath: playerActiveWeapon
       value: 
@@ -520,7 +535,7 @@ PrefabInstance:
     - target: {fileID: 6421394482383374832, guid: 33fd69dcc60fb4e44b7f8d633bfe46f9, type: 3}
       propertyPath: playerWeaponManager
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1675549828}
     - target: {fileID: 6421394482383374832, guid: 33fd69dcc60fb4e44b7f8d633bfe46f9, type: 3}
       propertyPath: playerWeapons.Array.size
       value: 0
@@ -556,12 +571,15 @@ PrefabInstance:
     - target: {fileID: 8596564098639175867, guid: 33fd69dcc60fb4e44b7f8d633bfe46f9, type: 3}
       propertyPath: playerRB
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1675549823}
     m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: 6534301889573386844, guid: 33fd69dcc60fb4e44b7f8d633bfe46f9, type: 3}
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 4793927052812630834, guid: 33fd69dcc60fb4e44b7f8d633bfe46f9, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1675549828}
   m_SourcePrefab: {fileID: 100100000, guid: 33fd69dcc60fb4e44b7f8d633bfe46f9, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:

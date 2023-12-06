@@ -16,7 +16,7 @@ public class PlayerWeapon : Weapon
     public int RemainingAmmo { get => remainingAmmo; set => remainingAmmo = value; }
     public float LastFireTime { get => lastFireTime; set => lastFireTime = value; }
     public float ReloadCooldown { get => reloadCooldown; set => reloadCooldown = value; }
-
+    public bool IsReloading { get => isReloading; set => isReloading = value; }
 
     protected override void Start()
     {
@@ -29,10 +29,10 @@ public class PlayerWeapon : Weapon
     void Update()
     {
         // if reloading -> check if finished
-        if (isReloading && Time.time - ReloadCooldown >= ReloadTime)
+        if (IsReloading && Time.time - ReloadCooldown >= ReloadTime)
         {
             RemainingAmmo = MaxAmmo;
-            isReloading = false;
+            IsReloading = false;
         }
     }
 
@@ -66,7 +66,7 @@ public class PlayerWeapon : Weapon
     {
         RemainingAmmo = 0;
         ReloadCooldown = Time.time;
-        isReloading = true;
+        IsReloading = true;
     }
 
     // switch weapon active status
