@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -11,12 +12,14 @@ public class PlayerWeapon : Weapon
 
     private bool isActive = false;
     private bool isReloading = false;
+    private float reloadProgress = 0f;
 
 
     public int RemainingAmmo { get => remainingAmmo; set => remainingAmmo = value; }
     public float LastFireTime { get => lastFireTime; set => lastFireTime = value; }
     public float ReloadCooldown { get => reloadCooldown; set => reloadCooldown = value; }
     public bool IsReloading { get => isReloading; set => isReloading = value; }
+    public float ReloadProgress { get => reloadProgress; set => reloadProgress = value; }
 
     protected override void Start()
     {
@@ -28,11 +31,18 @@ public class PlayerWeapon : Weapon
 
     void Update()
     {
-        // if reloading -> check if finished
-        if (IsReloading && Time.time - ReloadCooldown >= ReloadTime)
+        // check if reloading
+        if (IsReloading)
         {
-            RemainingAmmo = MaxAmmo;
-            IsReloading = false;
+            // update reload progress percentage
+            ReloadProgress =  Mathf.Clamp((Time.time - ReloadCooldown) / ReloadTime, 0, 1);
+            // print(reloadProgress);
+            // if finished reloading
+            if (ReloadProgress == 1) {
+                RemainingAmmo = MaxAmmo;
+                lastFireTime = 0;
+                IsReloading = false;
+            }
         }
     }
 
@@ -67,6 +77,7 @@ public class PlayerWeapon : Weapon
         RemainingAmmo = 0;
         ReloadCooldown = Time.time;
         IsReloading = true;
+        ReloadProgress = 0f;
     }
 
     // switch weapon active status
