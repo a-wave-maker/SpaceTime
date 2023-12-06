@@ -129,6 +129,18 @@ public class Player : MonoBehaviour
             Die();
         }
     }
+
+    public void Heal(int heal)
+    {
+        // Avoid overhealing
+        if (heal > playerData.PlayerMaxHealth - playerData.PlayerHealth)
+        {
+            playerData.PlayerHealth = playerData.PlayerMaxHealth;
+        } else
+        {
+            playerData.PlayerHealth += heal;
+        }
+    }
     public void setHealth(int health)
     {
         playerData.PlayerHealth = health;

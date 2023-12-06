@@ -20,6 +20,7 @@ public class PlayerData : MonoBehaviour
     private List<PlayerWeapon> playerWeapons = new List<PlayerWeapon>();
     private int playerActiveWeaponIdx = 0;
 
+    private int playerMaxHealth = 100;
     private int playerHealth = 100;
 
     public Rigidbody2D PlayerRB { get => playerRB; set => playerRB = value; }
@@ -30,6 +31,7 @@ public class PlayerData : MonoBehaviour
     public int PlayerHealth { get => playerHealth; set => playerHealth = value; }
     public float PlayerMassMultiplier { get => playerMassMultiplier; set => playerMassMultiplier = value; }
     public float PlayerRotationSpeed { get => playerRotationSpeed; set => playerRotationSpeed = value; }
+    public int PlayerMaxHealth { get => playerMaxHealth; set => playerMaxHealth = value; }
 
     // Start is called before the first frame update
     void Start()
