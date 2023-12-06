@@ -7,7 +7,7 @@ public class ReloadIndicator : MonoBehaviour
 {
     [SerializeField]
     private PlayerData playerData;
-    
+
     private int maxAmmo = 0;
     private int ammoLeft = 0;
     private bool isReloading = false;
@@ -35,7 +35,7 @@ public class ReloadIndicator : MonoBehaviour
 
         if (isReloading)
         {
-            // clampedValue = Mathf.Clamp(0.1f, 0.9f, reloadProgress); // TODO
+            clampedValue = 0.1f + (reloadProgress * (0.9f - 0.1f));
         }
         else
         {
@@ -50,7 +50,7 @@ public class ReloadIndicator : MonoBehaviour
     private void UpdateData()
     {
         isReloading = playerData.PlayerActiveWeapon.IsReloading;
-        // reloadProgress = playerData.PlayerActiveWeapon.reloadProgress; // TODO
+        reloadProgress = playerData.PlayerActiveWeapon.ReloadProgress;
         maxAmmo = playerData.PlayerActiveWeapon.MaxAmmo;
         ammoLeft = playerData.PlayerActiveWeapon.RemainingAmmo;
     }
