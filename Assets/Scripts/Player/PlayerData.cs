@@ -5,18 +5,13 @@ using UnityEngine;
 
 public class PlayerData : MonoBehaviour
 {
-    [SerializeField]
-    private Rigidbody2D playerRB;
+    [SerializeField] private Rigidbody2D playerRB;
     private Vector2 playerMoveDirection;
 
-    [SerializeField]
-    private float playerMassMultiplier = 1;
-    [SerializeField]
-    private float playerRotationSpeed = 1000;
-    [SerializeField]
-    private PlayerWeaponManager playerWeaponManager;
-    [SerializeField]
-    private PlayerWeapon playerDefaultWeapon;
+    [SerializeField] private float playerMassMultiplier = 1;
+    [SerializeField] private float playerRotationSpeed = 1000;
+    [SerializeField] private PlayerWeaponManager playerWeaponManager;
+    [SerializeField] private PlayerWeapon playerDefaultWeapon;
     private List<PlayerWeapon> playerWeapons = new List<PlayerWeapon>();
     private int playerActiveWeaponIdx = 0;
 

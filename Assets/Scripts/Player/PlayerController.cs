@@ -4,11 +4,9 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    [SerializeField]
-    private PlayerData playerData;
+    [SerializeField] private PlayerData playerData;
 
-    [SerializeField]
-    private Player player;
+    [SerializeField] private Player player;
 
     public delegate void SuperHotMode();
     public static event SuperHotMode ChangeSuperHot;
