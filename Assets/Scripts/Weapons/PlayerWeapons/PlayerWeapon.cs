@@ -15,7 +15,7 @@ public class PlayerWeapon : Weapon
     private float reloadProgress = 0f;
     private float switchTime;
 
-    [SerializeField] private bool dynamicReloading; // change reload type (temporary)
+    [SerializeField] private bool dynamicReloading = false; // change reload type (temporary)
 
 
     public int RemainingAmmo { get => remainingAmmo; set => remainingAmmo = value; }
