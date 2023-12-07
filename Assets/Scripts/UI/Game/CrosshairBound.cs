@@ -4,8 +4,7 @@ using UnityEngine;
 
 public class CrosshairBound : MonoBehaviour
 {
-    [SerializeField]
-    private Vector3 offset = new Vector3(0f, 0f, 0f);
+    [SerializeField] private Vector3 offset = new Vector3(0f, 0f, 0f);
 
     // Start is called before the first frame update
     void Start()

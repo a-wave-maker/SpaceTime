@@ -5,17 +5,16 @@ using UnityEngine.UI;
 
 public class HealthBar : MonoBehaviour
 {
-    [SerializeField]
-    private Transform playerTransfrom;
-    [SerializeField]
-    private PlayerData playerData;
-    [SerializeField]
-    private Vector3 offset = new Vector3(0f, 0f, 0f);
-    [SerializeField]
-    private float baseAlpha = 0.1f;
+
+    [SerializeField] private Transform playerTransfrom;
+    [SerializeField] private PlayerData playerData;
+    [SerializeField] private Vector3 offset = new Vector3(0f, 0f, 0f);
+    [SerializeField] private float baseAlpha = 0.1f;
 
     private Camera mainCamera;
     private Image indicator = null;
+
+    private bool fade = false;
 
     private void Start()
     {
@@ -34,8 +33,42 @@ public class HealthBar : MonoBehaviour
 
         // Update the alpha
         // It has to be done with a tmp. You can only replace the color, you cannot update it
+        if (playerData.PlayerHealth > playerData.PlayerMaxHealth / 2)
+        {
+            Color tmp = indicator.color;
+            tmp.a = baseAlpha * Mathf.Pow(multiplier, 10);
+            indicator.color = tmp;
+        } else
+        {
+            Flash();
+        }
+
+    }
+
+    private void Flash()
+    {
         Color tmp = indicator.color;
-        tmp.a = baseAlpha * Mathf.Pow(multiplier, 10);
+
+        if (indicator.color.a <= 0.2f)
+        {
+            fade = true;
+        } else if (indicator.color.a >= 0.99f) {
+
+            fade = false;
+        }
+
+        if(fade)
+        {
+            // fade in
+            tmp.a += 2 * Time.deltaTime;
+        } else
+        {
+            // fade out
+            tmp.a -= 2 * Time.deltaTime;
+        }
+        
+
         indicator.color = tmp;
+
     }
 }
