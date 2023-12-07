@@ -102,9 +102,8 @@ public class PlayerWeapon : Weapon
                     float timePassed = Time.time - switchTime;
                     ReloadStart += timePassed;
                 } else {
-                    print("test");
-                    // normal reloading: reset reloadProgress to 0 when switching back
-                    reloadStart = Time.time;
+                    // normal reloading: reset realoading completely when switching back
+                    isReloading = false;
                     reloadProgress = 0f;
                 }
             }
