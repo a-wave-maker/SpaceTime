@@ -97,4 +97,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 016645dd860cf1f4a836e051bfdf07d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bullet: {fileID: 7686144728540405261, guid: 93233abc480ccf04ca7a5f725d74ee47, type: 3}
+  bullet: {fileID: 6140287384987966105, guid: 2aad9125d80e3604ba122ce1fe706dab, type: 3}
+  dynamicReloading: 0
