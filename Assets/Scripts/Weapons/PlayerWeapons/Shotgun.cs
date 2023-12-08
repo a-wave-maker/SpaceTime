@@ -6,7 +6,7 @@ public class Shotgun : PlayerWeapon
 {
     protected override void Start()
     {
-        FireRate = 1f;
+        FireRate = 0.3f;
         Recoil = 15f;
         ReloadTime = 0.3f;
         MaxAmmo = 1;

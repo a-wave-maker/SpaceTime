@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,32 +8,44 @@ public class PlayerWeapon : Weapon
 
     private int remainingAmmo;
     private float lastFireTime;
-    private float reloadCooldown;
+    private float reloadStart;
 
     private bool isActive = false;
     private bool isReloading = false;
+    private float reloadProgress = 0f;
+    private float switchTime;
+
+    [SerializeField] private bool dynamicReloading = false; // change reload type (temporary)
 
 
     public int RemainingAmmo { get => remainingAmmo; set => remainingAmmo = value; }
     public float LastFireTime { get => lastFireTime; set => lastFireTime = value; }
-    public float ReloadCooldown { get => reloadCooldown; set => reloadCooldown = value; }
-
+    public float ReloadStart { get => reloadStart; set => reloadStart = value; }
+    public bool IsReloading { get => isReloading; set => isReloading = value; }
+    public float ReloadProgress { get => reloadProgress; set => reloadProgress = value; }
 
     protected override void Start()
     {
         base.Start();
         LastFireTime = - (1 / FireRate);
         RemainingAmmo = MaxAmmo;
-        ReloadCooldown = Time.time;
+        ReloadStart = Time.time;
     }
 
     void Update()
     {
-        // if reloading -> check if finished
-        if (isReloading && Time.time - ReloadCooldown >= ReloadTime)
+        // check if reloading
+        if (IsReloading && isActive)
         {
-            RemainingAmmo = MaxAmmo;
-            isReloading = false;
+            ReloadProgress = Mathf.Clamp((Time.time - ReloadStart) / ReloadTime, 0, 1);
+            // print(reloadProgress);
+
+            // if finished reloading
+            if (ReloadProgress >= 1) {
+                RemainingAmmo = MaxAmmo;
+                lastFireTime = 0;
+                IsReloading = false;
+            }
         }
     }
 
@@ -65,8 +78,9 @@ public class PlayerWeapon : Weapon
     public override void Reload()
     {
         RemainingAmmo = 0;
-        ReloadCooldown = Time.time;
-        isReloading = true;
+        ReloadStart = Time.time;
+        IsReloading = true;
+        ReloadProgress = 0f;
     }
 
     // switch weapon active status
@@ -76,11 +90,23 @@ public class PlayerWeapon : Weapon
         {
             isActive = false;
             gameObject.SetActive(false); // unrenders object
+            switchTime = Time.time;
         }
         else
         {
             isActive = true;
             gameObject.SetActive(true); // renders object
+            if (isReloading) {
+                if (dynamicReloading) {
+                    // dynamic reloading: keep reloadProgress, adjust reloadStart time to resume reloading from the point it was stopped at
+                    float timePassed = Time.time - switchTime;
+                    ReloadStart += timePassed;
+                } else {
+                    // normal reloading: reset realoading completely when switching back
+                    isReloading = false;
+                    reloadProgress = 0f;
+                }
+            }
         }
     }
 
