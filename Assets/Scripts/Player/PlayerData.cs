@@ -5,21 +5,17 @@ using UnityEngine;
 
 public class PlayerData : MonoBehaviour
 {
-    [SerializeField]
-    private Rigidbody2D playerRB;
+    [SerializeField] private Rigidbody2D playerRB;
     private Vector2 playerMoveDirection;
 
-    [SerializeField]
-    private float playerMassMultiplier = 1;
-    [SerializeField]
-    private float playerRotationSpeed = 1000;
-    [SerializeField]
-    private PlayerWeaponManager playerWeaponManager;
-    [SerializeField]
-    private PlayerWeapon playerDefaultWeapon;
+    [SerializeField] private float playerMassMultiplier = 1;
+    [SerializeField] private float playerRotationSpeed = 1000;
+    [SerializeField] private PlayerWeaponManager playerWeaponManager;
+    [SerializeField] private PlayerWeapon playerDefaultWeapon;
     private List<PlayerWeapon> playerWeapons = new List<PlayerWeapon>();
     private int playerActiveWeaponIdx = 0;
 
+    private int playerMaxHealth = 100;
     private int playerHealth = 100;
 
     public Rigidbody2D PlayerRB { get => playerRB; set => playerRB = value; }
@@ -30,6 +26,7 @@ public class PlayerData : MonoBehaviour
     public int PlayerHealth { get => playerHealth; set => playerHealth = value; }
     public float PlayerMassMultiplier { get => playerMassMultiplier; set => playerMassMultiplier = value; }
     public float PlayerRotationSpeed { get => playerRotationSpeed; set => playerRotationSpeed = value; }
+    public int PlayerMaxHealth { get => playerMaxHealth; set => playerMaxHealth = value; }
 
     // Start is called before the first frame update
     void Start()

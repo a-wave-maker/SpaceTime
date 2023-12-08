@@ -4,16 +4,19 @@ using UnityEngine;
 
 public class CameraFollow : MonoBehaviour
 {
-    public Transform target; // Reference to the player's Transform component
+    public Transform target;
 
-    public Vector3 offset = new Vector3(0f, 0f, -10f); // Offset between the camera and the player
+    public Vector3 offset = new Vector3(0f, 0f, -10f);
 
     void LateUpdate()
     {
         if (target != null)
         {
-            // Set the camera's position to the player's position plus the offset
+            // Set the camera's position to the target's position plus the offset
             transform.position = target.position + offset;
+        } else
+        {
+
         }
     }
 }

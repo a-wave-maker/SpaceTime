@@ -4,11 +4,9 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    [SerializeField]
-    private PlayerData playerData;
+    [SerializeField] private PlayerData playerData;
 
-    [SerializeField]
-    private Player player;
+    [SerializeField] private Player player;
 
     public delegate void SuperHotMode();
     public static event SuperHotMode ChangeSuperHot;
@@ -16,7 +14,6 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
     }
 
     private void OnGUI()
@@ -27,21 +24,31 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // DEBUG
         if (Input.GetKeyUp(KeyCode.K)) { // TMP
             player.Die();
         }
+        if (Input.GetKeyUp(KeyCode.T)) { // TMP
+            player.takeDamage(8);
+        }
+        if (Input.GetKeyUp(KeyCode.H)) { // TMP
+            player.Heal(7);
+        }
+        
+        // GAME
         if (Input.GetKeyUp(KeyCode.Z))
         {
             ChangeSuperHot?.Invoke();
         }
 
+        // PLAYER
         if (Input.GetButtonDown("Fire1"))
         {
             player.Fire();
         }
         if (Input.GetKeyDown(KeyCode.R))
         {
-            player.Reload(); // TODO
+            player.Reload();
         }
 
         float scroll = Input.GetAxis("Mouse ScrollWheel");
