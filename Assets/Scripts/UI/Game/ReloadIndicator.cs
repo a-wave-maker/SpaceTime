@@ -17,6 +17,9 @@ public class ReloadIndicator : MonoBehaviour
     [SerializeField] private Color baseColor = new Color(0.5f, 0.9f, 1f, 1f);
     [SerializeField] private Color grayedOut = new Color(0.5f, 0.6f, 0.7f, 1f);
 
+    [SerializeField] private float minValue = 0f;
+    [SerializeField] private float maxValue = 1f;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -29,16 +32,16 @@ public class ReloadIndicator : MonoBehaviour
         UpdateData();
         if (maxAmmo == 0)
         {
-            indicator.fillAmount = 0.1f;
+            indicator.fillAmount = minValue;
             return;
         }
 
-        float clampedValue = 0.1f;
+        float clampedValue = minValue;
 
         if (isReloading)
         {
             indicator.color = grayedOut;
-            clampedValue = 0.1f + (reloadProgress * (0.9f - 0.1f));
+            clampedValue = minValue + (reloadProgress * (maxValue - minValue));
         }
         else
         {
@@ -48,8 +51,7 @@ public class ReloadIndicator : MonoBehaviour
             {
                 indicator.color = baseColor;
             }
-            float normalizedValue = 0.1f + 0.8f * (float)ammoLeft / maxAmmo;
-            clampedValue = Mathf.Clamp(normalizedValue, 0.1f, 0.9f);
+            clampedValue = minValue + (maxValue - minValue) * playerData.PlayerActiveWeapon.RemainingAmmo / playerData.PlayerActiveWeapon.MaxAmmo;
         }
 
         indicator.fillAmount = clampedValue;
