@@ -40,7 +40,7 @@ public class SwitchingUI : MonoBehaviour
         if (scroll != 0f || CheckNumericKeys()) // when buttons for weapon switching are pressed
         {
             // update the opacities and timers
-            SetImageAlpha(GetComponent<Image>(), 0.2f);
+            SetImageAlpha(GetComponent<Image>(), 1f);
             SetMultipleImagesAlpha(children, 1f);
             fadeTimer = 1f;
             fadeTime = 1f;
@@ -90,17 +90,17 @@ public class SwitchingUI : MonoBehaviour
         if (position == 0 || position == children.Count - 1)
         {
             image.color = new Color(1f, 1f, 1f, edgeOpacity);
-            sizeMultiplier = 0.5f;
+            sizeMultiplier = 0.3f;
         }
         else if (position == children.Count / 2)
         {
             image.color = new Color(1f, 1f, 1f, middleOpacity);
-            sizeMultiplier = 1.2f;
+            sizeMultiplier = 1f;
         }
         else
         {
             image.color = new Color(1f, 1f, 1f, betweenOpacity);
-            sizeMultiplier = 0.75f;
+            sizeMultiplier = 0.6f;
         }
 
         ScaleImage(image, sizeMultiplier);
@@ -170,7 +170,7 @@ public class SwitchingUI : MonoBehaviour
                     SetImageAlpha(image, fadeTime * betweenOpacity);
                 }
             }
-            SetImageAlpha(GetComponent<Image>(), fadeTime / 5);
+            SetImageAlpha(GetComponent<Image>(), fadeTime);
             fadeTime -= Time.deltaTime;
         }
 
