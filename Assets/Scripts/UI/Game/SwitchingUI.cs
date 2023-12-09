@@ -1,56 +1,92 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Animations;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class SwitchingUI : MonoBehaviour
 {
     [SerializeField] private PlayerData playerData;
+    private List<Image> children = new List<Image>();
 
-    private List<GameObject> children = new List<GameObject>();
     [SerializeField] private float baseWidth = 70;
-    [SerializeField] private float baseHeight = 70;
 
-    void Start()
+    private float middleOpacity = 1f;
+    private float betweenOpacity = 0.8f;
+    private float edgeOpacity = 0.3f;
+
+    private bool isFading = false;
+    private float fadeTimer = 0f;
+    private float fadeTime = 0f;
+
+    private void Start()
     {
         foreach (Transform child in transform)
         {
-            children.Add(child.gameObject);
+            children.Add(child.gameObject.GetComponent<Image>());
+            SetMultipleImagesAlpha(children, 0f);
         }
     }
 
-    void Update()
+    private void Update()
     {
-        List<Sprite> weaponSprites = GetSurroundingSprites(playerData.PlayerWeapons, playerData.PlayerActiveWeaponIdx, 5);
+        // Can optimize the line below if needed
+        // As it is now, it gets called every frame, it could be checked when
+        // switching but that requires waiting for the player's switch function
+        // to finish first
+        UpdateElements();
+
+        float scroll = Input.GetAxis("Mouse ScrollWheel");
+        if (scroll != 0f || CheckNumericKeys()) // when buttons for weapon switching are pressed
+        {
+            // update the opacities and timers
+            SetImageAlpha(GetComponent<Image>(), 0.2f);
+            SetMultipleImagesAlpha(children, 1f);
+            fadeTimer = 1f;
+            fadeTime = 1f;
+            isFading = false;
+
+        }
+
+        // update the fade process
+        Fade();
+    }
+
+    private void UpdateElements()
+    {
+        List<Sprite> weaponSprites = GetSurroundingWeaponSprites(playerData.PlayerWeapons, playerData.PlayerActiveWeaponIdx, 5);
 
         if (weaponSprites.Count == children.Count)
         {
-            // Loop through each small image holder and assign a sprite
             for (int i = 0; i < children.Count; i++)
             {
-                Image childImage = children[i].GetComponent<Image>();
-
-                // Set the sprite
+                Image childImage = children[i];
                 childImage.sprite = weaponSprites[i];
-
-                // Scale the small image to fit its aspect ratio
                 SetOpacityAndSize(childImage, i);
             }
         }
-        else
-        {
-            Debug.LogError("Number of sprites to assign does not match the number of small image holders.");
-        }
     }
 
-    void SetOpacityAndSize(Image image, int position)
+    private List<Sprite> GetSurroundingWeaponSprites(List<PlayerWeapon> originalList, int activeIndex, int itemCount)
     {
-        float middleOpacity = 1f;
-        float betweenOpacity = 0.75f;
-        float edgeOpacity = 0.2f;
-        float sizeMultiplier = 1f;
+        if (originalList.Count == 0 || itemCount <= 0) return new List<Sprite>();
 
-        // Set opacity
+        List<Sprite> sublist = new List<Sprite>();
+
+        for (int i = activeIndex - (itemCount / 2); i <= activeIndex + (itemCount / 2); i++)
+        {
+            int wrappedIndex = (i % originalList.Count + originalList.Count) % originalList.Count;
+            sublist.Add(originalList[wrappedIndex].GetComponent<SpriteRenderer>().sprite);
+        }
+
+        sublist.Reverse();
+        return sublist;
+    }
+
+    private void SetOpacityAndSize(Image image, int position)
+    {
+        float sizeMultiplier;
+
         if (position == 0 || position == children.Count - 1)
         {
             image.color = new Color(1f, 1f, 1f, edgeOpacity);
@@ -59,6 +95,7 @@ public class SwitchingUI : MonoBehaviour
         else if (position == children.Count / 2)
         {
             image.color = new Color(1f, 1f, 1f, middleOpacity);
+            sizeMultiplier = 1f;
         }
         else
         {
@@ -66,68 +103,78 @@ public class SwitchingUI : MonoBehaviour
             sizeMultiplier = 0.75f;
         }
 
-        // Set size based on the original aspect ratio
-        FitImageToAspectRatio(image, sizeMultiplier);
+        ScaleImage(image, sizeMultiplier);
     }
 
-    // Scale the image to fit its aspect ratio
-    void FitImageToAspectRatio(Image image, float sizeMultiplier)
+    private void ScaleImage(Image image, float sizeMultiplier)
     {
         Sprite sprite = image.sprite;
         float spriteAspectRatio = sprite.rect.width / sprite.rect.height;
         RectTransform imageRectTransform = image.GetComponent<RectTransform>();
-        float imageAspectRatio = imageRectTransform.rect.width / imageRectTransform.rect.height;
 
-        if (imageAspectRatio != spriteAspectRatio)
-        {
-            float newSize = baseWidth * spriteAspectRatio * sizeMultiplier;
+        float newSize = baseWidth * spriteAspectRatio * sizeMultiplier;
 
-            imageRectTransform.sizeDelta = new Vector2(newSize, baseWidth * sizeMultiplier);
-        }
+        imageRectTransform.sizeDelta = new Vector2(newSize, baseWidth * sizeMultiplier);
     }
 
-    public List<Sprite> GetSurroundingSprites(List<PlayerWeapon> originalList, int activeIndex, int itemCount)
+    private bool CheckNumericKeys()
     {
-        if (originalList.Count == 0 || itemCount <= 0)
+        for (int i = 0; i <= 9; i++)
         {
-            // This list should never be empty but just in case
-            Debug.Log("How did you drop the 'nothing' weapon?? Where are your weapons mate???");
-            return new List<Sprite>();
+            if (Input.GetKeyDown(i.ToString()))
+            {
+                return true;
+            }
         }
 
-        List<Sprite> sublist = new List<Sprite>();
-
-        // Add items behind active index
-        for (int i = activeIndex - (itemCount / 2); i < activeIndex; i++)
-        {
-            int wrappedIndex = WrapIndex(i, originalList.Count);
-            sublist.Add(originalList[wrappedIndex].GetComponent<SpriteRenderer>().sprite);
-        }
-
-        // Add the item at the active index
-        int wrappedActiveIndex = WrapIndex(activeIndex, originalList.Count);
-        sublist.Add(originalList[wrappedActiveIndex].GetComponent<SpriteRenderer>().sprite);
-
-        // Add items in front of active index
-        for (int i = activeIndex + 1; i <= activeIndex + (itemCount / 2); i++)
-        {
-            int wrappedIndex = WrapIndex(i, originalList.Count);
-            sublist.Add(originalList[wrappedIndex].GetComponent<SpriteRenderer>().sprite);
-        }
-
-        sublist.Reverse();
-
-        return sublist;
+        return false;
     }
 
-    // Helper method to wrap indices around the list boundaries
-    private int WrapIndex(int index, int listCount)
+    private void SetImageAlpha(Image image, float alpha)
     {
-        if (listCount == 0)
+        Color currentColor = image.color;
+        currentColor.a = alpha;
+        image.color = currentColor;
+    }
+
+    private void SetMultipleImagesAlpha(List<Image> images, float alpha)
+    {
+        foreach (Image image in images)
         {
-            return 0;
+            SetImageAlpha(image, alpha);
+        }
+    }
+
+    private void Fade()
+    {
+        if (fadeTimer <= 0f)
+        {
+            isFading = true;
         }
 
-        return (index % listCount + listCount) % listCount;
+        if (isFading)
+        {
+            for (int i = 0; i < children.Count; i++)
+            {
+                Image image = children[i];
+                if (i == 0 || i == children.Count - 1)
+                {
+                    SetImageAlpha(image, fadeTime * edgeOpacity);
+                }
+                else if (i == children.Count / 2)
+                {
+                    SetImageAlpha(image, fadeTime * middleOpacity);
+                }
+                else
+                {
+                    SetImageAlpha(image, fadeTime * betweenOpacity);
+                }
+            }
+            SetImageAlpha(GetComponent<Image>(), fadeTime / 5);
+            fadeTime -= Time.deltaTime;
+        }
+
+        fadeTimer -= Time.deltaTime;
     }
+
 }
