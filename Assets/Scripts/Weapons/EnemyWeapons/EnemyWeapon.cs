@@ -5,7 +5,7 @@ using UnityEngine;
 public class EnemyWeapon : Weapon
 {
 
-    void Start()
+    protected override void Start()
     {
 
     }
