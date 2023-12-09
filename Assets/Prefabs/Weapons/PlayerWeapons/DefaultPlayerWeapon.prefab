@@ -46,6 +46,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bullet: {fileID: 0}
+  squareSprite: {fileID: 21300000, guid: 6ce936f125d9274438a278efb4110ac7, type: 3}
+  dynamicReloading: 0
 --- !u!212 &-8454306143945487464
 SpriteRenderer:
   m_ObjectHideFlags: 0
