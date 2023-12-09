@@ -76,7 +76,7 @@ public class SwitchingUI : MonoBehaviour
         for (int i = activeIndex - (itemCount / 2); i <= activeIndex + (itemCount / 2); i++)
         {
             int wrappedIndex = (i % originalList.Count + originalList.Count) % originalList.Count;
-            sublist.Add(originalList[wrappedIndex].GetComponent<SpriteRenderer>().sprite);
+            sublist.Add(originalList[wrappedIndex].SquareSprite);
         }
 
         sublist.Reverse();
@@ -95,7 +95,7 @@ public class SwitchingUI : MonoBehaviour
         else if (position == children.Count / 2)
         {
             image.color = new Color(1f, 1f, 1f, middleOpacity);
-            sizeMultiplier = 1f;
+            sizeMultiplier = 1.2f;
         }
         else
         {
