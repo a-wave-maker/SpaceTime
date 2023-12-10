@@ -13,11 +13,11 @@ public class DamageableEntity : MonoBehaviour, IDamageable
         health = startingHealth;
     }
 
-    protected void TakeHit(float damage)
+    public void TakeHit(float damage)
     {
         health -= damage;
 
-        if(health < 0)
+        if (health < 0)
         {
             Die();
         }
