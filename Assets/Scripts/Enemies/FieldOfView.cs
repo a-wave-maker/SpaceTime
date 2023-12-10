@@ -40,6 +40,7 @@ public class FieldOfView : MonoBehaviour
             float angle = transform.eulerAngles.z - viewAngle / 2 + stepSize * i;
             ViewCastInfo newViewCast = ViewCast(angle);
             viewPoints.Add(newViewCast.point);
+            Debug.DrawLine(transform.position, transform.position + DirFromAngle(angle, true) * viewRadius, Color.red);
         }
 
         int vertexCount = viewPoints.Count + 1;
@@ -49,7 +50,8 @@ public class FieldOfView : MonoBehaviour
         vertices[0] = Vector3.zero;
         for (int i = 0; i < vertexCount - 1; i++)
         {
-            vertices[i + 1] = viewPoints[i];
+            vertices[i + 1] = transform.InverseTransformPoint(viewPoints[i]);
+
             if (i < vertexCount - 2)
             {
                 triangles[i * 3] = 0;
@@ -57,21 +59,22 @@ public class FieldOfView : MonoBehaviour
                 triangles[i * 3 + 2] = i + 2;
             }
 
-            viewMesh.Clear();
-            viewMesh.vertices = vertices;
-            viewMesh.triangles = triangles;
-            viewMesh.RecalculateNormals();
+
         }
+        viewMesh.Clear();
+        viewMesh.vertices = vertices;
+        viewMesh.triangles = triangles;
+        viewMesh.RecalculateNormals();
     }
 
     public Vector3 DirFromAngle(float angleInDegrees, bool angleIsGlobal)
     {
         if (!angleIsGlobal)
         {
-            angleInDegrees += transform.eulerAngles.z; // Use z-axis for 2D rotation
+            angleInDegrees -= transform.eulerAngles.z; // Use z-axis for 2D rotation
         }
 
-        return new Vector3(0, 0 , Mathf.Cos(angleInDegrees * Mathf.Deg2Rad));
+        return new Vector3(Mathf.Sin(angleInDegrees * Mathf.Deg2Rad), Mathf.Cos(angleInDegrees * Mathf.Deg2Rad), 0);
     }
 
     ViewCastInfo ViewCast(float globalAngle)
