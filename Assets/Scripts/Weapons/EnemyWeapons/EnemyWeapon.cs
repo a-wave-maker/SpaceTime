@@ -15,9 +15,14 @@ public class EnemyWeapon : Weapon
 
     }
 
-    // public override bool Fire(Quaternion? direction = null)
-    // {
-    //     return true;
-    // }
+    public override bool Fire(Quaternion? direction = null)
+    {
+        if (!direction.HasValue)
+        {
+            direction = transform.rotation;
+        }
+        base.Fire(direction);
+        return true;
+    }
 
 }

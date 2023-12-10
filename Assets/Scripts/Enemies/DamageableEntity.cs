@@ -13,7 +13,7 @@ public class DamageableEntity : MonoBehaviour, IDamageable
         health = startingHealth;
     }
 
-    protected void TakeHit(float damage, RaycastHit hit)
+    public void TakeHit(float damage)
     {
         health -= damage;
 
