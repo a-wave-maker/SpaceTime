@@ -93,8 +93,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2572689590731338239}
-  - component: {fileID: 6174998781667710907}
   - component: {fileID: 5740336254184185007}
+  - component: {fileID: 1230937244179322891}
+  - component: {fileID: 6174998781667710907}
   m_Layer: 0
   m_Name: Enemy Turret
   m_TagString: Untagged
@@ -118,30 +119,6 @@ Transform:
   - {fileID: 8721028839134289780}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6174998781667710907
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7137924644036570214}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e24ecd3e7ee7adf48aff3a46d68c4bf0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  target: {fileID: 0}
-  Bullet: {fileID: 0}
-  moveable: 0
-  mass: Infinity
-  fireRate: 2
-  Damage: 69
-  bulletForce: 69
-  projectileSpeed: 0.1
-  rotateSpeed: 60
-  viewRadius: 10
-  viewAngle: 50
-  currentState: 0
 --- !u!50 &5740336254184185007
 Rigidbody2D:
   serializedVersion: 4
@@ -169,3 +146,41 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &1230937244179322891
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7137924644036570214}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 90f89350588c3be4eab8c14a7bad3b19, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startingHealth: 5
+--- !u!114 &6174998781667710907
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7137924644036570214}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e24ecd3e7ee7adf48aff3a46d68c4bf0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startingHealth: 0
+  target: {fileID: 0}
+  bullet: {fileID: 0}
+  moveable: 0
+  mass: Infinity
+  fireRate: 2
+  Damage: 69
+  bulletForce: 69
+  projectileSpeed: 0.1
+  rotationSpeed: 60
+  viewRadius: 10
+  viewAngle: 50
+  currentState: 0

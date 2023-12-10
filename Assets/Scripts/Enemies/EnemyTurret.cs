@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyTurret : MonoBehaviour
+public class EnemyTurret : DamageableEntity
 {
     Rigidbody2D rigidbody;
 
@@ -24,8 +24,9 @@ public class EnemyTurret : MonoBehaviour
 
     public EnemyState currentState = EnemyState.Attack;
 
-    void Start()
+    protected override void Start()
     {
+        base.Start();
         rigidbody = GetComponent<Rigidbody2D>();
         target = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
     }

@@ -8,12 +8,12 @@ public class DamageableEntity : MonoBehaviour, IDamageable
     protected float health;
     protected bool dead;
 
-    public void Start()
+    protected virtual void Start()
     {
         health = startingHealth;
     }
 
-    public void TakeHit(float damage, RaycastHit hit)
+    protected void TakeHit(float damage, RaycastHit hit)
     {
         health -= damage;
 
@@ -23,8 +23,9 @@ public class DamageableEntity : MonoBehaviour, IDamageable
         }
     }
 
-    public void Die()
+    protected void Die()
     {
         dead = true;
+        GameObject.Destroy(gameObject);
     }
 }
