@@ -43,10 +43,10 @@ public class FieldOfView : MonoBehaviour
         }
 
         int vertexCount = viewPoints.Count + 1;
-        Vector3[] vertices = new Vector3[vertexCount];
+        Vector2[] vertices = new Vector2[vertexCount];
         int[] triangles = new int[(vertexCount - 2) * 3];
 
-        vertices[0] = Vector3.zero;
+        vertices[0] = Vector2.zero;
         for (int i = 0; i < vertexCount - 1; i++)
         {
             vertices[i + 1] = viewPoints[i];
