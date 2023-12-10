@@ -33,7 +33,7 @@ public class FieldOfView : MonoBehaviour
         int rayCount = Mathf.RoundToInt(viewAngle * meshResolution);
         float stepSize = viewAngle / rayCount;
 
-        List<Vector2> viewPoints = new List<Vector2>();
+        List<Vector3> viewPoints = new List<Vector3>();
         
         for (int i = 0; i <= rayCount; i++)
         {
@@ -43,10 +43,10 @@ public class FieldOfView : MonoBehaviour
         }
 
         int vertexCount = viewPoints.Count + 1;
-        Vector2[] vertices = new Vector2[vertexCount];
+        Vector3[] vertices = new Vector3[vertexCount];
         int[] triangles = new int[(vertexCount - 2) * 3];
 
-        vertices[0] = Vector2.zero;
+        vertices[0] = Vector3.zero;
         for (int i = 0; i < vertexCount - 1; i++)
         {
             vertices[i + 1] = viewPoints[i];
@@ -64,19 +64,19 @@ public class FieldOfView : MonoBehaviour
         }
     }
 
-    public Vector2 DirFromAngle(float angleInDegrees, bool angleIsGlobal)
+    public Vector3 DirFromAngle(float angleInDegrees, bool angleIsGlobal)
     {
         if (!angleIsGlobal)
         {
             angleInDegrees += transform.eulerAngles.z; // Use z-axis for 2D rotation
         }
 
-        return new Vector2(Mathf.Sin(angleInDegrees * Mathf.Deg2Rad), Mathf.Cos(angleInDegrees * Mathf.Deg2Rad));
+        return new Vector3(0, 0 , Mathf.Cos(angleInDegrees * Mathf.Deg2Rad));
     }
 
     ViewCastInfo ViewCast(float globalAngle)
     {
-        Vector2 dir = DirFromAngle(globalAngle, true);
+        Vector3 dir = DirFromAngle(globalAngle, true);
         RaycastHit2D hit = Physics2D.Raycast(transform.position, dir, viewRadius, obstacleMask);
 
         if (hit.collider != null)
@@ -85,7 +85,7 @@ public class FieldOfView : MonoBehaviour
         }
         else
         {
-            Vector2 endPoint = (Vector2)transform.position + dir * viewRadius;
+            Vector3 endPoint = (Vector3)transform.position + dir * viewRadius;
             return new ViewCastInfo(false, endPoint, viewRadius, globalAngle);
         }
     }
@@ -93,7 +93,7 @@ public class FieldOfView : MonoBehaviour
     public struct ViewCastInfo
     {
         public bool hit;
-        public Vector2 point;
+        public Vector3 point;
         public float dst;
         public float angle;
 
