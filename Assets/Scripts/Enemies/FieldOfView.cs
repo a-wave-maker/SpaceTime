@@ -33,7 +33,7 @@ public class FieldOfView : MonoBehaviour
         int rayCount = Mathf.RoundToInt(viewAngle * meshResolution);
         float stepSize = viewAngle / rayCount;
 
-        List<Vector3> viewPoints = new List<Vector3>();
+        List<Vector2> viewPoints = new List<Vector2>();
         
         for (int i = 0; i <= rayCount; i++)
         {

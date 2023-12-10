@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class EnemyTurret : DamageableEntity
 {
+    public enum EnemyState { Idle, Attack }
+
+
     Rigidbody2D rigidbody;
 
     [SerializeField] public Transform target;
@@ -21,8 +24,9 @@ public class EnemyTurret : DamageableEntity
     [SerializeField] public float viewAngle = 0f;
 
 
-
     public EnemyState currentState = EnemyState.Attack;
+
+
 
     protected override void Start()
     {
@@ -65,4 +69,3 @@ public class EnemyTurret : DamageableEntity
 }
 
 
-public enum EnemyState { Idle, Attack}
