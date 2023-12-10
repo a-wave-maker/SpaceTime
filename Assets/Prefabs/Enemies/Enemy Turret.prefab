@@ -93,7 +93,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2572689590731338239}
-  - component: {fileID: 3886871265373367093}
+  - component: {fileID: 6174998781667710907}
+  - component: {fileID: 5740336254184185007}
   m_Layer: 0
   m_Name: Enemy Turret
   m_TagString: Untagged
@@ -117,7 +118,7 @@ Transform:
   - {fileID: 8721028839134289780}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3886871265373367093
+--- !u!114 &6174998781667710907
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -126,6 +127,45 @@ MonoBehaviour:
   m_GameObject: {fileID: 7137924644036570214}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3bec4c7a8dbb0a040b68775efa47e181, type: 3}
+  m_Script: {fileID: 11500000, guid: e24ecd3e7ee7adf48aff3a46d68c4bf0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  target: {fileID: 0}
+  Bullet: {fileID: 0}
+  moveable: 0
+  mass: Infinity
+  fireRate: 2
+  Damage: 69
+  bulletForce: 69
+  projectileSpeed: 0.1
+  rotateSpeed: 60
+  viewRadius: 10
+  viewAngle: 50
+  currentState: 0
+--- !u!50 &5740336254184185007
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7137924644036570214}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
