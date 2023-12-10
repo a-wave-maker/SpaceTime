@@ -15,6 +15,8 @@ public class PlayerWeapon : Weapon
     private float reloadProgress = 0f;
     private float switchTime;
 
+    [SerializeField] private Sprite squareSprite;
+
     [SerializeField] private bool dynamicReloading = false; // change reload type (temporary)
 
 
@@ -23,6 +25,7 @@ public class PlayerWeapon : Weapon
     public float ReloadStart { get => reloadStart; set => reloadStart = value; }
     public bool IsReloading { get => isReloading; set => isReloading = value; }
     public float ReloadProgress { get => reloadProgress; set => reloadProgress = value; }
+    public Sprite SquareSprite { get => squareSprite; set => squareSprite = value; }
 
     protected override void Start()
     {

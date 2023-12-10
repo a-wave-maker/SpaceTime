@@ -98,4 +98,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bullet: {fileID: 6140287384987966105, guid: 2aad9125d80e3604ba122ce1fe706dab, type: 3}
+  squareSprite: {fileID: 21300000, guid: 9c1c3f9edcbf4b04e869bd5c718ce67c, type: 3}
   dynamicReloading: 0

@@ -17,8 +17,11 @@ public class CrosshairBound : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Vector3 cursorScreenPos = Input.mousePosition;
+        Vector3 cursorScreenPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        cursorScreenPos.z = 0;
 
+        RectTransform rectTransform = GetComponent<RectTransform>();
+        rectTransform.position = cursorScreenPos + offset;
         transform.position = cursorScreenPos + offset;
     }
 }
