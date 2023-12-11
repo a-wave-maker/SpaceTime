@@ -54,6 +54,16 @@ public class Bullet : MonoBehaviour
                 trail.time = 0f;
             }
         }
+
+    }
+
+    void OnTriggerEnter2D(Collider2D collider)
+    {
+        if (collider.gameObject.TryGetComponent<IDamageable>(out var damageable))
+        {
+            print("literally hitting you");
+            damageable.TakeHit(damage);
+        }
     }
 
     void Despawn()
