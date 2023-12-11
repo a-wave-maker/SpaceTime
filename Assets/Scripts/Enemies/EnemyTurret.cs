@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngineInternal;
 
 public class EnemyTurret : DamageableEntity
 {
@@ -47,7 +48,7 @@ public class EnemyTurret : DamageableEntity
                 break;
         }
     }
-
+    
     void Combat(){
         LookAtTarget();
         Attack();
@@ -55,7 +56,7 @@ public class EnemyTurret : DamageableEntity
 
     void Patrol(){
         transform.Rotate(rotationSpeed * Time.deltaTime * Vector3.forward);
-
+        
     }
 
     void Attack()
@@ -68,7 +69,10 @@ public class EnemyTurret : DamageableEntity
 
         if (hit.collider != null)
         {
-            weapon.Fire();
+            if(hit.collider.gameObject.name == "Player")
+            {
+                weapon.Fire();
+            }
         }
 
 
@@ -84,7 +88,7 @@ public class EnemyTurret : DamageableEntity
 
     }
 
-
+    
 }
 
 

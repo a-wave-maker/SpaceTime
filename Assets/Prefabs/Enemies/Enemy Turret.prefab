@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8481659672148960720}
   - component: {fileID: 146860307343316119}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: enemy_turret
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -97,7 +97,7 @@ GameObject:
   - component: {fileID: 1230937244179322891}
   - component: {fileID: 6174998781667710907}
   - component: {fileID: -681123820668963496}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Enemy Turret
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -175,7 +175,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startingHealth: 0
   target: {fileID: 0}
-  weapon: {fileID: 5814762239348607548, guid: 4c44352e5328b8d4a8fe045711e9250b, type: 3}
+  weapon: {fileID: 1880004515030201296}
   moveable: 0
   mass: Infinity
   fireRate: 2
@@ -273,11 +273,26 @@ PrefabInstance:
       propertyPath: m_Name
       value: TurretGun
       objectReference: {fileID: 0}
+    - target: {fileID: 5560192685435767820, guid: 4c44352e5328b8d4a8fe045711e9250b, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4c44352e5328b8d4a8fe045711e9250b, type: 3}
+--- !u!114 &1880004515030201296 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3246031302991928659, guid: 4c44352e5328b8d4a8fe045711e9250b, type: 3}
+  m_PrefabInstance: {fileID: 3970809693808406147}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b09e83aa46e065d449b17162c9cda010, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &4130824820692855155 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1029218926076299248, guid: 4c44352e5328b8d4a8fe045711e9250b, type: 3}
