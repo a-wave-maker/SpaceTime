@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class EnemyTurret : DamageableEntity
 {
-    public enum EnemyState { Idle, Attack }
+    public enum EnemyState { Idle, Combat }
 
 
     Rigidbody2D rigidbody;
 
     [SerializeField] public Transform target;
-    [SerializeField] public GameObject bullet = null;
+    [SerializeField] public EnemyWeapon weapon = null;
     [SerializeField] public bool moveable = false;
     [SerializeField] public double mass = double.PositiveInfinity;
     [SerializeField] public float fireRate = 2f;
@@ -24,7 +24,7 @@ public class EnemyTurret : DamageableEntity
     [SerializeField] public float viewAngle = 0f;
 
 
-    public EnemyState currentState = EnemyState.Attack;
+    public EnemyState currentState = EnemyState.Combat;
 
 
 
@@ -39,8 +39,8 @@ public class EnemyTurret : DamageableEntity
     {
         switch(currentState)
         {
-            case EnemyState.Attack:
-                Attack();
+            case EnemyState.Combat:
+                Combat();
                 break;
             case EnemyState.Idle:
                 Patrol();
@@ -48,13 +48,30 @@ public class EnemyTurret : DamageableEntity
         }
     }
     
-    void Attack(){
+    void Combat(){
         LookAtTarget();
+        Attack();
     }
 
     void Patrol(){
         transform.Rotate(rotationSpeed * Time.deltaTime * Vector3.forward);
         
+    }
+
+    void Attack()
+    {
+
+        LayerMask enemyMask = LayerMask.GetMask("Enemies");
+
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, transform.TransformDirection(Vector3.up));
+
+
+        if (hit.collider != null)
+        {
+            weapon.Fire();
+        }
+
+
     }
 
     void LookAtTarget()
@@ -66,6 +83,8 @@ public class EnemyTurret : DamageableEntity
         transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
 
     }
+
+    
 }
 
 
