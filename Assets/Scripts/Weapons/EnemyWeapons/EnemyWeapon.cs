@@ -5,9 +5,14 @@ using UnityEngine;
 public class EnemyWeapon : Weapon
 {
 
+    private float lastFireTime;
+
+    public float LastFireTime { get => lastFireTime; set => lastFireTime = value; }
+
     protected override void Start()
     {
-
+        base.Start();
+        LastFireTime = 0;
     }
 
     void Update()
@@ -21,8 +26,17 @@ public class EnemyWeapon : Weapon
         {
             direction = transform.rotation;
         }
-        base.Fire(direction);
-        return true;
+        if (CanFire())
+        {
+            base.Fire(direction);
+            LastFireTime = Time.time;
+            return true;
+        } else return false;
+    }
+
+    public bool CanFire()
+    {
+        return Time.time - LastFireTime >= 1f; // temporary: FireRate property needs fixing
     }
 
 }

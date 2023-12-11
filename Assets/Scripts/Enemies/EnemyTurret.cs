@@ -47,7 +47,7 @@ public class EnemyTurret : DamageableEntity
                 break;
         }
     }
-    
+
     void Combat(){
         LookAtTarget();
         Attack();
@@ -55,7 +55,7 @@ public class EnemyTurret : DamageableEntity
 
     void Patrol(){
         transform.Rotate(rotationSpeed * Time.deltaTime * Vector3.forward);
-        
+
     }
 
     void Attack()
@@ -84,7 +84,7 @@ public class EnemyTurret : DamageableEntity
 
     }
 
-    
+
 }
 
 

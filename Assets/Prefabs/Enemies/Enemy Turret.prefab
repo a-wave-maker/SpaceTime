@@ -175,7 +175,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startingHealth: 0
   target: {fileID: 0}
-  weapon: {fileID: 5628605103849545265}
+  weapon: {fileID: 5814762239348607548, guid: 4c44352e5328b8d4a8fe045711e9250b, type: 3}
   moveable: 0
   mass: Infinity
   fireRate: 2
@@ -283,14 +283,3 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1029218926076299248, guid: 4c44352e5328b8d4a8fe045711e9250b, type: 3}
   m_PrefabInstance: {fileID: 3970809693808406147}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &5628605103849545265 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8721208471666012338, guid: 4c44352e5328b8d4a8fe045711e9250b, type: 3}
-  m_PrefabInstance: {fileID: 3970809693808406147}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 23d8d456393ca4642adb26b81778f9fa, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
