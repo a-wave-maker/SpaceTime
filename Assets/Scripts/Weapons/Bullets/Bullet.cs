@@ -64,6 +64,14 @@ public class Bullet : MonoBehaviour
             print("literally hitting you");
             damageable.TakeHit(damage);
         }
+        // Check if the bullet collides with the object
+        if (collider.gameObject.TryGetComponent<BulletInteractible>(out var hittable))
+        {
+            // Handle the collision logic here
+            Debug.Log("Bullet hit the target!");
+            if (hittable.onBulletHit(this))
+                Destroy(gameObject);
+        }
     }
 
     void Despawn()
@@ -76,16 +84,4 @@ public class Bullet : MonoBehaviour
         Destroy(gameObject);
     }
 
-    void OnTriggerEnter2D(Collider2D collider)
-    {
-        // Check if the bullet collides with the object
-            Debug.Log("Bullet hit the target!");
-        if (collider.gameObject.TryGetComponent<BulletInteractible>(out var hittable))
-        {
-            // Handle the collision logic here
-            Debug.Log("Bullet hit the target!");
-            if (hittable.onBulletHit(this))
-                Destroy(gameObject);
-        }
-    }
 }
