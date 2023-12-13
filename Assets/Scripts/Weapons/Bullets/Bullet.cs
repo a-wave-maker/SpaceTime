@@ -59,18 +59,19 @@ public class Bullet : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collider)
     {
-        if (collider.gameObject.TryGetComponent<IDamageable>(out var damageable))
+        if (collider.gameObject != owner && collider.gameObject.TryGetComponent<IDamageable>(out var damageable))
         {
-            print("literally hitting you");
             damageable.TakeHit(damage);
+            DestroyBullet();
         }
         // Check if the bullet collides with the object
-        if (collider.gameObject.TryGetComponent<BulletInteractible>(out var hittable))
+        if (collider.gameObject != owner && collider.gameObject.TryGetComponent<BulletInteractible>(out var hittable))
         {
             // Handle the collision logic here
             Debug.Log("Bullet hit the target!");
             if (hittable.onBulletHit(this))
-                Destroy(gameObject);
+            Destroy(gameObject);
+            DestroyBullet();
         }
     }
 

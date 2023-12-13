@@ -7,7 +7,6 @@ public class PlayerWeapon : Weapon
 {
 
     private int remainingAmmo;
-    private float lastFireTime;
     private float reloadStart;
 
     private bool isActive = false;
@@ -21,7 +20,6 @@ public class PlayerWeapon : Weapon
 
 
     public int RemainingAmmo { get => remainingAmmo; set => remainingAmmo = value; }
-    public float LastFireTime { get => lastFireTime; set => lastFireTime = value; }
     public float ReloadStart { get => reloadStart; set => reloadStart = value; }
     public bool IsReloading { get => isReloading; set => isReloading = value; }
     public float ReloadProgress { get => reloadProgress; set => reloadProgress = value; }
@@ -46,7 +44,7 @@ public class PlayerWeapon : Weapon
             // if finished reloading
             if (ReloadProgress >= 1) {
                 RemainingAmmo = MaxAmmo;
-                lastFireTime = 0;
+                LastFireTime = 0;
                 IsReloading = false;
             }
         }
@@ -70,11 +68,10 @@ public class PlayerWeapon : Weapon
     }
 
     // check if possible to fire a bullet
-    public bool CanFire()
+    public override bool CanFire()
     {
         bool hasAmmo = RemainingAmmo > 0;
-        float shotCooldown = 1 / FireRate;
-        return hasAmmo && Time.time - LastFireTime >= shotCooldown;
+        return hasAmmo && Time.time - LastFireTime >= FireRate;
     }
 
      // reload

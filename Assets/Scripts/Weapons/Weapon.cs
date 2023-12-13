@@ -7,7 +7,8 @@ using UnityEngine;
 public class Weapon : MonoBehaviour
 {
 
-    private float fireRate; // bullets per second
+    private float fireRate; // time between single shots
+    private float lastFireTime;
     private float recoil;
     private float reloadTime; // how long it takes to reload
     private int maxAmmo;
@@ -18,6 +19,7 @@ public class Weapon : MonoBehaviour
 
 
     public float FireRate { get => fireRate; set => fireRate = value; }
+    public float LastFireTime { get => lastFireTime; set => lastFireTime = value; }
     public float Recoil { get => recoil; set => recoil = value; }
     public float ReloadTime { get => reloadTime; set => reloadTime = value; }
     public int MaxAmmo { get => maxAmmo; set => maxAmmo = value; }
@@ -46,4 +48,9 @@ public class Weapon : MonoBehaviour
     public virtual void Reload(){}
 
     public virtual void Switch(){}
+
+    public virtual bool CanFire(){
+        return true;
+    }
+
 }
