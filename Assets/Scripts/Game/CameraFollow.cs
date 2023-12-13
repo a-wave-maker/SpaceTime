@@ -8,8 +8,6 @@ public class CameraFollow : MonoBehaviour
 
     [SerializeField] private Vector3 offset = new Vector3(0f, 0f, -10f);
 
-    [SerializeField] private float maxOffset = 10f;
-
     [SerializeField] private float baseSize = 10f;
     [SerializeField] private float maxSize = 40f;
     [SerializeField] private float maxSpeed = 200f;
