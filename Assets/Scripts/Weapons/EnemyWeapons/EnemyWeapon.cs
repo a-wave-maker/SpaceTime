@@ -5,9 +5,6 @@ using UnityEngine;
 public class EnemyWeapon : Weapon
 {
 
-    private float lastFireTime;
-
-    public float LastFireTime { get => lastFireTime; set => lastFireTime = value; }
 
     protected override void Start()
     {
@@ -34,9 +31,9 @@ public class EnemyWeapon : Weapon
         } else return false;
     }
 
-    public bool CanFire()
+    public override bool CanFire()
     {
-        return Time.time - LastFireTime >= 1f; // temporary: FireRate property needs fixing
+        return Time.time - LastFireTime >= FireRate;
     }
 
 }

@@ -6,19 +6,13 @@ public class Pistol : PlayerWeapon
 {
     protected override void Start()
     {
-        FireRate = 5f;
+        FireRate = 0.5f;
         Recoil = 5f;
         ReloadTime = 2f;
         MaxAmmo = 6;
         WeaponName = "Pistol";
-        // test values ^
         base.Start();
     }
-
-    // void Update()
-    // {
-
-    // }
 
     public override bool Fire(Quaternion? direction = null)
     {

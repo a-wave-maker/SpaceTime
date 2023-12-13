@@ -9,15 +9,8 @@ public class DefaultPlayerWeapon : PlayerWeapon
         Recoil = 0;
         MaxAmmo = 0;
         WeaponName = "Default";
-        // test values ^
         base.Start();
     }
-
-    // protected override void Start()
-    // {
-    //     // FireRate = 0f;
-    //     // Recoil = 0f;
-    // }
 
     public override bool Fire(Quaternion? direction = null)
     {
