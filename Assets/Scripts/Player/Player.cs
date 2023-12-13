@@ -11,6 +11,11 @@ public class Player : MonoBehaviour, IDamageable
     public delegate void PlayerDeathAction();
     public static event PlayerDeathAction PlayerDeath;
 
+    public void Start()
+    {
+        playerData.PlayerRB.freezeRotation = true;
+    }
+
     public void Update()
     {
         if(playerData.PlayerHealth <= 0)
