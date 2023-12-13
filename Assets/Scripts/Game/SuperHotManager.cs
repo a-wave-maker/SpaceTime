@@ -7,8 +7,8 @@ public class SuperHotManager : MonoBehaviour
     private PlayerData playerData;
 
     private bool modeSuperHot = false;
-    private float superHotMin = 0;
-    private float superHotMax = 50;
+    [SerializeField] private float superHotMin = 0;
+    [SerializeField] private float superHotMax = 50;
     
     public bool ModeSuperHot { get => modeSuperHot; set => modeSuperHot = value; }
 
@@ -19,7 +19,7 @@ public class SuperHotManager : MonoBehaviour
         playerData = FindObjectOfType<PlayerData>();
 
         // subscribe to ChangeSuperHot event
-        PlayerController.ChangeSuperHot += changeMode;
+        PlayerController.ChangeSuperHot += ChangeMode;
 
     }
 
@@ -28,11 +28,11 @@ public class SuperHotManager : MonoBehaviour
     {
         if (modeSuperHot)
         {
-            setTimeScale(mappedSpeed() + 0.1f);
+            SetTimeScale(MappedSpeed() + 0.1f);
         }
     }
 
-    private float mappedSpeed()
+    private float MappedSpeed()
     {
         if (playerData != null)
         {
@@ -49,13 +49,13 @@ public class SuperHotManager : MonoBehaviour
         }
     }
 
-    public void setTimeScale(float amount)
+    public void SetTimeScale(float amount)
     {
         Time.timeScale = amount;
         Time.fixedDeltaTime = 0.02F * Time.timeScale;
     }
 
-    public void changeMode()
+    public void ChangeMode()
     {
         modeSuperHot = !modeSuperHot;
     }
