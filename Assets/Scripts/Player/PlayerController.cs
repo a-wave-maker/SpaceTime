@@ -8,17 +8,14 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField] private Player player;
 
+    [SerializeField] private CameraFollow playerCamera;
+
     public delegate void SuperHotMode();
     public static event SuperHotMode ChangeSuperHot;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-    }
-
     private void OnGUI()
     {
-        faceCursor();
+        FaceCursor();
     }
 
     // Update is called once per frame
@@ -29,7 +26,7 @@ public class PlayerController : MonoBehaviour
             player.Die();
         }
         if (Input.GetKeyUp(KeyCode.T)) { // TMP
-            player.takeDamage(8);
+            player.TakeDamage(8);
         }
         if (Input.GetKeyUp(KeyCode.H)) { // TMP
             player.Heal(7);
@@ -39,6 +36,15 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKeyUp(KeyCode.Z))
         {
             ChangeSuperHot?.Invoke();
+        }
+        if (Input.GetKey(KeyCode.C))
+        {
+            print("Huh");
+            playerCamera.LockCamera();
+        }
+        else
+        {
+            playerCamera.UnlockCamera();
         }
 
         // PLAYER
@@ -54,11 +60,11 @@ public class PlayerController : MonoBehaviour
         float scroll = Input.GetAxis("Mouse ScrollWheel");
         if (scroll > 0f) // Scroll Up
         {
-            player.nextWeapon();
+            player.NextWeapon();
         }
         else if (scroll < 0f) // Scroll Down
         {
-            player.previousWeapon();
+            player.PreviousWeapon();
         }
 
         // Switch weapon using number keys (1 to 9 and 0), 0 for default empty weapon
@@ -66,12 +72,12 @@ public class PlayerController : MonoBehaviour
         {
             if (Input.GetKeyDown(i.ToString()))
             {
-                player.nthWeapon(i);
+                player.NthWeapon(i);
             }
         }
     }
 
-    private void faceCursor()
+    private void FaceCursor()
     {
         Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         Vector3 direction = mousePosition - transform.position;

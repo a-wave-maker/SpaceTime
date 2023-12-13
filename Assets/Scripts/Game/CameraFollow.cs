@@ -6,12 +6,14 @@ public class CameraFollow : MonoBehaviour
 {
     [SerializeField] private Transform target;
 
-    [SerializeField] private Vector3 offset = new Vector3(0f, 0f, -10f);
-    
-    [SerializeField] private float baseSize = 20f;
+    [SerializeField] private Vector3 offset = new (0f, 0f, -10f);
+
+    [SerializeField] private float baseSize = 10f;
     [SerializeField] private float maxSize = 40f;
-    [SerializeField] private float panSpeed = 5f;
-    [SerializeField] private float panSize = 20f;
+    [SerializeField] private float maxSpeed = 200f;
+    [SerializeField] private float zoomSpeed = 1.2f;
+
+    private bool cameraLock = false;
 
     private void LateUpdate()
     {
@@ -21,8 +23,10 @@ public class CameraFollow : MonoBehaviour
             transform.position = target.position + offset;
 
             // set the zoom
+            ChangeSize();
 
             // set the offset
+            SetPan();
         }
         else
         {
@@ -30,30 +34,55 @@ public class CameraFollow : MonoBehaviour
         }
     }
 
-    private void setSize()
+    public void LockCamera()
     {
+        cameraLock = true;
+    }
+
+    public void UnlockCamera()
+    {
+        cameraLock = false;
+    }
+
+    private void ChangeSize()
+    {
+        float differnce = GetGoalSize() - Camera.main.orthographicSize;
+
+        Camera.main.orthographicSize += Time.deltaTime * differnce * zoomSpeed;
 
     }
 
-    private void setPan()
+    private float GetGoalSize()
     {
-        float mouseX = Input.mousePosition.x;
-        float mouseY = Input.mousePosition.y;
+        float speedMultiplier = target.GetComponent<Rigidbody2D>().velocity.magnitude;
 
-        float panX = 0f;
-        float panY = 0f;
+        float t = Mathf.Clamp01(speedMultiplier / maxSpeed);
 
-        if (mouseX < 10f)
-            panX = -1f;
-        else if (mouseX > Screen.width - 10f)
-            panX = 1f;
+        float newSize = Mathf.Lerp(baseSize, maxSize, t);
 
-        if (mouseY < 10f)
-            panY = -1f;
-        else if (mouseY > Screen.height - 10f)
-            panY = 1f;
+        return newSize;
 
+    }
 
+    private void SetPan()
+    {
+        Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        Vector3 targetPosition = target.position;
+
+        Vector3 middlePoint = Vector3.Lerp(targetPosition, mousePosition, 0.3f);
+
+        Vector3 difference = middlePoint - targetPosition;
+
+        if (!cameraLock)
+        {
+            SetOffset(difference);
+        }
+    }
+
+    private void SetOffset(Vector3 vector)
+    {
+        offset = vector;
+        offset.z = -10f;
     }
 }
 

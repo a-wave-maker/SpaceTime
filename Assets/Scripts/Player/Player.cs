@@ -42,7 +42,7 @@ public class Player : MonoBehaviour
 
             Vector2 direction = transform.position - targetPosition;
 
-            applyForce(force, direction);
+            ApplyForce(force, direction);
         }
     }
 
@@ -56,7 +56,7 @@ public class Player : MonoBehaviour
     // WEAPON SWITCHING
     // ----------------------------------------------------------------------------------------------------------------
 
-    public void nextWeapon()
+    public void NextWeapon()
     {
         int nextIdx = playerData.PlayerActiveWeaponIdx;
         if (nextIdx == playerData.PlayerWeapons.Count - 1)
@@ -73,7 +73,7 @@ public class Player : MonoBehaviour
         playerData.PlayerWeapons[playerData.PlayerActiveWeaponIdx].Switch();
     }
 
-    public PlayerWeapon previousWeapon()
+    public PlayerWeapon PreviousWeapon()
     {
         int nextIdx = playerData.PlayerActiveWeaponIdx;
 
@@ -93,7 +93,7 @@ public class Player : MonoBehaviour
         return playerData.PlayerWeapons[nextIdx];
     }
 
-    public PlayerWeapon nthWeapon(int number)
+    public PlayerWeapon NthWeapon(int number)
     {
         int nextIdx = playerData.PlayerActiveWeaponIdx;
 
@@ -113,14 +113,14 @@ public class Player : MonoBehaviour
     // INTERACTIONS
     // ----------------------------------------------------------------------------------------------------------------
     
-    private void applyForce(float force, Vector2 direction)
+    private void ApplyForce(float force, Vector2 direction)
     {
         Rigidbody2D playerRB = playerData.PlayerRB;
 
         playerRB.AddForce((direction.normalized * force) / playerData.PlayerMassMultiplier, ForceMode2D.Impulse);
     }
 
-    public void takeDamage(int damage)
+    public void TakeDamage(int damage)
     {
         playerData.PlayerHealth -= damage;
         if (playerData.PlayerHealth <= 0)
@@ -140,7 +140,7 @@ public class Player : MonoBehaviour
             playerData.PlayerHealth += heal;
         }
     }
-    public void setHealth(int health)
+    public void SetHealth(int health)
     {
         playerData.PlayerHealth = health;
     }

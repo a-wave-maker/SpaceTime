@@ -8,7 +8,7 @@ public class HealthBar : MonoBehaviour
 
     [SerializeField] private Transform playerTransfrom;
     [SerializeField] private PlayerData playerData;
-    [SerializeField] private Vector3 offset = new Vector3(0f, 0f, 0f);
+    // [SerializeField] private Vector3 offset = new (0f, 0f, 0f);
     [SerializeField] private float baseAlpha = 0.1f;
 
     [SerializeField] private float minValue = 0f;

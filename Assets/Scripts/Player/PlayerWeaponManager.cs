@@ -13,7 +13,7 @@ public class WeaponPair
 public class PlayerWeaponManager : MonoBehaviour
 {
     public List<WeaponPair> availableWeapons;
-    private List<PlayerWeapon> instantiatedWeapons = new List<PlayerWeapon>();
+    private List<PlayerWeapon> instantiatedWeapons = new();
 
     public List<PlayerWeapon> InstantiatedWeapons { get => instantiatedWeapons; set => instantiatedWeapons = value; }
 

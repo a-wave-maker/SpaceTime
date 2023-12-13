@@ -8,14 +8,13 @@ public class ReloadIndicator : MonoBehaviour
     [SerializeField] private PlayerData playerData;
 
     private int maxAmmo = 0;
-    private int ammoLeft = 0;
     private bool isReloading = false;
     private float reloadProgress = 0;
     private bool canFire = true;
 
     private Image indicator = null;
-    [SerializeField] private Color baseColor = new Color(0.5f, 0.9f, 1f, 1f);
-    [SerializeField] private Color grayedOut = new Color(0.5f, 0.6f, 0.7f, 1f);
+    [SerializeField] private Color baseColor = new (0.5f, 0.9f, 1f, 1f);
+    [SerializeField] private Color grayedOut = new (0.5f, 0.6f, 0.7f, 1f);
 
     [SerializeField] private float minValue = 0f;
     [SerializeField] private float maxValue = 1f;
@@ -36,7 +35,7 @@ public class ReloadIndicator : MonoBehaviour
             return;
         }
 
-        float clampedValue = minValue;
+        float clampedValue;
 
         if (isReloading)
         {
@@ -65,7 +64,6 @@ public class ReloadIndicator : MonoBehaviour
         isReloading = activeWeapon.IsReloading;
         reloadProgress = activeWeapon.ReloadProgress;
         maxAmmo = activeWeapon.MaxAmmo;
-        ammoLeft = activeWeapon.RemainingAmmo;
         canFire = activeWeapon.CanFire();
     }
 }
