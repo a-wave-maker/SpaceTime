@@ -7,7 +7,7 @@ using UnityEngine;
 public class Weapon : MonoBehaviour
 {
 
-    private float fireRate; // bullets per second
+    private float fireRate; // time between single shots
     private float lastFireTime;
     private float recoil;
     private float reloadTime; // how long it takes to reload

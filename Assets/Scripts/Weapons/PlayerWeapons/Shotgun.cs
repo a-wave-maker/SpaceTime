@@ -11,7 +11,6 @@ public class Shotgun : PlayerWeapon
         ReloadTime = 0.3f;
         MaxAmmo = 1;
         WeaponName = "Shotgun";
-        // test values ^
         base.Start();
     }
 

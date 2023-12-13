@@ -5,12 +5,6 @@ using UnityEngine;
 public class EmptyWeapon : Weapon
 {
 
-    // protected override void Start()
-    // {
-    //     // FireRate = 0f;
-    //     // Recoil = 0f;
-    // }
-
     public override bool Fire(Quaternion? direction = null)
     {
         return false;

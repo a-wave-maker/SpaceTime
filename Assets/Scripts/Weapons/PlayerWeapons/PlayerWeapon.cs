@@ -71,8 +71,7 @@ public class PlayerWeapon : Weapon
     public override bool CanFire()
     {
         bool hasAmmo = RemainingAmmo > 0;
-        float shotCooldown = 1 / FireRate;
-        return hasAmmo && Time.time - LastFireTime >= shotCooldown;
+        return hasAmmo && Time.time - LastFireTime >= FireRate;
     }
 
      // reload

@@ -15,7 +15,6 @@ public class Bullet : MonoBehaviour
     private TrailRenderer trail;
 
     private float lifeTime = 5f;
-    // public float trailtime = 0.5f;
     private float trailWidthDecreaseRate = 0.3f;
     private float trailLengthDecreaseRate = 0.0005f;
 
