@@ -6,7 +6,7 @@ public class CameraFollow : MonoBehaviour
 {
     [SerializeField] private Transform target;
 
-    [SerializeField] private Vector3 offset = new Vector3(0f, 0f, -10f);
+    [SerializeField] private Vector3 offset = new (0f, 0f, -10f);
 
     [SerializeField] private float baseSize = 10f;
     [SerializeField] private float maxSize = 40f;
@@ -23,10 +23,10 @@ public class CameraFollow : MonoBehaviour
             transform.position = target.position + offset;
 
             // set the zoom
-            changeSize();
+            ChangeSize();
 
             // set the offset
-            setPan();
+            SetPan();
         }
         else
         {
@@ -34,25 +34,25 @@ public class CameraFollow : MonoBehaviour
         }
     }
 
-    public void lockCamera()
+    public void LockCamera()
     {
         cameraLock = true;
     }
 
-    public void unlockCamera()
+    public void UnlockCamera()
     {
         cameraLock = false;
     }
 
-    private void changeSize()
+    private void ChangeSize()
     {
-        float differnce = getGoalSize() - Camera.main.orthographicSize;
+        float differnce = GetGoalSize() - Camera.main.orthographicSize;
 
         Camera.main.orthographicSize += Time.deltaTime * differnce * zoomSpeed;
 
     }
 
-    private float getGoalSize()
+    private float GetGoalSize()
     {
         float speedMultiplier = target.GetComponent<Rigidbody2D>().velocity.magnitude;
 
@@ -64,7 +64,7 @@ public class CameraFollow : MonoBehaviour
 
     }
 
-    private void setPan()
+    private void SetPan()
     {
         Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         Vector3 targetPosition = target.position;
@@ -75,11 +75,11 @@ public class CameraFollow : MonoBehaviour
 
         if (!cameraLock)
         {
-            setOffset(difference);
+            SetOffset(difference);
         }
     }
 
-    private void setOffset(Vector3 vector)
+    private void SetOffset(Vector3 vector)
     {
         offset = vector;
         offset.z = -10f;

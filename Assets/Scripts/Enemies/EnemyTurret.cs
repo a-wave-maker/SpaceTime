@@ -1,38 +1,27 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngineInternal;
 
 public class EnemyTurret : DamageableEntity
 {
-    public enum EnemyState { Idle, Combat }
+    private enum EnemyState { Idle, Combat }
 
+    private Transform target;
+    // private bool moveable = false; // TODO
+    // private double mass = double.PositiveInfinity; // TODO
+    [SerializeField] private EnemyWeapon weapon = null;
+    [SerializeField] private float rotationSpeed = 60f;
 
-    Rigidbody2D rigidbody;
-
-    [SerializeField] public Transform target;
-    [SerializeField] public EnemyWeapon weapon = null;
-    [SerializeField] public bool moveable = false;
-    [SerializeField] public double mass = double.PositiveInfinity;
-    [SerializeField] public float fireRate = 2f;
-    [SerializeField] public float Damage = 69f;
-    [SerializeField] public float bulletForce = 69f;
-    [SerializeField] public float projectileSpeed = 0.1f;
-    [SerializeField] public float rotationSpeed = 60f;
-
-    [SerializeField] public float viewRadius = 0f;
+    [SerializeField] private float viewRadius = 0f;
     [Range(0,360)]
-    [SerializeField] public float viewAngle = 0f;
+    [SerializeField] private float viewAngle = 0f;
 
 
-    public EnemyState currentState = EnemyState.Combat;
+    [SerializeField] private EnemyState currentState = EnemyState.Combat;
 
 
 
     protected override void Start()
     {
         base.Start();
-        rigidbody = GetComponent<Rigidbody2D>();
         target = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
     }
 
@@ -62,7 +51,7 @@ public class EnemyTurret : DamageableEntity
     void Attack()
     {
 
-        LayerMask enemyMask = LayerMask.GetMask("Enemies");
+        LayerMask.GetMask("Enemies");
 
         RaycastHit2D hit = Physics2D.Raycast(transform.position, transform.TransformDirection(Vector3.up));
 

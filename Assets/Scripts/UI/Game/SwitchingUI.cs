@@ -7,13 +7,13 @@ using UnityEngine.UI;
 public class SwitchingUI : MonoBehaviour
 {
     [SerializeField] private PlayerData playerData;
-    private List<Image> children = new List<Image>();
+    private readonly List<Image> children = new();
 
     [SerializeField] private float baseWidth = 70;
 
-    private float middleOpacity = 1f;
-    private float betweenOpacity = 0.8f;
-    private float edgeOpacity = 0.3f;
+    [SerializeField] private float middleOpacity = 1f;
+    [SerializeField] private float betweenOpacity = 0.8f;
+    [SerializeField] private float edgeOpacity = 0.3f;
 
     private bool isFading = false;
     private float fadeTimer = 0f;
@@ -71,7 +71,7 @@ public class SwitchingUI : MonoBehaviour
     {
         if (originalList.Count == 0 || itemCount <= 0) return new List<Sprite>();
 
-        List<Sprite> sublist = new List<Sprite>();
+        List<Sprite> sublist = new();
 
         for (int i = activeIndex - (itemCount / 2); i <= activeIndex + (itemCount / 2); i++)
         {

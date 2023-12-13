@@ -16,8 +16,8 @@ public class Bullet : MonoBehaviour
 
     private float lifeTime = 5f;
     // public float trailtime = 0.5f;
-    private float trailWidthDecreaseRate = 0.3f;
-    private float trailLengthDecreaseRate = 0.0005f;
+    private readonly float trailWidthDecreaseRate = 0.3f;
+    private readonly float trailLengthDecreaseRate = 0.0005f;
 
 
     public Vector3 WeaponVelocity { get => weaponVelocity; set => weaponVelocity = value; }
@@ -34,7 +34,7 @@ public class Bullet : MonoBehaviour
 
         trail = GetComponentInChildren<TrailRenderer>();
 
-        Invoke("Despawn", lifeTime);
+        Invoke(nameof(Despawn), lifeTime);
     }
 
     void Update()
