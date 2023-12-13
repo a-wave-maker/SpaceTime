@@ -62,6 +62,7 @@ public class Bullet : MonoBehaviour
         if (collider.gameObject != owner && collider.gameObject.TryGetComponent<IDamageable>(out var damageable))
         {
             damageable.TakeHit(damage);
+            DestroyBullet();
         }
         // Check if the bullet collides with the object
         if (collider.gameObject != owner && collider.gameObject.TryGetComponent<BulletInteractible>(out var hittable))
@@ -69,7 +70,8 @@ public class Bullet : MonoBehaviour
             // Handle the collision logic here
             Debug.Log("Bullet hit the target!");
             if (hittable.onBulletHit(this))
-                Destroy(gameObject);
+            Destroy(gameObject);
+            DestroyBullet();
         }
     }
 
