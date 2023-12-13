@@ -8,6 +8,8 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField] private Player player;
 
+    [SerializeField] private CameraFollow playerCamera;
+
     public delegate void SuperHotMode();
     public static event SuperHotMode ChangeSuperHot;
 
@@ -39,6 +41,15 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKeyUp(KeyCode.Z))
         {
             ChangeSuperHot?.Invoke();
+        }
+        if (Input.GetKey(KeyCode.C))
+        {
+            print("Huh");
+            playerCamera.lockCamera();
+        }
+        else
+        {
+            playerCamera.unlockCamera();
         }
 
         // PLAYER

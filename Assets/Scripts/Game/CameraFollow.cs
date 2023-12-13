@@ -21,13 +21,6 @@ public class CameraFollow : MonoBehaviour
     {
         if (target != null)
         {
-            if (Input.GetKey(KeyCode.C))
-            {
-                cameraLock = true;
-            } else
-            {
-                cameraLock = false;
-            }
             // follow the target
             transform.position = target.position + offset;
 
@@ -43,12 +36,21 @@ public class CameraFollow : MonoBehaviour
         }
     }
 
+    public void lockCamera()
+    {
+        cameraLock = true;
+    }
+
+    public void unlockCamera()
+    {
+        cameraLock = false;
+    }
+
     private void changeSize()
     {
         float differnce = getGoalSize() - Camera.main.orthographicSize;
 
         Camera.main.orthographicSize += Time.deltaTime * differnce * zoomSpeed;
-
 
     }
 
@@ -57,8 +59,6 @@ public class CameraFollow : MonoBehaviour
         float speedMultiplier = target.GetComponent<Rigidbody2D>().velocity.magnitude;
 
         float t = Mathf.Clamp01(speedMultiplier / maxSpeed);
-
-        // float smoothT = Mathf.Sqrt(t);
 
         float newSize = Mathf.Lerp(baseSize, maxSize, t);
 
@@ -69,7 +69,7 @@ public class CameraFollow : MonoBehaviour
     private void setPan()
     {
         Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        Vector3 targetPosition = Camera.main.ScreenToWorldPoint(target.position);
+        Vector3 targetPosition = target.position;
 
         Vector3 middlePoint = Vector3.Lerp(targetPosition, mousePosition, 0.3f);
 
