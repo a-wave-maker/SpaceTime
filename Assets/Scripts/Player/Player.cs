@@ -174,7 +174,7 @@ public class Player : MonoBehaviour, IDamageable
         PlayerDeath?.Invoke();
     }
 
-    private void TakeHit(float damage)
+    public void TakeHit(float damage)
     {
         TakeDamage((int)damage);
     }
