@@ -10,9 +10,9 @@ public class EnemyTurret : DamageableEntity
     [SerializeField] private EnemyWeapon weapon = null;
     [SerializeField] private float rotationSpeed = 60f;
 
-    [SerializeField] private float viewRadius = 0f;
+    // [SerializeField] private float viewRadius = 0f;
     [Range(0,360)]
-    [SerializeField] private float viewAngle = 0f;
+    // [SerializeField] private float viewAngle = 0f;
 
 
     [SerializeField] private EnemyState currentState = EnemyState.Combat;
