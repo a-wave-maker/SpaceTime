@@ -34,12 +34,12 @@ public class CameraFollow : MonoBehaviour
         }
     }
 
-    public void LockCamera()
+    public void LockCameraPan()
     {
         cameraLock = true;
     }
 
-    public void UnlockCamera()
+    public void UnlockCameraPan()
     {
         cameraLock = false;
     }
