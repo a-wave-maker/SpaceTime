@@ -42,7 +42,7 @@ public class PlayerController : MonoBehaviour
         }
 
         // PLAYER
-        if (Input.GetButtonDown("Fire1"))
+        if (Input.GetButton("Fire1"))
         {
             player.Fire();
         }

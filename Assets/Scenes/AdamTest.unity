@@ -573,6 +573,18 @@ PrefabInstance:
       propertyPath: playerCamera
       value: 
       objectReference: {fileID: 1809140103}
+    - target: {fileID: 6007415561655953457, guid: 33fd69dcc60fb4e44b7f8d633bfe46f9, type: 3}
+      propertyPath: availableWeapons.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6007415561655953457, guid: 33fd69dcc60fb4e44b7f8d633bfe46f9, type: 3}
+      propertyPath: availableWeapons.Array.data[2].weaponName
+      value: Rifle
+      objectReference: {fileID: 0}
+    - target: {fileID: 6007415561655953457, guid: 33fd69dcc60fb4e44b7f8d633bfe46f9, type: 3}
+      propertyPath: availableWeapons.Array.data[2].weaponPrefab
+      value: 
+      objectReference: {fileID: 7216113657816663706, guid: 62db389b7182d644c9b4dfb26fd42f96, type: 3}
     - target: {fileID: 6987402089700932781, guid: 33fd69dcc60fb4e44b7f8d633bfe46f9, type: 3}
       propertyPath: m_Name
       value: Player
