@@ -11,11 +11,6 @@ public class Player : MonoBehaviour, IDamageable
     public delegate void PlayerDeathAction();
     public static event PlayerDeathAction PlayerDeath;
 
-    public void Start()
-    {
-        playerData.PlayerRB.freezeRotation = true;
-    }
-
     public void Update()
     {
         if(playerData.PlayerHealth <= 0)
@@ -35,6 +30,8 @@ public class Player : MonoBehaviour, IDamageable
 
     public void Fire()
     {
+        print("Pew");
+
         if (playerData.PlayerActiveWeaponIdx == 0)
         {
             return;

@@ -57,7 +57,25 @@ public class Bullet : MonoBehaviour
 
     }
 
-    void OnTriggerEnter2D(Collider2D collider)
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject != owner && collision.gameObject.TryGetComponent<IDamageable>(out var damageable))
+        {
+            damageable.TakeHit(damage);
+            DestroyBullet();
+        }
+        // Check if the bullet collides with the object
+        if (collision.gameObject != owner && collision.gameObject.TryGetComponent<BulletInteractible>(out var hittable))
+        {
+            // Handle the collision logic here
+            Debug.Log("Bullet hit the target!");
+            if (hittable.onBulletHit(this))
+                Destroy(gameObject);
+            DestroyBullet();
+        }
+    }
+
+/*    void OnTriggerEnter2D(Collider2D collider)
     {
         if (collider.gameObject != owner && collider.gameObject.TryGetComponent<IDamageable>(out var damageable))
         {
@@ -73,7 +91,7 @@ public class Bullet : MonoBehaviour
             Destroy(gameObject);
             DestroyBullet();
         }
-    }
+    }*/
 
     void Despawn()
     {

@@ -22,6 +22,7 @@ public class EnemyTurret : DamageableEntity
     protected override void Start()
     {
         base.Start();
+
         target = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
     }
 
@@ -51,9 +52,9 @@ public class EnemyTurret : DamageableEntity
     void Attack()
     {
 
-        LayerMask.GetMask("Enemies");
+        LayerMask layerToIgnore = LayerMask.GetMask("Enemy");
 
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, transform.TransformDirection(Vector3.up));
+    RaycastHit2D hit = Physics2D.Raycast(transform.position, transform.TransformDirection(Vector3.up), Mathf.Infinity, ~layerToIgnore);
 
 
         if (hit.collider != null)
@@ -63,8 +64,6 @@ public class EnemyTurret : DamageableEntity
                 weapon.Fire();
             }
         }
-
-
     }
 
     void LookAtTarget()
