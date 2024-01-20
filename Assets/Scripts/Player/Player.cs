@@ -4,7 +4,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class Player : MonoBehaviour
+public class Player : MonoBehaviour, IDamageable
 {
     [SerializeField] private PlayerData playerData;
 
@@ -19,12 +19,19 @@ public class Player : MonoBehaviour
         }
     }
 
+    public void FixedUpdate()
+    {
+        FaceCursor();
+    }
+
     // ----------------------------------------------------------------------------------------------------------------
     // PLAYER ACTIONS
     // ----------------------------------------------------------------------------------------------------------------
 
     public void Fire()
     {
+        print("Pew");
+
         if (playerData.PlayerActiveWeaponIdx == 0)
         {
             return;
@@ -108,11 +115,25 @@ public class Player : MonoBehaviour
         return playerData.PlayerWeapons[nextIdx];
     }
 
-    
+
     // ----------------------------------------------------------------------------------------------------------------
     // INTERACTIONS
     // ----------------------------------------------------------------------------------------------------------------
-    
+
+    private void FaceCursor()
+    {
+        Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        Vector3 direction = mousePosition - transform.position;
+        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+        Quaternion targetRotation = Quaternion.Euler(new Vector3(0f, 0f, angle - 90f));
+
+        // Determine the maximum degrees the rotation can change in one frame
+        float maxDegreesPerFrame = playerData.PlayerRotationSpeed * Time.deltaTime;
+
+        // Smoothly rotate towards the target rotation
+        transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, maxDegreesPerFrame);
+    }
+
     private void ApplyForce(float force, Vector2 direction)
     {
         Rigidbody2D playerRB = playerData.PlayerRB;
@@ -150,17 +171,10 @@ public class Player : MonoBehaviour
         PlayerDeath?.Invoke();
     }
 
-/*    private Object getHit(Object @object)
+    public void TakeHit(float damage)
     {
-        // TODO Make it return the type it gets?
-
-        if (@object.GetType == Bullet)
-        {
-            getHitByBullet(@object);
-        }
-
-        return null;
-    }*/
+        TakeDamage((int)damage);
+    }
 
 /*    private void getHitByBullet(Bullet bullet)
     {

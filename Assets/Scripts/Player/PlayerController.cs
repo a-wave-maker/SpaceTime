@@ -13,11 +13,6 @@ public class PlayerController : MonoBehaviour
     public delegate void SuperHotMode();
     public static event SuperHotMode ChangeSuperHot;
 
-    private void OnGUI()
-    {
-        FaceCursor();
-    }
-
     // Update is called once per frame
     void Update()
     {
@@ -39,12 +34,11 @@ public class PlayerController : MonoBehaviour
         }
         if (Input.GetKey(KeyCode.C))
         {
-            print("Huh");
-            playerCamera.LockCamera();
+            playerCamera.LockCameraPan();
         }
         else
         {
-            playerCamera.UnlockCamera();
+            playerCamera.UnlockCameraPan();
         }
 
         // PLAYER
@@ -75,19 +69,5 @@ public class PlayerController : MonoBehaviour
                 player.NthWeapon(i);
             }
         }
-    }
-
-    private void FaceCursor()
-    {
-        Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        Vector3 direction = mousePosition - transform.position;
-        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-        Quaternion targetRotation = Quaternion.Euler(new Vector3(0f, 0f, angle - 90f));
-
-        // Determine the maximum degrees the rotation can change in one frame
-        float maxDegreesPerFrame = playerData.PlayerRotationSpeed * Time.deltaTime;
-
-        // Smoothly rotate towards the target rotation
-        transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, maxDegreesPerFrame);
     }
 }
