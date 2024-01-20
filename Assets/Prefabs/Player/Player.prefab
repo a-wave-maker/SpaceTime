@@ -306,7 +306,6 @@ GameObject:
   - component: {fileID: 5047628051452763544}
   - component: {fileID: 4854538407025935113}
   - component: {fileID: 6007415561655953457}
-  - component: {fileID: 264057657984035567}
   m_Layer: 7
   m_Name: Player
   m_TagString: Player
@@ -485,7 +484,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerData: {fileID: 4854538407025935113}
   player: {fileID: 4038552402539577583}
-  playerCamera: {fileID: 0}
+  playerCamera: {fileID: 6814942253871247102, guid: 7713068b82d7a384fa3937237aeb7daf, type: 3}
 --- !u!114 &4854538407025935113
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -520,26 +519,5 @@ MonoBehaviour:
     weaponPrefab: {fileID: 1436284945211433894, guid: 767cb757f6f209a4eb4acea158e85b90, type: 3}
   - weaponName: Shotgun
     weaponPrefab: {fileID: 7108852527960073768, guid: ffaea2643e1c54548987bc6a5c353610, type: 3}
---- !u!114 &264057657984035567
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6987402089700932781}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 05c41b8528d9a234b98c197949be67dc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  collisionSettings:
-  - layerName: Player
-    collideWithTag: 1
-  - layerName: PlayerBullet
-    collideWithTag: 1
-  - layerName: Enemy
-    collideWithTag: 1
-  - layerName: EnemyBullet
-    collideWithTag: 0
-  - layerName: Obstacle
-    collideWithTag: 1
+  - weaponName: Rifle
+    weaponPrefab: {fileID: 7108852527960073768, guid: ffaea2643e1c54548987bc6a5c353610, type: 3}
