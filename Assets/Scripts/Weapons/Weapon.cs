@@ -38,6 +38,9 @@ public class Weapon : MonoBehaviour
     {
         Bullet newBullet = Instantiate(Bullet, transform.position, (Quaternion)direction);
 
+        // set the correct tag
+        newBullet.tag = owner.tag + "Bullet";
+
         if (Owner != null) {
             newBullet.WeaponVelocity = Owner.GetComponent<Rigidbody2D>().velocity;
             newBullet.Owner = Owner;
