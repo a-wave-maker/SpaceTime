@@ -10,9 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 9084910440593883930}
   - component: {fileID: 3824059459110590089}
-  - component: {fileID: 7108852527960073768}
+  - component: {fileID: 7216113657816663706}
   m_Layer: 0
-  m_Name: Shotgun
+  m_Name: Rifle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -74,7 +74,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: a08ad8bb6f813084b9cbfd0c0ab991e1, type: 3}
+  m_Sprite: {fileID: 21300000, guid: ef5c7fed5951db84b9fa11ab7a99b7af, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -85,7 +85,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &7108852527960073768
+--- !u!114 &7216113657816663706
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -94,14 +94,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 3435726373954718521}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 016645dd860cf1f4a836e051bfdf07d7, type: 3}
+  m_Script: {fileID: 11500000, guid: 289a8e2917971cc4598e95777c56293d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponName: Shotgun
-  fireRate: 0.3
-  recoil: 15
-  reloadTime: 0.3
-  maxAmmo: 2
-  bullet: {fileID: 6140287384987966105, guid: 2aad9125d80e3604ba122ce1fe706dab, type: 3}
-  squareSprite: {fileID: 21300000, guid: 9c1c3f9edcbf4b04e869bd5c718ce67c, type: 3}
+  weaponName: Rifle
+  fireRate: 0.1
+  recoil: 1
+  reloadTime: 4
+  maxAmmo: 40
+  bullet: {fileID: 7686144728540405261, guid: 37f8d4e4441796f429744c3109487d11, type: 3}
+  squareSprite: {fileID: 21300000, guid: ae9b31d7557d54f46b9208cde92a545c, type: 3}
   dynamicReloading: 0

@@ -14,13 +14,13 @@ public class Pistol : PlayerWeapon
         base.Start();
     }
 
-    public override bool Fire(Quaternion? direction = null)
+/*    public override bool Fire(Quaternion? direction = null)
     {
         if (base.Fire(direction))
         {
             return true;
         } else return false;
-    }
+    }*/
 
 
 }

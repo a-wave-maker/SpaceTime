@@ -6,16 +6,17 @@ using UnityEngine;
 
 public class Weapon : MonoBehaviour
 {
+    [SerializeField] private string weaponName;
 
-    private float fireRate; // time between single shots
-    private float lastFireTime;
-    private float recoil;
-    private float reloadTime; // how long it takes to reload
-    private int maxAmmo;
+    [SerializeField] private float fireRate; // time between single shots
+    [SerializeField] private float recoil;
+    [SerializeField] private float reloadTime; // how long it takes to reload
+    [SerializeField] private int maxAmmo;
 
     [SerializeField] private Bullet bullet;
+
+    private float lastFireTime;
     private GameObject owner; // who has the weapon
-    private string weaponName;
 
 
     public float FireRate { get => fireRate; set => fireRate = value; }
@@ -37,6 +38,10 @@ public class Weapon : MonoBehaviour
     public virtual bool Fire(Quaternion? direction = null)
     {
         Bullet newBullet = Instantiate(Bullet, transform.position, (Quaternion)direction);
+
+        string ownerLayer = LayerMask.LayerToName(owner.layer);
+
+        newBullet.gameObject.layer = LayerMask.NameToLayer(ownerLayer + "Bullet");
 
         if (Owner != null) {
             newBullet.WeaponVelocity = Owner.GetComponent<Rigidbody2D>().velocity;

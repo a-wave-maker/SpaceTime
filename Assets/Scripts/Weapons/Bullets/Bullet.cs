@@ -5,9 +5,10 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
-    private float speed = 10f;
+    [SerializeField] private float speed = 10f;
+    [SerializeField] private int damage = 5;
+
     private Vector3 weaponVelocity = Vector3.zero;
-    private int damage = 5;
 
     private Animator anim;
     private Rigidbody2D rb;
