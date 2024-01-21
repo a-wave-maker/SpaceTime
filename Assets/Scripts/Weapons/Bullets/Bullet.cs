@@ -36,6 +36,11 @@ public class Bullet : MonoBehaviour
         trail = GetComponentInChildren<TrailRenderer>();
 
         Invoke(nameof(Despawn), lifeTime);
+
+        // temp ignoring collisions between bullets -> will probably need a "switch collisions on" option
+        Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("PlayerBullet"), LayerMask.NameToLayer("EnemyBullet"));
+        Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("PlayerBullet"), LayerMask.NameToLayer("PlayerBullet"));
+        Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("EnemyBullet"), LayerMask.NameToLayer("EnemyBullet"));
     }
 
     void Update()
