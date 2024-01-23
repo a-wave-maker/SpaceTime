@@ -30,8 +30,6 @@ public class Player : MonoBehaviour, IDamageable
 
     public void Fire()
     {
-        print("Pew");
-
         if (playerData.PlayerActiveWeaponIdx == 0)
         {
             return;
@@ -174,6 +172,11 @@ public class Player : MonoBehaviour, IDamageable
     public void TakeHit(float damage)
     {
         TakeDamage((int)damage);
+    }
+
+    public void OnCollisionConfirmed(Collision2D collision)
+    {
+        print("Bonk");
     }
 
 /*    private void getHitByBullet(Bullet bullet)
