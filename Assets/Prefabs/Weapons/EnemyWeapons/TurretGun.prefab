@@ -97,4 +97,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b09e83aa46e065d449b17162c9cda010, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bullet: {fileID: 7686144728540405261, guid: 93233abc480ccf04ca7a5f725d74ee47, type: 3}
+  weaponName: 
+  fireRate: 1
+  recoil: 0
+  reloadTime: 1
+  maxAmmo: 1
+  bullet: {fileID: 7686144728540405261, guid: eeaf29b120fd65940a256b6d55653a89, type: 3}
