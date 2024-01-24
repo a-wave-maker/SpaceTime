@@ -301,12 +301,13 @@ GameObject:
   - component: {fileID: 7077994102241732955}
   - component: {fileID: 4277828611951047399}
   - component: {fileID: 2009092418341826494}
-  - component: {fileID: 5857505426377924164}
+  - component: {fileID: 8515443429680416178}
+  - component: {fileID: 4846297983474045762}
   - component: {fileID: 4038552402539577583}
   - component: {fileID: 5047628051452763544}
   - component: {fileID: 4854538407025935113}
   - component: {fileID: 6007415561655953457}
-  - component: {fileID: 264057657984035567}
+  - component: {fileID: 5035392613330904956}
   m_Layer: 7
   m_Name: Player
   m_TagString: Player
@@ -408,9 +409,9 @@ Rigidbody2D:
     m_Bits: 0
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 4
---- !u!60 &5857505426377924164
+--- !u!60 &8515443429680416178
 PolygonCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -458,6 +459,51 @@ PolygonCollider2D:
       - {x: -0.5, y: -0.28866667}
       - {x: 0.5, y: -0.28866667}
   m_UseDelaunayMesh: 0
+--- !u!61 &4846297983474045762
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6987402089700932781}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.28866667}
+    oldSize: {x: 1, y: 1}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 2, y: 2}
+  m_EdgeRadius: 0
 --- !u!114 &4038552402539577583
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -520,7 +566,9 @@ MonoBehaviour:
     weaponPrefab: {fileID: 1436284945211433894, guid: 767cb757f6f209a4eb4acea158e85b90, type: 3}
   - weaponName: Shotgun
     weaponPrefab: {fileID: 7108852527960073768, guid: ffaea2643e1c54548987bc6a5c353610, type: 3}
---- !u!114 &264057657984035567
+  - weaponName: Rifle
+    weaponPrefab: {fileID: 7216113657816663706, guid: 62db389b7182d644c9b4dfb26fd42f96, type: 3}
+--- !u!114 &5035392613330904956
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -529,17 +577,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 6987402089700932781}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 05c41b8528d9a234b98c197949be67dc, type: 3}
+  m_Script: {fileID: 11500000, guid: 8e8e2f93a387b9e479d118df64378b44, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   collisionSettings:
   - layerName: Player
-    collideWithTag: 1
+    ignore: 0
   - layerName: PlayerBullet
-    collideWithTag: 1
+    ignore: 0
   - layerName: Enemy
-    collideWithTag: 1
+    ignore: 0
   - layerName: EnemyBullet
-    collideWithTag: 0
+    ignore: 0
   - layerName: Obstacle
-    collideWithTag: 1
+    ignore: 0
