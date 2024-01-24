@@ -60,6 +60,12 @@ public class Bullet : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        // If bullet is too slow, ignore it
+        if (collision.relativeVelocity.magnitude < 5f)
+        {
+            return;
+        }
+
         if (collision.gameObject != owner && collision.gameObject.TryGetComponent<IDamageable>(out var damageable))
         {
             damageable.TakeHit(damage);

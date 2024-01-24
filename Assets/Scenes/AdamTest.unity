@@ -467,18 +467,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: -6739534743737382038, guid: 1685fe5be373e1149950c684a839b3f4, type: 3}
-      propertyPath: m_SpriteTilingProperty.drawMode
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -6739534743737382038, guid: 1685fe5be373e1149950c684a839b3f4, type: 3}
-      propertyPath: m_SpriteTilingProperty.adaptiveTiling
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -6739534743737382038, guid: 1685fe5be373e1149950c684a839b3f4, type: 3}
-      propertyPath: m_SpriteTilingProperty.adaptiveTilingThreshold
-      value: 0.5
-      objectReference: {fileID: 0}
     - target: {fileID: 219147524467826552, guid: 1685fe5be373e1149950c684a839b3f4, type: 3}
       propertyPath: m_Name
       value: Square
@@ -574,7 +562,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2009092418341826494, guid: 33fd69dcc60fb4e44b7f8d633bfe46f9, type: 3}
       propertyPath: m_CollisionDetection
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5047628051452763544, guid: 33fd69dcc60fb4e44b7f8d633bfe46f9, type: 3}
       propertyPath: playerCamera
@@ -673,8 +661,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e8e2f93a387b9e479d118df64378b44, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  collidableContainer:
-    scriptWithICollidableInterface: {fileID: 5934636826127241761}
   collisionSettings:
   - layerName: Player
     ignore: 0
@@ -686,17 +672,6 @@ MonoBehaviour:
     ignore: 1
   - layerName: Obstacle
     ignore: 0
---- !u!114 &5934636826127241761 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4038552402539577583, guid: 33fd69dcc60fb4e44b7f8d633bfe46f9, type: 3}
-  m_PrefabInstance: {fileID: 838994657784653026}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1111912693}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8d02562bda5218f4db6fcd761ac94846, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &7237343372121162972
 PrefabInstance:
   m_ObjectHideFlags: 0
