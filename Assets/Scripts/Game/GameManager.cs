@@ -32,6 +32,9 @@ public class GameManager : MonoBehaviour
         // Subscribe to the PlayerDeath event
         Player.PlayerDeath += HandlePlayerDeath;
 
+        // temp? set default settings
+        PlayerPrefs.SetInt("BulletCollision", 1); // 1=on, 0=off
+        PlayerPrefs.Save();
     }
 
     public void StartGame()
