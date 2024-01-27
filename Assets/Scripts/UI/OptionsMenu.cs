@@ -9,16 +9,21 @@ public class OptionsMenu : MonoBehaviour
     [SerializeField] private GameObject pauseMenuUI;
     [SerializeField] private GameObject optionsUI;
     public Toggle bulletCollisionToggle;
+    public Toggle dynamicReloadingToggle;
 
     public void Start()
     {
         bulletCollisionToggle.isOn = true;
+        dynamicReloadingToggle.isOn = true;
         if (PlayerPrefs.GetInt("BulletCollision").Equals(0))
         {
             toggleBulletCollision();
         }
+        if (PlayerPrefs.GetInt("DynamicReloading").Equals(0))
+        {
+            toggleDynamicReloading();
+        }
     }
-
 
     public void toggleBulletCollision()
     {
@@ -44,6 +49,18 @@ public class OptionsMenu : MonoBehaviour
             Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("EnemyBullet"), LayerMask.NameToLayer("EnemyBullet"));
 
         }
+    }
+
+    public void toggleDynamicReloading()
+    {
+        if (PlayerPrefs.GetInt("DynamicReloading").Equals(1))
+        {
+            PlayerPrefs.SetInt("DynamicReloading", 0);
+        } else
+        {
+            PlayerPrefs.SetInt("DynamicReloading", 1);
+        }
+
     }
 
 

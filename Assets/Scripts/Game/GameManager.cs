@@ -35,6 +35,7 @@ public class GameManager : MonoBehaviour
 
         // temp? set default settings
         PlayerPrefs.SetInt("BulletCollision", 1); // 1=on, 0=off
+        PlayerPrefs.SetInt("DynamicReloading", 1); // 1=on, 0=off
         PlayerPrefs.Save();
     }
 
