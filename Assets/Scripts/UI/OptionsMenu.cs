@@ -13,6 +13,10 @@ public class OptionsMenu : MonoBehaviour
     public void Start()
     {
         bulletCollisionToggle.isOn = true;
+        if (PlayerPrefs.GetInt("BulletCollision").Equals(0))
+        {
+            toggleBulletCollision();
+        }
     }
 
 
@@ -24,6 +28,7 @@ public class OptionsMenu : MonoBehaviour
             PlayerPrefs.SetInt("BulletCollision", 1);
             PlayerPrefs.Save();
 
+            // dont ignore collisions between bullet layers
             Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("PlayerBullet"), LayerMask.NameToLayer("EnemyBullet"), false);
             Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("PlayerBullet"), LayerMask.NameToLayer("PlayerBullet"), false);
             Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("EnemyBullet"), LayerMask.NameToLayer("EnemyBullet"), false);
@@ -33,6 +38,7 @@ public class OptionsMenu : MonoBehaviour
             PlayerPrefs.SetInt("BulletCollision", 0);
             PlayerPrefs.Save();
 
+            // ignore collisions between bullet layers
             Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("PlayerBullet"), LayerMask.NameToLayer("EnemyBullet"));
             Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("PlayerBullet"), LayerMask.NameToLayer("PlayerBullet"));
             Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("EnemyBullet"), LayerMask.NameToLayer("EnemyBullet"));
