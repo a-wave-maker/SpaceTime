@@ -99,8 +99,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weaponName: Pistol
   fireRate: 0.5
-  recoil: 3
-  reloadTime: 2
+  recoil: 4
+  reloadTime: 1.5
   maxAmmo: 6
   bullet: {fileID: 7686144728540405261, guid: 93233abc480ccf04ca7a5f725d74ee47, type: 3}
   squareSprite: {fileID: 21300000, guid: 7f0895a3573873549b1092c4d5dae6f1, type: 3}

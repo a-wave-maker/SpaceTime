@@ -6,11 +6,11 @@ public class Shotgun : PlayerWeapon
 {
     protected override void Start()
     {
-        FireRate = 0.3f;
+/*        FireRate = 0.3f;
         Recoil = 15f;
         ReloadTime = 0.3f;
         MaxAmmo = 1;
-        WeaponName = "Shotgun";
+        WeaponName = "Shotgun";*/
         base.Start();
     }
 

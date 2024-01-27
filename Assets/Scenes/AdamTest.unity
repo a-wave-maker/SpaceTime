@@ -191,24 +191,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0b788640bb4c68849900c7485e4ef024, type: 3}
---- !u!1 &491074616 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5874838314275347848, guid: ec04a5896afe01a42bfdf164aa87e453, type: 3}
+--- !u!114 &491074618 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4401324569514773207, guid: ec04a5896afe01a42bfdf164aa87e453, type: 3}
   m_PrefabInstance: {fileID: 7808393461080888743}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &491074618
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 491074616}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 13acfdea26531e04ca1f6ae5ab24830c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minimap: {fileID: 1386176899}
 --- !u!1001 &608024011
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -435,10 +428,6 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 11
       objectReference: {fileID: 0}
-    - target: {fileID: 2578459792093409310, guid: 1685fe5be373e1149950c684a839b3f4, type: 3}
-      propertyPath: m_Color.a
-      value: 0.5019608
-      objectReference: {fileID: 0}
     - target: {fileID: 7620280304397785858, guid: 1685fe5be373e1149950c684a839b3f4, type: 3}
       propertyPath: m_LocalScale.x
       value: 18.26
@@ -492,11 +481,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1685fe5be373e1149950c684a839b3f4, type: 3}
---- !u!1 &1386176899 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 594143128351006292, guid: ec04a5896afe01a42bfdf164aa87e453, type: 3}
-  m_PrefabInstance: {fileID: 7808393461080888743}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1809140103 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6814942253871247102, guid: 7713068b82d7a384fa3937237aeb7daf, type: 3}
@@ -740,10 +724,6 @@ PrefabInstance:
       propertyPath: playerTransfrom
       value: 
       objectReference: {fileID: 3715788494163964368}
-    - target: {fileID: 594143128351006292, guid: ec04a5896afe01a42bfdf164aa87e453, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 2407349928861781556, guid: ec04a5896afe01a42bfdf164aa87e453, type: 3}
       propertyPath: m_Name
       value: UICanvas
@@ -855,10 +835,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 5874838314275347848, guid: ec04a5896afe01a42bfdf164aa87e453, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 491074618}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ec04a5896afe01a42bfdf164aa87e453, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:

@@ -36,20 +36,20 @@ public class GameManager : MonoBehaviour
 
     public void StartGame()
     {
-        print("Start"); // TMP
         currentState = GameState.Playing;
-        SceneManager.LoadScene("SampleScene");
+        Cursor.visible = false;
+        SceneManager.LoadScene("Level1");
     }
 
     public void GameOver()
     {
+        Cursor.visible = true;
         currentState = GameState.GameOver;
         SceneManager.LoadScene("MainMenu");
     }
 
     public void HandlePlayerDeath()
     {
-        currentState = GameState.GameOver;
-        SceneManager.LoadScene("MainMenu");
+        GameOver();
     }
 }
