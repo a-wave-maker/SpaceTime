@@ -16,8 +16,6 @@ public class PlayerWeapon : Weapon
 
     [SerializeField] private Sprite squareSprite;
 
-    [SerializeField] private bool dynamicReloading = false; // change reload type (temporary)
-
 
     public int RemainingAmmo { get => remainingAmmo; set => remainingAmmo = value; }
     public float ReloadStart { get => reloadStart; set => reloadStart = value; }
@@ -97,11 +95,7 @@ public class PlayerWeapon : Weapon
             isActive = true;
             gameObject.SetActive(true); // renders object
             if (isReloading) {
-                if (dynamicReloading) {
-                    // dynamic reloading: keep reloadProgress, adjust reloadStart time to resume reloading from the point it was stopped at
-                    float timePassed = Time.time - switchTime;
-                    ReloadStart += timePassed;
-                } else {
+                if (PlayerPrefs.GetInt("DynamicReloading").Equals(0)) {
                     // normal reloading: reset realoading completely when switching back
                     isReloading = false;
                     reloadProgress = 0f;

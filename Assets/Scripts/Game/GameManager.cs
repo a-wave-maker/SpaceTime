@@ -9,7 +9,8 @@ public class GameManager : MonoBehaviour
     {
         MainMenu,
         Playing,
-        GameOver
+        GameOver,
+        Paused
     }
 
     public static GameManager Instance; // Singleton pattern
@@ -32,13 +33,20 @@ public class GameManager : MonoBehaviour
         // Subscribe to the PlayerDeath event
         Player.PlayerDeath += HandlePlayerDeath;
 
+        // temp? set default settings
+        PlayerPrefs.SetInt("BulletCollision", 1); // 1=on, 0=off
+        PlayerPrefs.SetInt("DynamicReloading", 1); // 1=on, 0=off
+        PlayerPrefs.Save();
     }
 
     public void StartGame()
     {
         currentState = GameState.Playing;
-        Cursor.visible = false;
-        SceneManager.LoadScene("Level1");
+        
+        // Cursor.visible = false;
+        // SceneManager.LoadScene("Level1");
+        
+        SceneManager.LoadScene("DemoTest");
     }
 
     public void GameOver()
@@ -52,4 +60,21 @@ public class GameManager : MonoBehaviour
     {
         GameOver();
     }
+
+    public void QuitToMenu()
+    {
+        currentState = GameState.MainMenu;
+        SceneManager.LoadScene("MainMenu");
+    }
+
+    public void PauseGame()
+    {
+        currentState = GameState.Paused;
+    }
+
+    public void ResumeGame()
+    {
+        currentState = GameState.Playing;
+    }
+
 }
