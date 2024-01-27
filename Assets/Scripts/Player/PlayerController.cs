@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.PackageManager;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
@@ -11,8 +12,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private CameraFollow playerCamera;
     [SerializeField] private GameManager gameManager;
 
-    public delegate void SuperHotMode();
-    public static event SuperHotMode ChangeSuperHot;
+    [SerializeField] private SuperHotManager superHotManager;
+
+    [SerializeField] private MinimapManager minimapManager;
 
     // Update is called once per frame
     void Update()
@@ -42,6 +44,10 @@ public class PlayerController : MonoBehaviour
             else
             {
                 playerCamera.UnlockCameraPan();
+            }
+            if (Input.GetKeyUp(KeyCode.M))
+            {
+                minimapManager.ToggleMinimap();
             }
 
             // PLAYER

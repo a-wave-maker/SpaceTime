@@ -30,7 +30,7 @@ public class CameraFollow : MonoBehaviour
         }
         else
         {
-            Debug.Log("Camera has no target");
+            Debug.LogError("Camera has no target");
         }
     }
 
@@ -46,9 +46,9 @@ public class CameraFollow : MonoBehaviour
 
     private void ChangeSize()
     {
-        float differnce = GetGoalSize() - Camera.main.orthographicSize;
+        float differnce = GetGoalSize() - gameObject.GetComponent<Camera>().orthographicSize;
 
-        Camera.main.orthographicSize += Time.deltaTime * differnce * zoomSpeed;
+        gameObject.GetComponent<Camera>().orthographicSize += Time.deltaTime * differnce * zoomSpeed;
 
     }
 
@@ -66,7 +66,7 @@ public class CameraFollow : MonoBehaviour
 
     private void SetPan()
     {
-        Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        Vector3 mousePosition = gameObject.GetComponent<Camera>().ScreenToWorldPoint(Input.mousePosition);
         Vector3 targetPosition = target.position;
 
         Vector3 middlePoint = Vector3.Lerp(targetPosition, mousePosition, 0.3f);

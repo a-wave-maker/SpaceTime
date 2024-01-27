@@ -19,7 +19,7 @@ public class Player : MonoBehaviour, IDamageable
         }
     }
 
-    public void FixedUpdate()
+    public void OnGUI()
     {
         FaceCursor();
     }

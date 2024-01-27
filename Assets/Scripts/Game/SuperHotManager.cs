@@ -12,17 +12,6 @@ public class SuperHotManager : MonoBehaviour
     
     public bool ModeSuperHot { get => modeSuperHot; set => modeSuperHot = value; }
 
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        playerData = FindObjectOfType<PlayerData>();
-
-        // subscribe to ChangeSuperHot event
-        PlayerController.ChangeSuperHot += ChangeMode;
-
-    }
-
     // Update is called once per frame
     void Update()
     {
@@ -55,7 +44,7 @@ public class SuperHotManager : MonoBehaviour
         Time.fixedDeltaTime = 0.02F * Time.timeScale;
     }
 
-    public void ChangeMode()
+    public void ToggleSuperHot()
     {
         modeSuperHot = !modeSuperHot;
     }
