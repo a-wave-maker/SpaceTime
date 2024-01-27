@@ -9,7 +9,8 @@ public class GameManager : MonoBehaviour
     {
         MainMenu,
         Playing,
-        GameOver
+        GameOver,
+        Paused
     }
 
     public static GameManager Instance; // Singleton pattern
@@ -60,6 +61,16 @@ public class GameManager : MonoBehaviour
     {
         currentState = GameState.MainMenu;
         SceneManager.LoadScene("MainMenu");
+    }
+
+    public void PauseGame()
+    {
+        currentState = GameState.Paused;
+    }
+
+    public void ResumeGame()
+    {
+        currentState = GameState.Playing;
     }
 
 }
