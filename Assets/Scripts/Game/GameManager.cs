@@ -38,7 +38,7 @@ public class GameManager : MonoBehaviour
     {
         print("Start"); // TMP
         currentState = GameState.Playing;
-        SceneManager.LoadScene("SampleScene");
+        SceneManager.LoadScene("DemoTest");
     }
 
     public void GameOver()
@@ -52,4 +52,11 @@ public class GameManager : MonoBehaviour
         currentState = GameState.GameOver;
         SceneManager.LoadScene("MainMenu");
     }
+
+    public void QuitToMenu()
+    {
+        currentState = GameState.MainMenu;
+        SceneManager.LoadScene("MainMenu");
+    }
+
 }

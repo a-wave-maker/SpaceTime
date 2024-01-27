@@ -7,6 +7,7 @@ public class PauseMenu : MonoBehaviour
 
     public static bool isGamePaused;
     [SerializeField] private GameObject pauseMenuUI;
+    [SerializeField] private GameManager gameManager;
 
     void Start()
     {
@@ -44,7 +45,7 @@ public class PauseMenu : MonoBehaviour
 
     public void Quit()
     {
-        // load main manu
+        gameManager.QuitToMenu();
     }
 
     public void ShowOptions()
