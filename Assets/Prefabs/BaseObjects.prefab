@@ -1523,6 +1523,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 8169497248260317781}
     m_Modifications:
+    - target: {fileID: 2009092418341826494, guid: 33fd69dcc60fb4e44b7f8d633bfe46f9, type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 6200000, guid: 939e7a0e5666f394d964e666f5baf059, type: 2}
     - target: {fileID: 5047628051452763544, guid: 33fd69dcc60fb4e44b7f8d633bfe46f9, type: 3}
       propertyPath: pauseMenu
       value: 
