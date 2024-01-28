@@ -114,7 +114,6 @@ public class GameManager : MonoBehaviour
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        print(currentState);
         if(currentState == GameState.Loading)
         {
             currentState = GameState.Playing;
