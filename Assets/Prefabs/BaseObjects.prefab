@@ -1535,6 +1535,34 @@ PrefabInstance:
       propertyPath: minimapManager
       value: 
       objectReference: {fileID: 6156989865007552043}
+    - target: {fileID: 6007415561655953457, guid: 33fd69dcc60fb4e44b7f8d633bfe46f9, type: 3}
+      propertyPath: availableWeapons.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6007415561655953457, guid: 33fd69dcc60fb4e44b7f8d633bfe46f9, type: 3}
+      propertyPath: availableWeapons.Array.data[0].weaponName
+      value: Pistol
+      objectReference: {fileID: 0}
+    - target: {fileID: 6007415561655953457, guid: 33fd69dcc60fb4e44b7f8d633bfe46f9, type: 3}
+      propertyPath: availableWeapons.Array.data[1].weaponName
+      value: Shotgun
+      objectReference: {fileID: 0}
+    - target: {fileID: 6007415561655953457, guid: 33fd69dcc60fb4e44b7f8d633bfe46f9, type: 3}
+      propertyPath: availableWeapons.Array.data[2].weaponName
+      value: Rifle
+      objectReference: {fileID: 0}
+    - target: {fileID: 6007415561655953457, guid: 33fd69dcc60fb4e44b7f8d633bfe46f9, type: 3}
+      propertyPath: availableWeapons.Array.data[0].weaponPrefab
+      value: 
+      objectReference: {fileID: 1029681171894149270, guid: 767cb757f6f209a4eb4acea158e85b90, type: 3}
+    - target: {fileID: 6007415561655953457, guid: 33fd69dcc60fb4e44b7f8d633bfe46f9, type: 3}
+      propertyPath: availableWeapons.Array.data[1].weaponPrefab
+      value: 
+      objectReference: {fileID: 7108852527960073768, guid: ffaea2643e1c54548987bc6a5c353610, type: 3}
+    - target: {fileID: 6007415561655953457, guid: 33fd69dcc60fb4e44b7f8d633bfe46f9, type: 3}
+      propertyPath: availableWeapons.Array.data[2].weaponPrefab
+      value: 
+      objectReference: {fileID: 7216113657816663706, guid: 62db389b7182d644c9b4dfb26fd42f96, type: 3}
     - target: {fileID: 6987402089700932781, guid: 33fd69dcc60fb4e44b7f8d633bfe46f9, type: 3}
       propertyPath: m_Name
       value: Player
