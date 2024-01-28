@@ -10,15 +10,39 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Player player;
 
     [SerializeField] private CameraFollow playerCamera;
-    [SerializeField] private GameManager gameManager;
-
-    [SerializeField] private SuperHotManager superHotManager;
 
     [SerializeField] private MinimapManager minimapManager;
+
+    [SerializeField] private PauseMenu pauseMenu;
+
+    private GameManager gameManager;
+    
+    private SuperHotManager superHotManager;
+
+    private void Start()
+    {
+        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+        superHotManager = gameManager.GetComponent<SuperHotManager>();
+    }
 
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            if (gameManager.currentState == GameManager.GameState.Playing || gameManager.currentState == GameManager.GameState.Paused)
+            {
+                if (pauseMenu.isGamePaused)
+                {
+                    pauseMenu.Resume();
+                }
+                else
+                {
+                    pauseMenu.Pause();
+                }
+            }
+        }
+
         if (gameManager.currentState == GameManager.GameState.Playing)
         {
             // DEBUG
@@ -35,7 +59,7 @@ public class PlayerController : MonoBehaviour
             // GAME
             if (Input.GetKeyUp(KeyCode.Z))
             {
-                ChangeSuperHot?.Invoke();
+                superHotManager.ToggleSuperHot();
             }
             if (Input.GetKey(KeyCode.C))
             {
@@ -57,7 +81,8 @@ public class PlayerController : MonoBehaviour
             }
             if (Input.GetKeyDown(KeyCode.R))
             {
-                player.Reload();
+                if(gameManager.currentState == GameManager.GameState.Playing)
+                    player.Reload();
             }
 
             float scroll = Input.GetAxis("Mouse ScrollWheel");

@@ -10,7 +10,7 @@ public class StartGameButton : MonoBehaviour
 
         if (gameManager != null)
         {
-            gameManager.StartGame();
+            gameManager.StartGame("Level1");
         }
         else
         {

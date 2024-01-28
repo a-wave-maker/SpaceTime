@@ -2,12 +2,14 @@ using UnityEngine;
 using System.Collections;
 using Unity.VisualScripting;
 
-public class DamageableEntity : MonoBehaviour, IDamageable
+public class DamageableEnemy : MonoBehaviour, IDamageable
 {
     public float startingHealth;
     protected float health;
     protected bool dead;
 
+    public delegate void EnemyDeathAction(GameObject enemy);
+    public static event EnemyDeathAction EnemyDeath;
     protected virtual void Start()
     {
         health = startingHealth;
@@ -17,15 +19,16 @@ public class DamageableEntity : MonoBehaviour, IDamageable
     {
         health -= damage;
 
-        if (health < 0)
+        if (health <= 0 && !dead)
         {
+            dead = true;
             Die();
         }
     }
 
     protected void Die()
     {
-        dead = true;
+        EnemyDeath?.Invoke(gameObject);
         GameObject.Destroy(gameObject);
     }
 }

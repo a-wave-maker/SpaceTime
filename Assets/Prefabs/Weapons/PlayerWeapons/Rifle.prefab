@@ -27,8 +27,8 @@ Transform:
   m_GameObject: {fileID: 3435726373954718521}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.35, y: 0.3, z: 0}
-  m_LocalScale: {x: 0.12, y: 0.07, z: 0.12}
+  m_LocalPosition: {x: 0.35, y: 0.388, z: 0}
+  m_LocalScale: {x: 0.12, y: 0.116375, z: 0.12}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -104,4 +104,3 @@ MonoBehaviour:
   maxAmmo: 40
   bullet: {fileID: 7686144728540405261, guid: 37f8d4e4441796f429744c3109487d11, type: 3}
   squareSprite: {fileID: 21300000, guid: ae9b31d7557d54f46b9208cde92a545c, type: 3}
-  dynamicReloading: 0

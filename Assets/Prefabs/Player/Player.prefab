@@ -485,7 +485,7 @@ Rigidbody2D:
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 0
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 939e7a0e5666f394d964e666f5baf059, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -617,8 +617,8 @@ MonoBehaviour:
   playerData: {fileID: 4854538407025935113}
   player: {fileID: 4038552402539577583}
   playerCamera: {fileID: 0}
-  superHotManager: {fileID: 0}
   minimapManager: {fileID: 0}
+  pauseMenu: {fileID: 0}
 --- !u!114 &4854538407025935113
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -650,7 +650,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   availableWeapons:
   - weaponName: Pistol
-    weaponPrefab: {fileID: 1436284945211433894, guid: 767cb757f6f209a4eb4acea158e85b90, type: 3}
+    weaponPrefab: {fileID: 1029681171894149270, guid: 767cb757f6f209a4eb4acea158e85b90, type: 3}
   - weaponName: Shotgun
     weaponPrefab: {fileID: 7108852527960073768, guid: ffaea2643e1c54548987bc6a5c353610, type: 3}
   - weaponName: Rifle

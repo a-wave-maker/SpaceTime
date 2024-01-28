@@ -4,15 +4,9 @@ using UnityEngine;
 
 public class Shotgun : PlayerWeapon
 {
-    protected override void Start()
-    {
-/*        FireRate = 0.3f;
-        Recoil = 15f;
-        ReloadTime = 0.3f;
-        MaxAmmo = 1;
-        WeaponName = "Shotgun";*/
-        base.Start();
-    }
+
+    [SerializeField] private int numberOfBullets = 10;
+    [SerializeField] private float spreadAngle = 25f;
 
     private void SpawnBullet(Quaternion direction)
     {
@@ -33,9 +27,8 @@ public class Shotgun : PlayerWeapon
         }
         if (CanFire())
         {
-            float spreadAngle = 25f;
 
-            for (int i = 0; i < 7; i++)
+            for (int i = 0; i < numberOfBullets; i++)
             {
                 Quaternion spreadDirection = (Quaternion)direction * Quaternion.Euler(0, 0, Random.Range(-spreadAngle, spreadAngle));
 

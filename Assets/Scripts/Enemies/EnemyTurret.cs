@@ -1,6 +1,8 @@
+using UnityEditor.PackageManager;
 using UnityEngine;
+using UnityEngine.Events;
 
-public class EnemyTurret : DamageableEntity
+public class EnemyTurret : DamageableEnemy
 {
     private enum EnemyState { Idle, Combat }
 
@@ -11,13 +13,11 @@ public class EnemyTurret : DamageableEntity
     [SerializeField] private float rotationSpeed = 60f;
 
     // [SerializeField] private float viewRadius = 0f;
-    [Range(0,360)]
+    // [Range(0,360)]
     // [SerializeField] private float viewAngle = 0f;
-
+    [SerializeField] private float range = 20f;
 
     [SerializeField] private EnemyState currentState = EnemyState.Combat;
-
-
 
     protected override void Start()
     {
@@ -54,7 +54,7 @@ public class EnemyTurret : DamageableEntity
 
         LayerMask layerToIgnore = LayerMask.GetMask("Enemy");
 
-    RaycastHit2D hit = Physics2D.Raycast(transform.position, transform.TransformDirection(Vector3.up), Mathf.Infinity, ~layerToIgnore);
+    RaycastHit2D hit = Physics2D.Raycast(transform.position, transform.TransformDirection(Vector3.up), range, ~layerToIgnore);
 
 
         if (hit.collider != null)

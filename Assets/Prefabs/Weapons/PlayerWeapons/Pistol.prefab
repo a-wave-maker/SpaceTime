@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7334557726270311420}
   - component: {fileID: 5570654918410593561}
-  - component: {fileID: 1436284945211433894}
+  - component: {fileID: 1029681171894149270}
   m_Layer: 0
   m_Name: Pistol
   m_TagString: Untagged
@@ -85,7 +85,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &1436284945211433894
+--- !u!114 &1029681171894149270
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -94,14 +94,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 8317472938493483283}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bd3b4163406abb449bf2fae110b1634b, type: 3}
+  m_Script: {fileID: 11500000, guid: 289a8e2917971cc4598e95777c56293d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   weaponName: Pistol
-  fireRate: 0.5
-  recoil: 4
+  fireRate: 0.3
+  recoil: 1
   reloadTime: 1.5
-  maxAmmo: 6
+  maxAmmo: 9
   bullet: {fileID: 7686144728540405261, guid: 93233abc480ccf04ca7a5f725d74ee47, type: 3}
   squareSprite: {fileID: 21300000, guid: 7f0895a3573873549b1092c4d5dae6f1, type: 3}
-  dynamicReloading: 0
