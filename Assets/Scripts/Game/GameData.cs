@@ -8,8 +8,8 @@ public class GameData : MonoBehaviour
     int enemyCount;
     float timePassed = 0f;
 
-    public delegate void DataLoaded(GameData data);
-    public static event DataLoaded OnDataLoaded;
+    // public delegate void DataLoaded(GameData data);
+    // public static event DataLoaded OnDataLoaded;
 
     public int EnemyCount { get => enemyCount; set => enemyCount = value; }
 
@@ -36,7 +36,7 @@ public class GameData : MonoBehaviour
         enemies = new List<GameObject>(GameObject.FindGameObjectsWithTag("Enemy"));
         EnemyCount = enemies.Count;
 
-        OnDataLoaded.Invoke(this);
+        // OnDataLoaded.Invoke(this);
     }
 
     /*private void HandleEnemyDeath(GameObject enemy)

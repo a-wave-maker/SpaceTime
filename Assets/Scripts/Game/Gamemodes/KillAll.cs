@@ -13,7 +13,7 @@ public class KillAll : BaseGamemode
     // Start is called before the first frame update
     void Start()
     {
-        GameData.OnDataLoaded += OnDataLoaded;
+        // GameData.OnDataLoaded += OnDataLoaded;
 
         gameData = GameObject.Find("GameManager").GetComponent<GameData>();
 
@@ -33,10 +33,10 @@ public class KillAll : BaseGamemode
         }
     }
 
-    private void OnDataLoaded(GameData data)
+    /*private void OnDataLoaded(GameData data)
     {
-        enemyCount = data.EnemyCount;
-    }
+        enemyCount = gameData.EnemyCount;
+    }*/
 
     private void HandleEnemyDeath(GameObject enemy)
     {
@@ -62,6 +62,7 @@ public class KillAll : BaseGamemode
     {
         if(playerDead)
         {
+            playerDead = false;
             return true;
         }
 

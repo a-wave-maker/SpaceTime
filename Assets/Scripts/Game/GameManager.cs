@@ -114,6 +114,7 @@ public class GameManager : MonoBehaviour
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
+        print(currentState);
         if(currentState == GameState.Loading)
         {
             currentState = GameState.Playing;
@@ -153,7 +154,6 @@ public class GameManager : MonoBehaviour
 
     public void GameLost()
     {
-        gameMode.ResetMode();
         Cursor.visible = true;
         currentState = GameState.Loss;
         StartCoroutine(GameLostCoroutine(7f));
@@ -165,6 +165,7 @@ public class GameManager : MonoBehaviour
         fullScreenMessage.DisplayMessage(2f, 5f, 5f);
         yield return new WaitForSeconds(time);
         QuitToMenu();
+        gameMode.ResetMode();
     }
 
     public void GameWon()
