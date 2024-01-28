@@ -7,4 +7,6 @@ public interface IGamemode
     public bool WinConditionMet();
     public bool LossConditionMet();
 
+    public void ResetMode();
+
 }

@@ -28,6 +28,8 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
+        SceneManager.sceneLoaded += OnSceneLoaded;
+
         // Make sure there is only one GameManager
         if (Instance == null)
         {
@@ -49,21 +51,20 @@ public class GameManager : MonoBehaviour
         PlayerPrefs.SetInt("DynamicReloading", 1); // 1=on, 0=off
         PlayerPrefs.Save();
 
-        SceneManager.sceneLoaded += OnSceneLoaded;
 
         FindObjects();
     }
 
     private void Update()
     {
-        if (gameMode != null)
+        if (gameMode != null && currentState == GameState.Playing)
         {
-            if (gameMode.WinConditionMet() && currentState == GameState.Playing)
+            if (gameMode.WinConditionMet())
             {
                 GameWon();
             }
 
-            if (gameMode.LossConditionMet() && currentState == GameState.Playing)
+            if (gameMode.LossConditionMet())
             {
                 GameLost();
             }
@@ -114,6 +115,7 @@ public class GameManager : MonoBehaviour
         if (currentState == GameState.Playing)
         {
             FindObjects();
+            gameData.LoadData();
         }
     }
 
@@ -144,6 +146,7 @@ public class GameManager : MonoBehaviour
 
     public void GameLost()
     {
+        gameMode.ResetMode();
         Cursor.visible = true;
         currentState = GameState.Loss;
         StartCoroutine(GameLostCoroutine(7f));
@@ -159,6 +162,7 @@ public class GameManager : MonoBehaviour
 
     public void GameWon()
     {
+        gameMode.ResetMode();
         Cursor.visible = true;
         currentState = GameState.Win;
         StartCoroutine(GameWonCoroutine(7f));

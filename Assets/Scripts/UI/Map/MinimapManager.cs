@@ -5,6 +5,7 @@ using UnityEngine;
 public class MinimapManager : MonoBehaviour
 {
     [SerializeField] private GameObject minimap;
+    [SerializeField] private GameObject enemyCount;
 
     private bool isMinimapEnabled = false;
 
@@ -12,5 +13,6 @@ public class MinimapManager : MonoBehaviour
     {
         isMinimapEnabled = !isMinimapEnabled;
         minimap.SetActive(isMinimapEnabled);
+        enemyCount.SetActive(isMinimapEnabled);
     }
 }

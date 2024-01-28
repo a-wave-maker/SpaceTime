@@ -67,7 +67,6 @@ public class FullScreenMessage : MonoBehaviour
 
     private IEnumerator FadeOutCoroutine(float duration)
     {
-        print("Fading out");
         float elapsedTime = 0f;
 
         while (elapsedTime < duration)

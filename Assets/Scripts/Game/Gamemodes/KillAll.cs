@@ -4,18 +4,18 @@ using UnityEngine;
 
 public class KillAll : BaseGamemode
 {
-    private int enemyCount;
+    private int enemyCount = 1;
     private bool playerDead = false;
+    private bool won = false;
+
+    private GameData gameData;
 
     // Start is called before the first frame update
     void Start()
     {
-        GameManager gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
-        if(gameManager.gameData == null)
-        {
-            print("What");
-        }
-        enemyCount = gameManager.gameData.EnemyCount;
+        GameData.OnDataLoaded += OnDataLoaded;
+
+        gameData = GameObject.Find("GameManager").GetComponent<GameData>();
 
         // Subscribe to the EnemyDeath and PlayerDeath events
         DamageableEnemy.EnemyDeath += HandleEnemyDeath;
@@ -24,12 +24,28 @@ public class KillAll : BaseGamemode
 
     private void Update()
     {
-        
+        if (gameData != null) {
+            enemyCount = gameData.EnemyCount;
+        } 
+        else
+        {
+            gameData = GameObject.Find("GameManager").GetComponent<GameData>();
+        }
+    }
+
+    private void OnDataLoaded(GameData data)
+    {
+        enemyCount = data.EnemyCount;
     }
 
     private void HandleEnemyDeath(GameObject enemy)
     {
         enemyCount--;
+
+        if (enemyCount <= 0)
+        {
+            won = true;
+        }
     }
 
     private void HandlePlayerDeath()
@@ -39,12 +55,7 @@ public class KillAll : BaseGamemode
 
     public override bool WinConditionMet()
     {
-        if(enemyCount == 0)
-        {
-            return true;
-        }
-
-        return false;
+       return won;
     }
 
     public override bool LossConditionMet()
@@ -55,5 +66,11 @@ public class KillAll : BaseGamemode
         }
 
         return false;
+    }
+
+    public override void ResetMode()
+    {
+        won = false;
+        enemyCount = 1;
     }
 }
