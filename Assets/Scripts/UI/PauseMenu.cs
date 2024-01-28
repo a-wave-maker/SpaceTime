@@ -5,31 +5,17 @@ using UnityEngine;
 public class PauseMenu : MonoBehaviour
 {
 
-    public static bool isGamePaused;
+    public bool isGamePaused;
     [SerializeField] private GameObject pauseMenuUI;
     [SerializeField] private GameObject optionsUI;
-    [SerializeField] private GameManager gameManager;
+    private GameManager gameManager;
 
     void Start()
     {
+        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         pauseMenuUI.SetActive(false);
         optionsUI.SetActive(false);
     }
-
-    void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            if (isGamePaused)
-            {
-                Resume();
-            } else
-            {
-                Pause();
-            }
-        }
-    }
-
 
     public void Resume()
     {
