@@ -116,7 +116,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameData: {fileID: 6996818363313197221}
-  currentState: 1
+  currentState: 2
 --- !u!114 &3263212872056172346
 MonoBehaviour:
   m_ObjectHideFlags: 0

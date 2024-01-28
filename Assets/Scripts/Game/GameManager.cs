@@ -8,6 +8,7 @@ public class GameManager : MonoBehaviour
     public enum GameState
     {
         MainMenu,
+        Loading,
         Playing,
         Win,
         Loss,
@@ -70,6 +71,7 @@ public class GameManager : MonoBehaviour
             }
         }
 
+        // I tried moving this to PlayerController but it's much easier to keep here
         if (Input.GetKeyDown(KeyCode.Escape) && (currentState == GameState.Win || currentState == GameState.Loss))
         {
             StopAllCoroutines();
@@ -112,6 +114,11 @@ public class GameManager : MonoBehaviour
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
+        if(currentState == GameState.Loading)
+        {
+            currentState = GameState.Playing;
+        }
+
         if (currentState == GameState.Playing)
         {
             FindObjects();

@@ -19,15 +19,15 @@ public class DamageableEnemy : MonoBehaviour, IDamageable
     {
         health -= damage;
 
-        if (health < 0)
+        if (health <= 0 && !dead)
         {
+            dead = true;
             Die();
         }
     }
 
     protected void Die()
     {
-        dead = true;
         EnemyDeath?.Invoke(gameObject);
         GameObject.Destroy(gameObject);
     }
