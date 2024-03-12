@@ -274,7 +274,7 @@ GameObject:
   - component: {fileID: 4903961762277623395}
   - component: {fileID: 6236159636207097226}
   m_Layer: 0
-  m_Name: Player Camera
+  m_Name: PlayerCamera
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -833,6 +833,7 @@ MonoBehaviour:
   maxSpeed: 200
   zoomSpeed: 1.2
   cameraHolder: {fileID: 4045277010405066013}
+  PlayerCamera: {fileID: 5057615005448722637}
 --- !u!114 &4854538407025935113
 MonoBehaviour:
   m_ObjectHideFlags: 0

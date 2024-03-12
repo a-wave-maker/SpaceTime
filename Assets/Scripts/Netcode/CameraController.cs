@@ -15,13 +15,18 @@ public class CameraController : NetworkBehaviour
     private bool cameraLock = false;
 
     public GameObject cameraHolder;
+    public Camera PlayerCamera;
 
     public override void OnNetworkSpawn()
     {
-        if(!IsOwner) return;
-        {
-            GameObject.Find("MainCamera").SetActive(false);
-        }
+        if (!IsOwner) return;
+        cameraHolder.SetActive(true);
+    }
+
+    public void Start()
+    {
+        if (!IsOwner) return;
+        GameObject.Find("MainCamera").SetActive(false);
     }
 
     private void LateUpdate()
@@ -29,20 +34,15 @@ public class CameraController : NetworkBehaviour
         if(!IsOwner) return;
         if (cameraHolder != null)
         {
-            cameraHolder.SetActive(true);
 
-            // follow the target
-            cameraHolder.transform.position = transform.position + offset;
+            // follow the target and ensure no rotation (more optimal than separate rotation)
+            cameraHolder.transform.SetPositionAndRotation(transform.position + offset, Quaternion.Euler(0, 0, 0));
 
-            cameraHolder.transform.rotation = Quaternion.Euler(0, 0, 0);
+            // set the zoom
+            ChangeSize();
 
-
-
-            //// set the zoom
-            //ChangeSize();
-
-            //// set the offset
-            //SetPan();
+            // set the offset
+            SetPan();
         }
         else
         {
@@ -60,40 +60,38 @@ public class CameraController : NetworkBehaviour
         cameraLock = false;
     }
 
-    //private void ChangeSize()
-    //{
-    //    float differnce = GetGoalSize() - gameObject.GetComponent<Camera>().orthographicSize;
+    private void ChangeSize()
+    {
+        float differnce = GetGoalSize() - PlayerCamera.orthographicSize;
 
-    //    gameObject.GetComponent<Camera>().orthographicSize += Time.deltaTime * differnce * zoomSpeed;
+        PlayerCamera.orthographicSize += Time.deltaTime * differnce * zoomSpeed;
+    }
 
-    //}
+    private float GetGoalSize()
+    {
+        float speedMultiplier = transform.GetComponent<Rigidbody2D>().velocity.magnitude;
 
-    //private float GetGoalSize()
-    //{
-    //    float speedMultiplier = target.GetComponent<Rigidbody2D>().velocity.magnitude;
+        float t = Mathf.Clamp01(speedMultiplier / maxSpeed);
 
-    //    float t = Mathf.Clamp01(speedMultiplier / maxSpeed);
+        float newSize = Mathf.Lerp(baseSize, maxSize, t);
 
-    //    float newSize = Mathf.Lerp(baseSize, maxSize, t);
+        return newSize;
+    }
 
-    //    return newSize;
+    private void SetPan()
+    {
+        Vector3 mousePosition = PlayerCamera.ScreenToWorldPoint(Input.mousePosition);
+        Vector3 targetPosition = transform.position;
 
-    //}
+        Vector3 middlePoint = Vector3.Lerp(targetPosition, mousePosition, 0.3f);
 
-    //private void SetPan()
-    //{
-    //    Vector3 mousePosition = gameObject.GetComponent<Camera>().ScreenToWorldPoint(Input.mousePosition);
-    //    Vector3 targetPosition = target.position;
+        Vector3 difference = middlePoint - targetPosition;
 
-    //    Vector3 middlePoint = Vector3.Lerp(targetPosition, mousePosition, 0.3f);
-
-    //    Vector3 difference = middlePoint - targetPosition;
-
-    //    if (!cameraLock)
-    //    {
-    //        SetOffset(difference);
-    //    }
-    //}
+        if (!cameraLock)
+        {
+            SetOffset(difference);
+        }
+    }
 
     private void SetOffset(Vector3 vector)
     {
