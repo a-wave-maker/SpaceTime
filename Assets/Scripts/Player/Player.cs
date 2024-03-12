@@ -7,6 +7,7 @@ using UnityEngine.EventSystems;
 public class Player : MonoBehaviour, IDamageable
 {
     [SerializeField] private PlayerData playerData;
+    [SerializeField] private Camera playerCamera;
 
     public delegate void PlayerDeathAction();
     public static event PlayerDeathAction PlayerDeath;
@@ -42,7 +43,7 @@ public class Player : MonoBehaviour, IDamageable
             // Apply recoil
             float force = playerData.PlayerActiveWeapon.Recoil;
 
-            Vector3 targetPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            Vector3 targetPosition = playerCamera.ScreenToWorldPoint(Input.mousePosition);
             targetPosition.z = 0f;
 
             Vector2 direction = transform.position - targetPosition;
@@ -120,7 +121,7 @@ public class Player : MonoBehaviour, IDamageable
 
     private void FaceCursor()
     {
-        Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        Vector3 mousePosition = playerCamera.ScreenToWorldPoint(Input.mousePosition);
         Vector3 direction = mousePosition - transform.position;
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
         Quaternion targetRotation = Quaternion.Euler(new Vector3(0f, 0f, angle - 90f));
