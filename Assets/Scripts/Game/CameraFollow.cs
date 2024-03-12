@@ -1,12 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Netcode;
 using UnityEngine;
 
 public class CameraFollow : MonoBehaviour
 {
     [SerializeField] private Transform target;
 
-    [SerializeField] private Vector3 offset = new (0f, 0f, -10f);
+    [SerializeField] private Vector3 offset = new(0f, 0f, -10f);
 
     [SerializeField] private float baseSize = 10f;
     [SerializeField] private float maxSize = 40f;
@@ -15,12 +16,15 @@ public class CameraFollow : MonoBehaviour
 
     private bool cameraLock = false;
 
+
     private void LateUpdate()
     {
         if (target != null)
         {
             // follow the target
             transform.position = target.position + offset;
+
+
 
             // set the zoom
             ChangeSize();

@@ -1,15 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.PackageManager;
+using Unity.Netcode;
 using UnityEngine;
 
-public class PlayerController : MonoBehaviour
+public class PlayerController : NetworkBehaviour
 {
     [SerializeField] private PlayerData playerData;
 
     [SerializeField] private Player player;
 
-    [SerializeField] private CameraFollow playerCamera;
+    [SerializeField] private CameraController playerCamera;
 
     [SerializeField] private MinimapManager minimapManager;
 
@@ -18,6 +18,13 @@ public class PlayerController : MonoBehaviour
     private GameManager gameManager;
     
     private SuperHotManager superHotManager;
+
+    public override void OnNetworkSpawn()
+    {
+        if(!IsOwner) return;
+        playerCamera = GetComponent<CameraController>();
+    
+    }
 
     private void Start()
     {
@@ -28,6 +35,7 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (!IsOwner) return;
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             if (gameManager.currentState == GameManager.GameState.Playing || gameManager.currentState == GameManager.GameState.Paused)

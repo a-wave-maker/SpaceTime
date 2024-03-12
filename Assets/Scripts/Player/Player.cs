@@ -1,10 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Netcode;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class Player : MonoBehaviour, IDamageable
+public class Player : NetworkBehaviour, IDamageable
 {
     [SerializeField] private PlayerData playerData;
     [SerializeField] private Camera playerCamera;
@@ -12,16 +13,29 @@ public class Player : MonoBehaviour, IDamageable
     public delegate void PlayerDeathAction();
     public static event PlayerDeathAction PlayerDeath;
 
+    public override void OnNetworkSpawn()
+    {
+        if (!IsOwner) return;
+        {
+            GameObject.Find("MainCamera").SetActive(false);
+            playerCamera.enabled = true;
+        }
+    }
+
     public void Update()
     {
-        if(playerData.PlayerHealth <= 0)
+        if (!IsOwner) return;
+
+        if (playerData.PlayerHealth <= 0)
         {
             Die();
         }
     }
 
-    public void OnGUI()
+    public void FixedUpdate()
     {
+        if (!IsOwner) return;
+
         FaceCursor();
     }
 
