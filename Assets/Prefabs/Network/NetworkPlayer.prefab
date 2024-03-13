@@ -563,8 +563,8 @@ GameObject:
   - component: {fileID: 4854538407025935113}
   - component: {fileID: 6007415561655953457}
   - component: {fileID: 5035392613330904956}
-  - component: {fileID: 8953535168390131786}
-  - component: {fileID: -3274412016493237429}
+  - component: {fileID: 8855897538800879737}
+  - component: {fileID: 9071689850941739459}
   m_Layer: 7
   m_Name: NetworkPlayer
   m_TagString: Player
@@ -893,7 +893,7 @@ MonoBehaviour:
     ignore: 0
   - layerName: Obstacle
     ignore: 0
---- !u!114 &8953535168390131786
+--- !u!114 &8855897538800879737
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -902,7 +902,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 6987402089700932781}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e96cb6065543e43c4a752faaa1468eb1, type: 3}
+  m_Script: {fileID: 11500000, guid: edc713d8303568045bb1840e1d758594, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   UseUnreliableDeltas: 0
@@ -924,7 +924,7 @@ MonoBehaviour:
   InLocalSpace: 0
   Interpolate: 1
   SlerpPosition: 0
---- !u!114 &-3274412016493237429
+--- !u!114 &9071689850941739459
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
