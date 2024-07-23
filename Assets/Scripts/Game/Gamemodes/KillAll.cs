@@ -7,8 +7,10 @@ public class KillAll : BaseGamemode
     private int enemyCount = 1;
     private bool playerDead = false;
     private bool won = false;
+    private const int ENEMY_VALUE = 10;
 
     private GameData gameData;
+
 
     // Start is called before the first frame update
     void Start()
@@ -41,6 +43,7 @@ public class KillAll : BaseGamemode
     private void HandleEnemyDeath(GameObject enemy)
     {
         enemyCount--;
+        gameData.Score += ENEMY_VALUE;
 
         if (enemyCount <= 0)
         {

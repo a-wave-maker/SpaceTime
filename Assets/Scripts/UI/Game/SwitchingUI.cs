@@ -36,8 +36,8 @@ public class SwitchingUI : MonoBehaviour
         // to finish first
         UpdateElements();
 
-        float scroll = Input.GetAxis("Mouse ScrollWheel");
-        if (scroll != 0f || CheckNumericKeys()) // when buttons for weapon switching are pressed
+        // float scroll = Input.GetAxis("Mouse ScrollWheel");
+        if (playerData.IsSwitching) // when buttons for weapon switching are pressed
         {
             // update the opacities and timers
             SetImageAlpha(GetComponent<Image>(), 1f);
@@ -46,6 +46,13 @@ public class SwitchingUI : MonoBehaviour
             fadeTime = 1f;
             isFading = false;
 
+        } else if (playerData.SwitchingAccepted)
+        {
+            SetImageAlpha(GetComponent<Image>(), 0);
+            SetMultipleImagesAlpha(children, 0);
+            fadeTimer = 0f;
+            fadeTime = 0f;
+            isFading = false;
         }
 
         // update the fade process
@@ -54,7 +61,8 @@ public class SwitchingUI : MonoBehaviour
 
     private void UpdateElements()
     {
-        List<Sprite> weaponSprites = GetSurroundingWeaponSprites(playerData.PlayerWeapons, playerData.PlayerActiveWeaponIdx, 5);
+        int weaponIdx = playerData.SwitchingIdx % playerData.PlayerWeapons.Count;
+        List<Sprite> weaponSprites = GetSurroundingWeaponSprites(playerData.PlayerWeapons, weaponIdx, 5);
 
         if (weaponSprites.Count == children.Count)
         {

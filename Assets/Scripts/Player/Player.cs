@@ -28,19 +28,21 @@ public class Player : MonoBehaviour, IDamageable
     // PLAYER ACTIONS
     // ----------------------------------------------------------------------------------------------------------------
 
-    public void Fire()
+    public void Fire(bool left)
     {
-        if (playerData.PlayerActiveWeaponIdx == 0)
+        int activeWeaponIndex = left ? playerData.PlayerLeftActiveWeaponIdx : playerData.PlayerRightActiveWeaponIdx;
+
+        if (activeWeaponIndex == 0)
         {
             return;
         }
         // Fire weapon
-        PlayerWeapon currentWeapon = playerData.PlayerActiveWeapon;
+        PlayerWeapon currentWeapon = playerData.PlayerWeapons[activeWeaponIndex];
 
         if (currentWeapon.Fire())
         {
             // Apply recoil
-            float force = playerData.PlayerActiveWeapon.Recoil;
+            float force = currentWeapon.Recoil;
 
             Vector3 targetPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             targetPosition.z = 0f;
@@ -51,36 +53,91 @@ public class Player : MonoBehaviour, IDamageable
         }
     }
 
-    public void Reload()
+    public void FireLeft()
     {
-        playerData.PlayerActiveWeapon.Reload();
+        Fire(true);
     }
 
-    
+    public void FireRight()
+    {
+        Fire(false);
+    }
+
+    public void Reload()
+    {
+        playerData.PlayerLeftActiveWeapon.Reload();
+        playerData.PlayerRightActiveWeapon.Reload();
+    }
+
+
     // ----------------------------------------------------------------------------------------------------------------
     // WEAPON SWITCHING
     // ----------------------------------------------------------------------------------------------------------------
 
-    public void NextWeapon()
+    private void SwitchWeapon(int fromIdx, int toIdx, bool left)
     {
-        int nextIdx = playerData.PlayerActiveWeaponIdx;
+        int otherWeaponIdx = left ? playerData.PlayerRightActiveWeaponIdx : playerData.PlayerLeftActiveWeaponIdx;
+
+        // if the same weapon chosen, switch hands
+        if (toIdx != 0 && toIdx == otherWeaponIdx)
+        {
+            playerData.PlayerLeftActiveWeaponIdx = 0;
+            playerData.PlayerRightActiveWeaponIdx = 0;
+
+            if (left)
+            {
+                playerData.PlayerLeftActiveWeaponIdx = toIdx;
+                playerData.PlayerRightActiveWeaponIdx = fromIdx;
+            } else
+            {
+                playerData.PlayerRightActiveWeaponIdx = toIdx;
+                playerData.PlayerLeftActiveWeaponIdx = fromIdx;
+            }
+        } 
+        else
+        {
+            playerData.PlayerWeapons[fromIdx].Switch();
+            if (left)
+            {
+                playerData.PlayerLeftActiveWeaponIdx = toIdx;
+            }
+            else
+            {
+                playerData.PlayerRightActiveWeaponIdx = toIdx;
+            }
+            playerData.PlayerWeapons[toIdx].Switch();
+        }
+
+        // set the weapon to the right position
+        playerData.PlayerWeapons[playerData.PlayerLeftActiveWeaponIdx].transform.localPosition = new Vector3(-0.35f, 0.3f, 0); // set the second value to -0.3f for a funny bug
+        playerData.PlayerWeapons[playerData.PlayerRightActiveWeaponIdx].transform.localPosition = new Vector3(0.35f, 0.3f, 0);
+    }
+
+    public PlayerWeapon NextWeapon(bool left)
+    {
+        int activeWeaponIdx = left ? playerData.PlayerLeftActiveWeaponIdx : playerData.PlayerRightActiveWeaponIdx;
+
+        int nextIdx = activeWeaponIdx;
+
         if (nextIdx == playerData.PlayerWeapons.Count - 1)
         {
             nextIdx = 0;
         }
         else
         {
-            nextIdx = playerData.PlayerActiveWeaponIdx + 1;
+            nextIdx = activeWeaponIdx + 1;
         }
 
-        playerData.PlayerWeapons[playerData.PlayerActiveWeaponIdx].Switch();
-        playerData.PlayerActiveWeaponIdx = nextIdx;
-        playerData.PlayerWeapons[playerData.PlayerActiveWeaponIdx].Switch();
+        SwitchWeapon(activeWeaponIdx, nextIdx, left);
+
+        return playerData.PlayerWeapons[nextIdx];
     }
 
-    public PlayerWeapon PreviousWeapon()
+    public PlayerWeapon PreviousWeapon(bool left)
     {
-        int nextIdx = playerData.PlayerActiveWeaponIdx;
+        int activeWeaponIdx = left ? playerData.PlayerLeftActiveWeaponIdx : playerData.PlayerRightActiveWeaponIdx;
+
+        int nextIdx = left ? playerData.PlayerLeftActiveWeaponIdx : playerData.PlayerRightActiveWeaponIdx;
 
         if (nextIdx == 0)
         {
@@ -88,27 +145,23 @@ public class Player : MonoBehaviour, IDamageable
         }
         else
         {
-            nextIdx = playerData.PlayerActiveWeaponIdx - 1;
+            nextIdx = activeWeaponIdx - 1;
         }
 
-        playerData.PlayerWeapons[playerData.PlayerActiveWeaponIdx].Switch();
-        playerData.PlayerActiveWeaponIdx = nextIdx;
-        playerData.PlayerWeapons[playerData.PlayerActiveWeaponIdx].Switch();
+        SwitchWeapon(activeWeaponIdx, nextIdx, left);
 
         return playerData.PlayerWeapons[nextIdx];
     }
 
-    public PlayerWeapon NthWeapon(int number)
+    public PlayerWeapon NthWeapon(int idx, bool left)
     {
-        int nextIdx = playerData.PlayerActiveWeaponIdx;
+        int activeWeaponIdx = left ? playerData.PlayerLeftActiveWeaponIdx : playerData.PlayerRightActiveWeaponIdx;
 
-        if (number >= 0 && number < playerData.PlayerWeapons.Count)
-        {
-            nextIdx = number % playerData.PlayerWeapons.Count;
-            playerData.PlayerWeapons[playerData.PlayerActiveWeaponIdx].Switch();
-            playerData.PlayerActiveWeaponIdx = nextIdx;
-            playerData.PlayerWeapons[playerData.PlayerActiveWeaponIdx].Switch();
-        }
+        int nextIdx = left ? playerData.PlayerLeftActiveWeaponIdx : playerData.PlayerRightActiveWeaponIdx;
+
+        nextIdx = (idx % playerData.PlayerWeapons.Count + playerData.PlayerWeapons.Count) % playerData.PlayerWeapons.Count;
+
+        SwitchWeapon(activeWeaponIdx, nextIdx, left);
 
         return playerData.PlayerWeapons[nextIdx];
     }

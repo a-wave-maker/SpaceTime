@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEditor.PackageManager;
 using UnityEngine;
 
@@ -77,7 +78,37 @@ public class PlayerController : MonoBehaviour
             // PLAYER
             if (Input.GetButton("Fire1"))
             {
-                player.Fire();
+                if (playerData.IsSwitching)
+                {
+                    switchWeapon(playerData.SwitchingIdx, true);
+                    playerData.acceptSwtiching();
+                }
+                else
+                {
+                    player.Fire(true);
+                }
+            }
+            if (Input.GetButton("Fire2"))
+            {
+                if (playerData.IsSwitching)
+                {
+                    switchWeapon(playerData.SwitchingIdx, false);
+                    playerData.acceptSwtiching();
+                }
+                else
+                {
+                    player.Fire(false);
+                }
+            }
+            if (Input.GetButton("Fire3"))
+            {
+                if (playerData.IsSwitching)
+                {
+                    playerData.toggleSwitchingOff();
+                } else
+                {
+                    playerData.toggleSwitchingOn();
+                }
             }
             if (Input.GetKeyDown(KeyCode.R))
             {
@@ -88,11 +119,20 @@ public class PlayerController : MonoBehaviour
             float scroll = Input.GetAxis("Mouse ScrollWheel");
             if (scroll > 0f) // Scroll Up
             {
-                player.NextWeapon();
+                if (!playerData.IsSwitching)
+                {
+                    playerData.toggleSwitchingOn();
+                }
+                playerData.updateSwitchingIdx(1);
             }
             else if (scroll < 0f) // Scroll Down
             {
-                player.PreviousWeapon();
+                if (!playerData.IsSwitching)
+                {
+                    playerData.toggleSwitchingOn();
+                }
+                playerData.IsSwitching = true;
+                playerData.updateSwitchingIdx(-1);
             }
 
             // Switch weapon using number keys (1 to 9 and 0), 0 for default empty weapon
@@ -100,9 +140,16 @@ public class PlayerController : MonoBehaviour
             {
                 if (Input.GetKeyDown(i.ToString()))
                 {
-                    player.NthWeapon(i);
+                    playerData.toggleSwitchingOn();
+                    playerData.updateSwitchingIdx(i);
                 }
             }
         }
+    }
+
+    private void switchWeapon(int idx, bool left)
+    {
+        int weaponIdx = idx % playerData.PlayerWeapons.Count;
+        player.NthWeapon(weaponIdx, left);
     }
 }

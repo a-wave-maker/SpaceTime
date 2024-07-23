@@ -6,17 +6,21 @@ using UnityEngine.UI;
 public class Status : MonoBehaviour
 {
     [SerializeField] private PlayerData playerData;
-    Image image = null;
+    [SerializeField] private Image leftMask;
+    [SerializeField] private Image rightMask;
+    [SerializeField] private Image leftWeapon;
+    [SerializeField] private Image rightWeapon;
 
     // Start is called before the first frame update
     void Start()
     {
-        image = GetComponent<Image>();
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        image.sprite = playerData.PlayerActiveWeapon.SquareSprite;
+        leftWeapon.sprite = playerData.PlayerLeftActiveWeapon.SquareSprite;
+        rightWeapon.sprite = playerData.PlayerRightActiveWeapon.SquareSprite;
     }
 }
