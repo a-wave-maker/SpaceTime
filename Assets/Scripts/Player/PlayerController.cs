@@ -20,6 +20,9 @@ public class PlayerController : MonoBehaviour
     
     private SuperHotManager superHotManager;
 
+    private bool isFire1Pressed = false;
+    private bool isFire2Pressed = false;
+
     private void Start()
     {
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
@@ -76,31 +79,53 @@ public class PlayerController : MonoBehaviour
             }
 
             // PLAYER
-            if (Input.GetButton("Fire1"))
+            if (Input.GetButtonDown("Fire1"))
+            {
+                isFire1Pressed = true;
+            }
+
+            if (Input.GetButtonUp("Fire1"))
+            {
+                isFire1Pressed = false;
+            }
+
+            if (isFire1Pressed)
             {
                 if (playerData.IsSwitching)
                 {
                     switchWeapon(playerData.SwitchingIdx, true);
                     playerData.acceptSwtiching();
+                    isFire1Pressed = false;
                 }
                 else
                 {
-                    player.Fire(true);
+                    player.FireLeft();
                 }
             }
-            if (Input.GetButton("Fire2"))
+            if (Input.GetButtonDown("Fire2"))
+            {
+                isFire2Pressed = true;
+            }
+
+            if (Input.GetButtonUp("Fire2"))
+            {
+                isFire2Pressed = false;
+            }
+
+            if (isFire2Pressed)
             {
                 if (playerData.IsSwitching)
                 {
                     switchWeapon(playerData.SwitchingIdx, false);
                     playerData.acceptSwtiching();
+                    isFire2Pressed = false;
                 }
                 else
                 {
-                    player.Fire(false);
+                    player.FireRight();
                 }
             }
-            if (Input.GetButton("Fire3"))
+            if (Input.GetButtonDown("Fire3"))
             {
                 if (playerData.IsSwitching)
                 {

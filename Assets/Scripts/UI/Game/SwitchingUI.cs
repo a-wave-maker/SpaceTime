@@ -42,7 +42,6 @@ public class SwitchingUI : MonoBehaviour
             // update the opacities and timers
             SetImageAlpha(GetComponent<Image>(), 1f);
             SetMultipleImagesAlpha(children, 1f);
-            fadeTimer = 1f;
             fadeTime = 1f;
             isFading = false;
 
@@ -53,10 +52,13 @@ public class SwitchingUI : MonoBehaviour
             fadeTimer = 0f;
             fadeTime = 0f;
             isFading = false;
+        } else
+        {
+            // update the fade process
+            Fade();
         }
 
-        // update the fade process
-        Fade();
+        
     }
 
     private void UpdateElements()
@@ -177,12 +179,14 @@ public class SwitchingUI : MonoBehaviour
                 {
                     SetImageAlpha(image, fadeTime * betweenOpacity);
                 }
+
             }
             SetImageAlpha(GetComponent<Image>(), fadeTime);
             fadeTime -= Time.deltaTime;
         }
 
-        fadeTimer -= Time.deltaTime;
+        fadeTime -= Time.deltaTime;
+
     }
 
 }
