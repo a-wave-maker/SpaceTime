@@ -7,10 +7,12 @@ public class GameData : MonoBehaviour
     List<GameObject> enemies;
     int enemyCount;
     float timePassed = 0f;
+    int score = 0;
 
     // public delegate void DataLoaded(GameData data);
     // public static event DataLoaded OnDataLoaded;
-
+    public float TimePassed { get => timePassed; set => timePassed = value; }
+    public int Score { get => score; set => score = value; }
     public int EnemyCount { get => enemyCount; set => enemyCount = value; }
 
     // Start is called before the first frame update

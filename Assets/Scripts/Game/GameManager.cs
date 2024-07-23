@@ -58,6 +58,11 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
+        if (currentState == GameState.Playing)
+        {
+            gameData.TimePassed += Time.deltaTime;
+        }
+
         if (gameMode != null && currentState == GameState.Playing)
         {
             if (gameMode.WinConditionMet())
@@ -169,6 +174,8 @@ public class GameManager : MonoBehaviour
 
     public void GameWon()
     {
+        // TODO: leaderboard
+        setScore(0);
         gameMode.ResetMode();
         Cursor.visible = true;
         currentState = GameState.Win;
@@ -183,4 +190,13 @@ public class GameManager : MonoBehaviour
         QuitToMenu();
     }
 
+    private void updateScore(int score)
+    {
+        gameData.Score += score;
+    }
+
+    private void setScore(int score)
+    {
+        gameData.Score = score;
+    }
 }
