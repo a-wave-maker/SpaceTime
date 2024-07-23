@@ -75,10 +75,13 @@ public class PlayerWeapon : Weapon
      // reload
     public override void Reload()
     {
-        RemainingAmmo = 0;
-        ReloadStart = Time.time;
-        IsReloading = true;
-        ReloadProgress = 0f;
+        if (!isReloading && RemainingAmmo != MaxAmmo)
+        {
+            RemainingAmmo = 0;
+            ReloadStart = Time.time;
+            IsReloading = true;
+            ReloadProgress = 0f;
+        }
     }
 
     // switch weapon active status
