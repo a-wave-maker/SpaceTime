@@ -50,6 +50,7 @@ public class GameManager : MonoBehaviour
         // temp? set default settings
         PlayerPrefs.SetInt("BulletCollision", 1); // 1=on, 0=off
         PlayerPrefs.SetInt("DynamicReloading", 1); // 1=on, 0=off
+        PlayerPrefs.SetInt("AutoReload", 1); // 1=on, 0=off
         PlayerPrefs.Save();
 
 
@@ -156,6 +157,15 @@ public class GameManager : MonoBehaviour
         currentState = GameState.Playing;
     }
 
+    public void GameWon()
+    {
+        // TODO: leaderboard
+        gameMode.ResetMode();
+        Cursor.visible = true;
+        currentState = GameState.Win;
+        StartCoroutine(GameWonCoroutine(7f));
+    }
+
     public void GameLost()
     {
         Cursor.visible = true;
@@ -172,21 +182,12 @@ public class GameManager : MonoBehaviour
         gameMode.ResetMode();
     }
 
-    public void GameWon()
-    {
-        // TODO: leaderboard
-        setScore(0);
-        gameMode.ResetMode();
-        Cursor.visible = true;
-        currentState = GameState.Win;
-        StartCoroutine(GameWonCoroutine(7f));
-    }
-
     private IEnumerator GameWonCoroutine(float time)
     {
-        fullScreenMessage.SetMessage("Victory!", Color.green);
+        fullScreenMessage.SetMessage("Victory! Score: " + gameData.Score, Color.green);
         fullScreenMessage.DisplayMessage(2f, 5f, 5f);
         yield return new WaitForSeconds(time);
+        setScore(0);
         QuitToMenu();
     }
 

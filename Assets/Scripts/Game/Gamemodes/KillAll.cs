@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class KillAll : BaseGamemode
@@ -7,7 +8,6 @@ public class KillAll : BaseGamemode
     private int enemyCount = 1;
     private bool playerDead = false;
     private bool won = false;
-    private const int ENEMY_VALUE = 10;
 
     private GameData gameData;
 
@@ -43,7 +43,7 @@ public class KillAll : BaseGamemode
     private void HandleEnemyDeath(GameObject enemy)
     {
         enemyCount--;
-        gameData.Score += ENEMY_VALUE;
+        gameData.Score += enemy.GetComponent<DamageableEnemy>().Value;
 
         if (enemyCount <= 0)
         {
@@ -58,7 +58,11 @@ public class KillAll : BaseGamemode
 
     public override bool WinConditionMet()
     {
-       return won;
+        // print(gameData.Score);
+        gameData.Score = (int)(gameData.Score / (gameData.TimePassed / 100));
+        // print(gameData.Score);
+        // print(gameData.TimePassed);
+        return won;
     }
 
     public override bool LossConditionMet()
