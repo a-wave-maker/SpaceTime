@@ -60,6 +60,15 @@ public class PlayerWeapon : Weapon
             base.Fire(direction);
             LastFireTime = Time.time;
             RemainingAmmo--;
+
+            if (PlayerPrefs.GetInt("AutoReload").Equals(1))
+            {
+                if(RemainingAmmo.Equals(0)) 
+                {
+                    Reload();
+                }
+            }
+
             return true;
         }
         else return false;
