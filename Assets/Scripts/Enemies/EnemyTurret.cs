@@ -26,6 +26,11 @@ public class EnemyTurret : DamageableEnemy
         target = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
     }
 
+    public int GetValue()
+    {
+        return 100;
+    }
+
     void Update()
     {
         switch(currentState)

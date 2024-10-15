@@ -4,6 +4,10 @@ using Unity.VisualScripting;
 
 public class DamageableEnemy : MonoBehaviour, IDamageable
 {
+    [SerializeField]
+    private int value = 10;
+    public int Value { get => value; set => this.value = value; }
+
     public float startingHealth;
     protected float health;
     protected bool dead;
@@ -14,7 +18,7 @@ public class DamageableEnemy : MonoBehaviour, IDamageable
     {
         health = startingHealth;
     }
-
+    
     public void TakeHit(float damage)
     {
         health -= damage;

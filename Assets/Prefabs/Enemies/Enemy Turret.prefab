@@ -245,6 +245,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 90f89350588c3be4eab8c14a7bad3b19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  value: 100
   startingHealth: 2
 --- !u!114 &6174998781667710907
 MonoBehaviour:
@@ -258,9 +259,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e24ecd3e7ee7adf48aff3a46d68c4bf0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  value: 10
   startingHealth: 0
   weapon: {fileID: 1880004515030201296}
   rotationSpeed: 60
+  range: 20
   currentState: 1
 --- !u!58 &-681123820668963496
 CircleCollider2D:

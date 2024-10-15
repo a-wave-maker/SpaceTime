@@ -10,11 +10,14 @@ public class OptionsMenu : MonoBehaviour
     [SerializeField] private GameObject optionsUI;
     public Toggle bulletCollisionToggle;
     public Toggle dynamicReloadingToggle;
+    public Toggle autoReloadToggle;
 
     public void Start()
     {
         bulletCollisionToggle.isOn = true;
         dynamicReloadingToggle.isOn = true;
+        autoReloadToggle.isOn = true;
+
         if (PlayerPrefs.GetInt("BulletCollision").Equals(0))
         {
             toggleBulletCollision();
@@ -22,6 +25,10 @@ public class OptionsMenu : MonoBehaviour
         if (PlayerPrefs.GetInt("DynamicReloading").Equals(0))
         {
             toggleDynamicReloading();
+        }
+        if(PlayerPrefs.GetInt("AutoReload").Equals(0))
+        {
+            toggleAutoReload();
         }
     }
 
@@ -63,5 +70,16 @@ public class OptionsMenu : MonoBehaviour
 
     }
 
+    public void toggleAutoReload() 
+    {
+        if (PlayerPrefs.GetInt("AutoReload").Equals(1))
+        {
+            PlayerPrefs.SetInt("AutoReload", 0);
+        }
+        else
+        {
+            PlayerPrefs.SetInt("AutoReload", 1);
+        }
+    }
 
 }
